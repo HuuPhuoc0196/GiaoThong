@@ -6,39 +6,34 @@
 var x = document.getElementById("result");
 function geocodeLatLng(geocoder,latlng) {
 	  geocoder.geocode({'location': latlng}, function(results, status) {
-	    if (status === 'OK') {
-	      if (results[0]) {
-	        console.log(results[0].formatted_address);
+	    if (status === 'OK'){
+	      if (results[0] && (islat != null && islng != null)) {
+	       		$.ajax({
+	       	        url: "http://localhost/GiaoThong/map/insert",
+	       	        type: "post",
+	       	        data: {
+	       	            lat : islat, 
+	       	            lng : islng,
+	       	            name : results[0].formatted_address
+	       	        },
+	       			dataType: "json",
+	       	        success: function(response) {
+	       	        	x.innerHTML = response["sucess"]["data"];
+	       	        }
+	       		});
 	      } else {
-	        window.alert('No results found');
+	        window.alert('Không tìm thấy');
 	      }
 	    } else {
-	      window.alert('Geocoder failed due to: ' + status);
+	      window.alert('Lấy thông tin không thành công: ' + status);
 	    }
 	  });
 	}
 function loadmap() {
 	var geocoder = new google.maps.Geocoder;
 	$("#insertMap").click(function() {
- 		console.log(islat + " " + islng);
  		var latlng = {lat: islat, lng: islng};
  		geocodeLatLng(geocoder,latlng);
-// 		if(islat != null && islng != null)
-// 		{
-//     		$.ajax({
-//     	        url: "http://localhost/GiaoThong/map/insert",
-//     	        type: "post",
-//     	        data: {
-//     	            lat : islat, 
-//     	            lng : islng,
-//     	            name : "Đang chờ update"
-//     	        },
-//     			dataType: "json",
-//     	        success: function(response) {
-//     	        	x.innerHTML = response["sucess"]["data"];
-//     	        }
-//     		});
-// 		}
 	});
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(showPosition, showError);

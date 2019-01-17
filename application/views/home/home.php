@@ -4,8 +4,6 @@
 <?php $this->load->view('template/menu',$menu_class);?>
 <?php $this->load->view('template/slider');?>
 
-
-
 <!-- /banner-->
 <!-- services -->
 	<div class="services">
