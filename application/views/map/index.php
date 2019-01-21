@@ -109,7 +109,15 @@ function showPosition(position) {
 	    rotateControl: true   
 	};
 	var map = new google.maps.Map(mapCanvas, mapOptions);
-	var marker = new google.maps.Marker({position:myCenter});
+	var icon = {
+	        url: "http://localhost/GiaoThong/public/images/iconMap1.png", // url
+	        scaledSize: new google.maps.Size(32,32), // size
+	    };
+	var marker = new google.maps.Marker({
+    		position:myCenter,
+    		title: "Điểm kẹt xe!",
+    		icon: icon
+		});
 	marker.setMap(map);
 
 	google.maps.event.addListener(marker,'click',function() {
