@@ -4,21 +4,25 @@
 <?php $this->load->view('template/content_map');?>
 <script type="text/javascript">
 var x = document.getElementById("result");
-function geocodeLatLng(geocoder,latlng) {
+function geocodeLatLng(geocoder,latlng,type) {
 	  geocoder.geocode({'location': latlng}, function(results, status) {
 	    if (status === 'OK'){
 	      if (results[0] && (islat != null && islng != null)) {
 	       		$.ajax({
-	       	        url: "http://localhost/GiaoThong/map/insert",
+	       	        url: "<?php echo base_url_ci;?>map/insert",
 	       	        type: "post",
 	       	        data: {
 	       	            lat : islat, 
 	       	            lng : islng,
-	       	            name : results[0].formatted_address
+	       	            name : results[0].formatted_address,
+	       	            type: type
 	       	        },
 	       			dataType: "json",
 	       	        success: function(response) {
 	       	        	x.innerHTML = response["sucess"]["data"];
+	       	        	if(response['status'] == true){
+	       	        		loadmap();	
+	       	        	}
 	       	        }
 	       		});
 	      } else {
@@ -33,7 +37,8 @@ function loadmap() {
 	var geocoder = new google.maps.Geocoder;
 	$("#insertMap").click(function() {
  		var latlng = {lat: islat, lng: islng};
- 		geocodeLatLng(geocoder,latlng);
+ 		var type = $('#thongtin').children(":selected").attr("id");
+ 		geocodeLatLng(geocoder,latlng,type);
 	});
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -93,6 +98,33 @@ function getLocation() {
 	}
 }
 
+function appendDataToMap(response,map){
+	response['data'].forEach(function(key) {
+	    CentralPark = new google.maps.LatLng(key['lat'], key['lng']);
+	    var type = key['type'];
+	    addMarker(CentralPark,map,type);
+	});
+}
+
+//Function for adding a marker to the page.
+function addMarker(location,map,type) {
+	var icon = {
+	        url: "<?php echo base_url_ci;?>public/images/iconMap"+ type +".png", // url
+	        scaledSize: new google.maps.Size(32,32), // size
+	    };
+    marker = new google.maps.Marker({
+        position: location,
+        icon: icon,
+        map: map
+    });
+    google.maps.event.addListener(marker,'click',function() {
+        var infowindow = new google.maps.InfoWindow({
+          content:"Điểm kẹt xe!"
+        });
+    infowindow.open(map,marker);
+    });
+}
+
 function showPosition(position) {
 	islat = position.coords.latitude;
 	islng = position.coords.longitude;
@@ -109,20 +141,28 @@ function showPosition(position) {
 	    rotateControl: true   
 	};
 	var map = new google.maps.Map(mapCanvas, mapOptions);
-	var icon = {
-	        url: "http://localhost/GiaoThong/public/images/iconMap1.png", // url
-	        scaledSize: new google.maps.Size(32,32), // size
-	    };
+	$.ajax({
+        url: "<?php echo base_url_ci;?>map/search",
+        type: "post",
+        data: {
+            search : ""
+        },
+		dataType: "json",
+        success: function(response) {
+            if(response['status'] == true){
+                appendDataToMap(response,map);
+            }
+        }
+    });
 	var marker = new google.maps.Marker({
     		position:myCenter,
-    		title: "Điểm kẹt xe!",
-    		icon: icon
+    		title: "Điểm của bạn",
 		});
 	marker.setMap(map);
 
 	google.maps.event.addListener(marker,'click',function() {
 	    var infowindow = new google.maps.InfoWindow({
-	      content:"Điểm kẹt xe!"
+	      content:"Điểm của bạn"
 	    });
 	  infowindow.open(map,marker);
 	 });

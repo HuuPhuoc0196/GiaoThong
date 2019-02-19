@@ -118,13 +118,13 @@ class M_map extends CI_Model
         return $result;
     }
     
-    public function findMap($data)
+    public function findMap($data,$dataName)
     {
         $this->db->select('id');
         $this->db->from($this->table);
         $this->db->where($data);
+        $this->db->or_where($dataName);
         $result = $this->db->get()->row_array();
-        
        return $result;
     }
 }

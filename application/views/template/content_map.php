@@ -6,7 +6,7 @@ var isname;
 function searchMap() {
 	var search = $("#search").val();
 	$.ajax({
-        url: "http://localhost/GiaoThong/map/search",
+        url: "<?php echo base_url_ci;?>map/search",
         type: "post",
         data: {
             search : search
@@ -35,7 +35,7 @@ function getMap()
 	var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
     $.ajax({
-        url: "http://localhost/GiaoThong/map/getMap",
+        url: "<?php echo base_url_ci;?>map/getMap",
         type: "post",
         data: {
             id : selectedValue
@@ -61,7 +61,19 @@ function getMap()
         		var map = new google.maps.Map(mapCanvas, mapOptions);
         		var marker = new google.maps.Marker({position:myCenter});
         		marker.setMap(map);
-
+        		$.ajax({
+        	        url: "<?php echo base_url_ci;?>map/search",
+        	        type: "post",
+        	        data: {
+        	            search : ""
+        	        },
+        			dataType: "json",
+        	        success: function(response) {
+        	            if(response['status'] == true){
+        	                appendDataToMap(response,map);
+        	            }
+        	        }
+        	    });
         		google.maps.event.addListener(marker,'click',function() {
         		    var infowindow = new google.maps.InfoWindow({
         		      content:"Điểm kẹt xe!"
@@ -79,10 +91,10 @@ function getMap()
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Thêm thông tin vào Bản đồ</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <span class="modal-title" id="exampleModalLabel">Thêm thông tin vào Bản đồ</span>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
       </div>
       <div class="modal-body">
         <h2>Chọn thông tin cần thêm</h2>

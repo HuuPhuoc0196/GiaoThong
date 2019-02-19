@@ -17,7 +17,11 @@ class Map extends CI_Controller
 
     public function insert()
     {
-        if (! isset($_POST['lat'])) {
+
+        if (!isset($_POST['lat']) 
+            && !isset($_POST['lng'])
+            && !isset($_POST['name'])
+            && !isset($_POST['type'])) {
             echo json_encode(array(
                 "status" => false,
                 "data" => "Dữ liệu không hộp lệ"
@@ -25,22 +29,20 @@ class Map extends CI_Controller
             exit();
         }
         date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $findMap = array(
+        $dataLatLng = array(
             "lat" => $_POST['lat'],
-            "lng" => $_POST['lng']
+            "lng" => $_POST['lng'],
+            "status" => 0
         );
-        $datafind = $this->m_map->findMap($findMap);
+        $dataName = array(
+            "name" => $_POST['name']
+        ); 
+        $datafind = $this->m_map->findMap($dataLatLng,$dataName);
         if ($datafind != null) {
-            $data = array(
-                "status" => "1",
-                'pushdate' => date("y-m-d H:i:s")
-            );
-            $this->m_map->update($datafind['id'], $data);
             echo json_encode(array(
-                "status" => true,
+                "status" => false,
                 "sucess" => array(
-                    "data" => "Insert thành công",
-                    "id" => $datafind['id']
+                    "data" => "Điểm báo đã tồn tại"
                 )
             ));
             die;
@@ -50,6 +52,7 @@ class Map extends CI_Controller
             'name' => $_POST['name'],
             'lat' => $_POST['lat'],
             'lng' => $_POST['lng'],
+            'type' => $_POST['type'],
             'status' => '0',
             'pushdate' => date("y-m-d H:i:s")
         );
@@ -57,7 +60,7 @@ class Map extends CI_Controller
         echo json_encode(array(
             "status" => true,
             "sucess" => array(
-                "data" => "Insert thành công",
+                "data" => "Thêm mới thành công",
                 "id" => $id
             )
         ));
