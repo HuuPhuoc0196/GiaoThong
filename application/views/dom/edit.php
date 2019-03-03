@@ -20,19 +20,19 @@
 							<span class="loi"> <?php echo form_error("url"); ?></span>
 							<div class="input-group">
 								<span>Source Nguồn:</span> <br /> <input type="text" name="source"
-									value="<?php echo (isset($dom['source']))?$dom['source']:set_value('source');?>"
+									value="<?php echo (isset($dom['source']))? htmlentities($dom['source']) : htmlentities(set_value('source'));?>"
 									placeholder="Source Nguồn" style="width: 500px;" required>
 							</div>
 							<span class="loi"><?php echo form_error("source"); ?></span>
 							<div class="input-group">
 								<span>Pattern:</span><br /> <input type="text" name="pattern"
-									value="<?php echo (isset($dom['pattern']))?$dom['pattern']:set_value('pattern');?>"
+									value="<?php echo (isset($dom['pattern']))? htmlentities($dom['pattern']): htmlentities(set_value('pattern'));?>"
 									placeholder="Pattern" style="width: 500px;" required>
 							</div>
 							<span class="loi"><?php echo form_error("pattern"); ?> </span>
 							<div class="input-group">
 								<span>Pattern Detail:</span><br /> <input type="text" name="pattern_detail"
-									value="<?php echo (isset($dom['pattern_detail']))?$dom['pattern_detail']:set_value('pattern_detail');?>"
+									value="<?php echo (isset($dom['pattern_detail']))? htmlentities($dom['pattern_detail']): htmlentities(set_value('pattern_detail'));?>"
 									placeholder="Pattern Detail" style="width: 500px;" required>
 							</div>
 							<span class="loi"><?php echo form_error("pattern"); ?> </span>

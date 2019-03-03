@@ -686,4 +686,37 @@ i.icon_g_plus {
     }
 }
 
+.custom-button-login{
+ 	color: #fff;
+    background: rgba(4, 4, 4, 0.33);
+    border: none;
+    padding: 13px 0;
+    margin-top: 30px;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    cursor: pointer;
+    letter-spacing: 2px;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    transition: 0.5s all;
+}
+
+.error{
+	color: red;
+}
+
+.sub-main-w3 .custom-button-login:hover {
+    background: #090;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    transition: 0.5s all;
+}
+
+
 /*--//responsive--*/

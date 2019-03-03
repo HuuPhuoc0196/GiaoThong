@@ -1,6 +1,6 @@
 <?php $this->load->view('template/header_admin');?>
 <?php $this->load->view('template/menu_admin');?>
-
+<script src="<?php echo base_url_ci;?>public/js/adminNews.js"></script>
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper">
@@ -11,23 +11,23 @@
 					<div class="col-sm-3 ">
 						<form action="<?php echo base_url_ci;?>admin/editNews/<?php echo $news['id'];?>"
 							method="post">
+							 <input type="text" id="idNews" value="<?php echo $news['id'];?>" style="display: none;">
 							<div class="input-group">
 								<span>Tiêu đề</span> 
-								<textarea name="title" cols="40" rows="5" required><?php echo $news['title'];?></textarea>
-								
+								<textarea name="title" cols="40" rows="5" id="title" required><?php echo $news['title'];?></textarea>
 							</div>
-							<span class="loi"> </span>
+							<div id="title-error"></div>
 							<div class="input-group">
 								<span>Nội dung tóm tắt</span>
-								<textarea name="summary" cols="40" rows="5" required><?php echo $news['summary'];?></textarea>
+								<textarea name="summary" cols="40" rows="5" id="summary" required><?php echo $news['summary'];?></textarea>
 							</div>
-							<span class="loi"></span>
+							<div id="summary-error"></div>
 							<div class="input-group">
 								<span>Source nguồn</span> <input type="text" name="source"
-									placeholder="Source nguồn"
+									placeholder="Source nguồn" id="source"
 									value="<?php echo $news['source'];?>" required style="width:300px;">
 							</div>
-							<span class="loi"> </span>
+							<div id="source-error"></div>
 							<div class="input-group">
 								<span>Trạng thái</span><br/>
 								<?php if($news['status'] == 1) {?>
@@ -38,8 +38,9 @@
   								<input type="radio" name="status" value="0" checked="checked"> Bình thường<br>
   								<?php }?>
 							</div>
-							
-							<button class="btn btn-danger btn-block" type="submit" name="update">Sửa đổi</button>
+							<div id="status-error"></div>
+							<button class="btn btn-danger btn-block" type="button"
+							onclick="AdminNews.update()" name="update">Sửa đổi</button>
 
 						</form><br/>
 						<a href="<?php echo base_url_ci;?>admin/listNews" ><button

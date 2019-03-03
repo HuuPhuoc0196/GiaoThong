@@ -31,6 +31,19 @@ class M_map extends CI_Model
         }
     }
     
+    public function findName($name)
+    {
+        $this->db->select('id');
+        $this->db->from($this->table);
+        $this->db->where('name', $name);
+        $result = $this->db->get();
+        if ($result->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public function getMapLimit($limit, $start)
     {
         $result = $this->db->select('*')
@@ -117,14 +130,40 @@ class M_map extends CI_Model
         ->result_array();
         return $result;
     }
-    
-    public function findMap($data,$dataName)
+    public function findMap($data)
     {
         $this->db->select('id');
         $this->db->from($this->table);
         $this->db->where($data);
-        $this->db->or_where($dataName);
-        $result = $this->db->get()->row_array();
-       return $result;
+        $result = $this->db->get();
+        if ($result->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public function checkLatAndLngUpdate($data){
+        $this->db->select('id');
+        $this->db->from($this->table);
+        $this->db->where($data);
+        $result = $this->db->get();
+        if ($result->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public function checkNameUpdate($data){
+        $this->db->select('id');
+        $this->db->from($this->table);
+        $this->db->where($data);
+        $result = $this->db->get();
+        if ($result->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 class Contact extends CI_Controller {
 
-    public function index_contact()
+    public function index()
     {
         $this->load->view('contact/index_contact');
     }
