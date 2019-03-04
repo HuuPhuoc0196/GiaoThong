@@ -1,6 +1,6 @@
 <?php $this->load->view('template/header_admin');?>
 <?php $this->load->view('template/menu_admin');?>
-
+<script src="<?php echo base_url_ci;?>public/js/adminMap.js"></script>
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper">
@@ -10,26 +10,27 @@
 				<div class="row w3-res-tb">
 					<div class="col-sm-3 ">
 						<form
-							action="<?php echo base_url_ci;?>admin/editMap/<?php if(isset($map['id'])) echo $map['id'];?>"
+							action="<?php echo base_url_ci;?>admin/editMap/<?php echo $map['id'];?>"
 							method="post">
+							<input type="text" id="idMap" value="<?php echo $map['id'];?>" style="display: none;">
 							<div class="input-group">
 								<span>Địa chỉ</span> <br /> <input type="text" name="name"
-									value="<?php echo (isset($map['name']))?$map['name']:set_value('name');?>" placeholder="Địa chỉ"
-									style="width:500px;" required>
+									value="<?php echo $map['name'];?>" placeholder="Địa chỉ"
+									id="name" style="width:500px;" required>
 							</div>
-							<span class="loi"> <?php echo form_error("name"); ?></span>
+							<div id="name-error"></div>
 							<div class="input-group">
 								<span>Lat</span> <br /> <input type="text" name="lat"
-									value="<?php echo (isset($map['lat']))?$map['lat']:set_value('lat');?>" placeholder="Lat"
-									style="width:500px;" required>
+									value="<?php echo $map['lat'];?>" placeholder="Lat"
+									id="lat" style="width:500px;" required>
 							</div>
-							<span class="loi"><?php echo form_error("lat"); ?></span>
+							<div id="lat-error"></div>
 							<div class="input-group">
 								<span>Lng</span><br /> <input type="text" name="lng"
-									value="<?php echo (isset($map['lng']))?$map['lng']:set_value('lng');?>" placeholder="Lng"
-									style="width:500px;" required>
+									value="<?php echo $map['lng'];?>" placeholder="Lng"
+									id="lng" style="width:500px;" required>
 							</div>
-							<span class="loi"><?php echo form_error("lng"); ?> </span>
+							<div id="lng-error"></div>
 							<div class="input-group">
 								<span>Trạng thái</span><br/>
 								<?php if(isset($map['status'])&&$map['status'] == 1) {?>
@@ -41,9 +42,9 @@
 								thường<br>
   								<?php }?>
 							</div>
-
-							<button class="btn btn-danger btn-block" type="submit"
-								name="update">Sửa đổi</button>
+							<div id="status-error"></div>
+							<button class="btn btn-danger btn-block" type="button"
+								name="update" onclick="AdminMap.update()">Sửa đổi</button>
 
 						</form><br/>
 						<a href="<?php echo base_url_ci;?>admin/listMap" ><button

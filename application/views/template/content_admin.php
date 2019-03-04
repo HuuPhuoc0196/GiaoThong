@@ -22,7 +22,7 @@
 					</div>
 					<div class="col-md-8 market-update-left">
 					<h4>Tài khoản</h4>
-						<h3>250</h3>
+						<h3><?php echo $countUser;?></h3>
 					</div>
 				  <div class="clearfix"> </div>
 				</div>
@@ -34,7 +34,7 @@
 					</div>
 					<div class="col-md-8 market-update-left">
 						<h4>Số tin tức</h4>
-						<h3>2,500</h3>	
+						<h3><?php echo $countNews;?></h3>	
 					</div>
 				  <div class="clearfix"> </div>
 				</div>

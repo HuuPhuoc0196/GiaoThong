@@ -77,4 +77,28 @@ class M_dom extends CI_Model
         ->result_array();
         return $result;
     }
+    
+    public function checkUrlUpdate($data){
+        $this->db->select('id');
+        $this->db->from($this->table);
+        $this->db->where($data);
+        $result = $this->db->get();
+        if ($result->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public function checkUrl($url){
+        $this->db->select('id');
+        $this->db->from($this->table);
+        $this->db->where("url", $url);
+        $result = $this->db->get();
+        if ($result->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

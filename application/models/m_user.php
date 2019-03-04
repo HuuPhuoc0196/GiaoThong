@@ -15,6 +15,15 @@ class M_User extends CI_Model
 		return $result;
 	}
 	
+	public function getUserByUsername($username)
+	{
+	    $result = $this->db->select('*')
+	    ->where('username', $username)
+	    ->get($this->table)
+	    ->row_array();
+	    return $result;
+	}
+	
 	public function searchUser($search, $limit, $start)
 	{
 	    $result = $this->db->select('*')

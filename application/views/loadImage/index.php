@@ -1,0 +1,1 @@
+<img class="camera" src="<?php echo $src;?>">

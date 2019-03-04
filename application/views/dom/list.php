@@ -13,6 +13,7 @@
 						<form action="<?php echo base_url_ci;?>admin/listDom" method="post">
 							<div class="input-group">
 								<input type="text" class="input-sm form-control" name="search"
+								value="<?php if(isset($search)) echo $search?>"
 									placeholder="Tìm kiếm" /> <span class="input-group-btn">
 									<button class="btn btn-sm btn-info" type="submit">
 										<i class="fa fa-search"></i>

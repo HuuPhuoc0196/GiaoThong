@@ -1,5 +1,6 @@
 <?php $this->load->view('template/header_admin');?>
 <?php $this->load->view('template/menu_admin');?>
+<script src="<?php echo base_url_ci;?>/public/js/countNew.js"></script>
 
 <!--main content start-->
 
@@ -10,16 +11,16 @@
 				<div class="panel-heading">Sửa số lượng bản tin</div>
 				<div class="row w3-res-tb">
 					<div class="col-sm-3 ">
-					 <?php if(isset($mess)) echo $mess;?>
 						<form action="<?php echo base_url_ci;?>admin/countNews" method="post">
 							<div class="input-group">
 								<div class="form-group">
                                   <label for="count_news">Số bản tin: </label>
                                   <input type="text" class="form-control"  name="count_news" id="count_news" 
-                                  value="<?php echo $countNews;?>" required>
+                                  value="<?php if(isset($countNews)) echo $countNews;?>" required>
                                 </div>
+                                <div id="countNew-sucess"></div>
 							</div>
-                                  <input class="btn btn-success" type="submit" value="Sửa đổi" name="countNews">
+                                  <input class="btn btn-success" type="button" value="Sửa đổi" name="countNews" onclick="CountNew.update()">
 						</form>
 					</div>
 				</div>
