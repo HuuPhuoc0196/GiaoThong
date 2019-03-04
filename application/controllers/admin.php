@@ -559,12 +559,6 @@ class Admin extends CI_Controller
             $data['map'] = $this->m_map->getMapByID($id);
             $this->load->view('admin/editMap', $data);
         }
-        
-        $data = array(
-            "status" => true,
-            "link" => base_url_ci . 'admin/listNews',
-            "message" => "Cập nhật thành công"
-        );
     }
 
     public function insertDom()
@@ -585,22 +579,30 @@ class Admin extends CI_Controller
             $this->load->view('dom/insert');
         }
     }
-    
 
     public function addDom()
     {
-        if (isset($_POST['add'])) {
-            if ($this->form_validation_editDom()) {
+        if (isset($_POST['url'])) {
+            $dataError = $this->form_validation_addDom();
+            if (empty($dataError)) {
                 $data = array(
                     "url" => $_POST['url'],
                     "source" => htmlentities($_POST['source']),
                     "pattern" => htmlentities($_POST['pattern']),
                     "pattern_detail" => htmlentities($_POST['pattern_detail'])
                 );
-                $sucess['sucess'] = $this->m_dom->insert($data);
-                $this->load->view('dom/insert', $sucess);
+                $this->m_dom->insert($data);
+                $data = array(
+                    "status" => true,
+                    "message" => "Thêm mới thành công"
+                );
+                print_r(json_encode($data));die;
             } else {
-                $this->load->view('dom/inser');
+               $data = array(
+                    "status" => false,
+                    "message" => $dataError
+                );
+                print_r(json_encode($data));die;
             }
         } else {
             $this->load->view('dom/insert');
@@ -680,31 +682,70 @@ class Admin extends CI_Controller
         }
         $this->load->view('dom/list', $data);
     }
-
-    public function form_validation_editDom()
+    
+    public function form_validation_addDom()
     {
-        $this->form_validation->set_rules('url', 'Địa chỉ Url', 'required', array(
-            'required' => '%s không được để trống'
-        ));
-        $this->form_validation->set_rules('source', 'Source nguồn', 'required', array(
-            'required' => '%s không được để trống'
-        ));
-        $this->form_validation->set_rules('pattern', 'Pattern', 'required', array(
-            'required' => '%s không được để trống'
-        ));
-        $this->form_validation->set_rules('pattern_detail', 'Pattern Detail', 'required', array(
-            'required' => '%s không được để trống'
-        ));
-        return $this->form_validation->run();
+        $dataError = array();
+        
+        if($this->m_dom->checkUrl($_POST['url'])){
+            $dataError['url'] = "Url đã tồn tai";
+        }else if(empty($_POST['url'])){
+            $dataError['url'] = "Url là không được trống";
+        }
+    
+        if(empty($_POST['source'])){
+            $dataError['source'] = "Source nguồn là không được trống";
+        }
+    
+        if(empty($_POST['pattern'])){
+            $dataError['pattern'] = "Pattern là không được trống";
+        }
+    
+        if(empty($_POST['pattern_detail'])){
+            $dataError['pattern_detail'] = "Pattern detail là không được trống";
+        }
+    
+        return $dataError;
+    }
+
+    public function form_validation_editDom($id=null)
+    {
+        $dataError = array();
+        
+        $data = array(
+            "id != " => $id,
+            "url" => $_POST['url']
+        );
+        
+        if($this->m_dom->checkUrlUpdate($data)){
+            $dataError['url'] = "Url đã tồn tai";
+        }else if(empty($_POST['url'])){
+            $dataError['url'] = "Url là không được trống";
+        }
+        
+        if(empty($_POST['source'])){
+            $dataError['source'] = "Source nguồn là không được trống";
+        }
+        
+        if(empty($_POST['pattern'])){
+            $dataError['pattern'] = "Pattern là không được trống";
+        }
+        
+        if(empty($_POST['pattern_detail'])){
+            $dataError['pattern_detail'] = "Pattern detail là không được trống";
+        }
+        
+        return $dataError;
     }
 
     public function editDom($id)
     {
         if (! is_numeric($id) || $id < 1 || ! $this->m_dom->findID($id)) {
-            redirect(base_url_ci . 'admin/listDom', 'refresh');
+            redirect(base_url_ci . 'admin/listDom');
         }
-        if (isset($_POST['edit'])) {
-            if ($this->form_validation_editDom()) {
+        if (isset($_POST['url'])) {
+            $dataError = $this->form_validation_editDom($id);
+            if (empty($dataError)) {
                 $data = array(
                     "url" => $_POST['url'],
                     "source" => htmlentities($_POST['source']),
@@ -712,9 +753,18 @@ class Admin extends CI_Controller
                     "pattern_detail" => htmlentities($_POST['pattern_detail'])
                 );
                 $result = $this->m_dom->update($data, $id);
-                redirect(base_url_ci . 'admin/listDom', 'refresh');
+                $data = array(
+                    "status" => true,
+                    "link" => base_url_ci . 'admin/listDom',
+                    "message" => "Cập nhật thành công"
+                );
+                print_r(json_encode($data));die;
             } else {
-                $this->load->view('dom/edit');
+                $data = array(
+                    "status" => false,
+                    "message" => $dataError
+                );
+                print_r(json_encode($data));die;
             }
         } else {
             $data['dom'] = $this->m_dom->getDomByID($id);

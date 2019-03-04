@@ -1,6 +1,6 @@
 <?php $this->load->view('template/header_admin');?>
 <?php $this->load->view('template/menu_admin');?>
-
+<script src="<?php echo base_url_ci;?>public/js/dom.js"></script>
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper">
@@ -12,32 +12,33 @@
 						<form
 							action="<?php echo base_url_ci;?>admin/editDom/<?php if(isset($dom['id'])) echo $dom['id'];?>"
 							method="post">
+							<input type="text" id="idDom" value="<?php echo $dom['id'];?>" style="display: none;">
 							<div class="input-group">
-								<span>Url:</span> <br /> <input type="text" name="url"
-									value="<?php echo (isset($dom['url']))?$dom['url']:set_value('url');?>"
+								<span>Url:</span> <br /> <input type="text" name="url" id="url"
+									value="<?php echo $dom['url'];?>"
 									placeholder="Địa chỉ Url" style="width: 500px;" required>
 							</div>
-							<span class="loi"> <?php echo form_error("url"); ?></span>
+							<div id="url-error"></div>
 							<div class="input-group">
-								<span>Source Nguồn:</span> <br /> <input type="text" name="source"
-									value="<?php echo (isset($dom['source']))? htmlentities($dom['source']) : htmlentities(set_value('source'));?>"
+								<span>Source Nguồn:</span> <br /> <input type="text" name="source" id="source"
+									value="<?php echo htmlentities($dom['source']);?>"
 									placeholder="Source Nguồn" style="width: 500px;" required>
 							</div>
-							<span class="loi"><?php echo form_error("source"); ?></span>
+							<div id="source-error"></div>
 							<div class="input-group">
-								<span>Pattern:</span><br /> <input type="text" name="pattern"
-									value="<?php echo (isset($dom['pattern']))? htmlentities($dom['pattern']): htmlentities(set_value('pattern'));?>"
+								<span>Pattern:</span><br /> <input type="text" name="pattern" id="pattern"
+									value="<?php echo htmlentities($dom['pattern']);?>"
 									placeholder="Pattern" style="width: 500px;" required>
 							</div>
-							<span class="loi"><?php echo form_error("pattern"); ?> </span>
+							<div id="pattern-error"></div>
 							<div class="input-group">
 								<span>Pattern Detail:</span><br /> <input type="text" name="pattern_detail"
-									value="<?php echo (isset($dom['pattern_detail']))? htmlentities($dom['pattern_detail']): htmlentities(set_value('pattern_detail'));?>"
+									id="pattern_detail" value="<?php echo htmlentities($dom['pattern_detail']);?>"
 									placeholder="Pattern Detail" style="width: 500px;" required>
 							</div>
-							<span class="loi"><?php echo form_error("pattern"); ?> </span>
+							<div id="pattern_detail-error"></div>
 							
-							<button class="btn btn-danger btn-block" type="submit"
+							<button class="btn btn-danger btn-block" type="button" onclick="Dom.update()"
 								name="update">Sửa đổi</button>
 
 						</form>
