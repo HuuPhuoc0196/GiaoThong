@@ -5,6 +5,7 @@ var Dom = {
 			var url = $('#url').val();
 			var source = $('#source').val();
 			var pattern = $('#pattern').val();
+			var pattern_content = $('#pattern_content').val();
 			var pattern_detail = $('#pattern_detail').val();
 			$.ajax({
 	   	        url: base_url_ci + "admin/addDom",
@@ -13,6 +14,7 @@ var Dom = {
 	   	        	url : url,
 	   	        	source : source,
 	   	        	pattern : pattern,
+	   	        	pattern_content : pattern_content,
 	   	        	pattern_detail : pattern_detail
 	   	        }, 
 	   	        dataType: "json",
@@ -42,10 +44,11 @@ var Dom = {
 			});
 		},
 		deleteInput : function(){
-			$('#name').val("");
-			$('#lat').val("");
-			$('#lng').val("");
-			$("#rd1").prop('checked', true);
+			$('#url').val("");
+			$('#source').val("");
+			$('#pattern').val("");
+			$('#pattern_detail').val("");
+			$('#pattern_content').val("");
 		},
 		update : function(){
 			Dom.deleteMessage();
@@ -53,6 +56,7 @@ var Dom = {
 			var url = $('#url').val();
 			var source = $('#source').val();
 			var pattern = $('#pattern').val();
+			var pattern_content = $('#pattern_content').val();
 			var pattern_detail = $('#pattern_detail').val();
 			$.ajax({
 	   	        url: base_url_ci + "admin/editDom/" + id,
@@ -61,6 +65,7 @@ var Dom = {
 	   	        	url : url,
 	   	        	source : source,
 	   	        	pattern : pattern,
+	   	        	pattern_content : pattern_content,
 	   	        	pattern_detail : pattern_detail
 	   	        }, 
 	   	        dataType: "json",

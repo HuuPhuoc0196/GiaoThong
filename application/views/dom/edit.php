@@ -31,6 +31,12 @@
 									placeholder="Pattern" style="width: 500px;" required>
 							</div>
 							<div id="pattern-error"></div>
+								<div class="input-group">
+								<span>Pattern:</span><br /> <input type="text" name="pattern_content" id="pattern_content"
+									value="<?php echo htmlentities($dom['pattern_content']);?>"
+									placeholder="Pattern content" style="width: 500px;" required>
+							</div>
+							<div id="pattern_content-error"></div>
 							<div class="input-group">
 								<span>Pattern Detail:</span><br /> <input type="text" name="pattern_detail"
 									id="pattern_detail" value="<?php echo htmlentities($dom['pattern_detail']);?>"

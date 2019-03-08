@@ -22,7 +22,7 @@ class M_news extends CI_Model
     {
         $result = $this->db->select('*')
             ->limit($limit, $start)
-            ->order_by('status desc')
+            ->order_by('id, status desc')
             ->get($this->table)
             ->result_array();
         return $result;
