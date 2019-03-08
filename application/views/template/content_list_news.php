@@ -10,6 +10,7 @@
 						<form action="<?php echo base_url_ci;?>admin/listNews" method="post">
 							<div class="input-group">
 								<input type="text" class="input-sm form-control" name="search"
+									value="<?php if(isset($search)) echo $search?>"
 									placeholder="Tìm kiếm" /> <span class="input-group-btn">
 									<button class="btn btn-sm btn-info" type="submit">
 										<i class="fa fa-search"></i>
@@ -18,30 +19,6 @@
 							</div>
 						</form>
 						
-					</div>
-					<div class="col-sm-4"></div>
-					<div class="col-sm-5">
-						<!-----Modal-New----->
-						<div aria-hidden="true" aria-labelledby="myModalLabel"
-							role="dialog" tabindex="-1" id="myModal-New" class="modal fade">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button aria-hidden="true" data-dismiss="modal" class="close"
-											type="button">Ă—</button>
-										<h4 class="modal-title">
-											<i class="fa fa-plus"></i> &nbsp; ThĂªm tĂ i khoáº£n
-										</h4>
-									</div>
-									<div class="modal-body">
-
-
-									</div>
-
-								</div>
-							</div>
-						</div>
-						<!-----//Modal-New----->
 					</div>
 				</div>
 				<div class="table-responsive">

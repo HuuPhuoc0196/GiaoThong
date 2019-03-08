@@ -19,6 +19,7 @@
                     <ul class="sub">
 						<li><a href="<?php echo base_url_ci;?>admin/countNews"><i class="fa fa-caret-right"></i> Số lượng bản tin hot</a></li>
 						<li><a href="<?php echo base_url_ci;?>admin/countMap"><i class="fa fa-caret-right"></i> Số lượng bản đồ hot</a></li>
+						<li><a href="<?php echo base_url_ci;?>admin/countCamera"><i class="fa fa-caret-right"></i> Số lượng camera hot</a></li>
                     </ul>
                 </li>
                 
@@ -64,6 +65,15 @@
                     </ul>
                 </li>
                 
+                <li class="sub-menu">
+                    <a href="#">
+                        <i class="fa fa-newspaper-o"></i>
+                        <span>Quản lý camera</span>
+                    </a>
+                    <ul class="sub">
+                    	<li><a href="<?php echo base_url_ci;?>camera/listCamera"><i class="fa fa-video-camera"></i>Danh sách camera</a></li>
+                    </ul>
+                </li>
                
             </ul>            
            </div>

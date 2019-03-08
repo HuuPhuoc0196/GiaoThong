@@ -22,7 +22,7 @@ class M_news extends CI_Model
     {
         $result = $this->db->select('*')
             ->limit($limit, $start)
-            ->order_by('status desc')
+            ->order_by('id, status desc')
             ->get($this->table)
             ->result_array();
         return $result;
@@ -74,6 +74,18 @@ class M_news extends CI_Model
         $this->db->select('id');
         $this->db->from($this->table);
         $this->db->where('title', $title);
+        $result = $this->db->get();
+        if ($result->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public function checkTitleUpdate($data){
+        $this->db->select('id');
+        $this->db->from($this->table);
+        $this->db->where($data);
         $result = $this->db->get();
         if ($result->num_rows() > 0) {
             return true;

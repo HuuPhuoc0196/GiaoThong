@@ -10,6 +10,7 @@
 							method="post">
 							<div class="input-group">
 								<input type="text" class="input-sm form-control" name="search"
+								value="<?php if(isset($search)) echo $search?>"
 									placeholder="Tìm kiếm" /> <span class="input-group-btn">
 									<button class="btn btn-sm btn-info" type="submit">
 										<i class="fa fa-search"></i>
@@ -17,6 +18,7 @@
 								</span>
 							</div>
 						</form>
+						
 						<div class="input-group">
 								<a href="<?php echo base_url_ci;?>admin/addMap"><button class="btn btn-sm btn-info" type="submit">
 										Thêm mới</button></a>

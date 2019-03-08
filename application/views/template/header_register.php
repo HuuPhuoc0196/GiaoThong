@@ -26,6 +26,9 @@
 <script src="<?php echo base_url_ci;?>public/js/jquery-1.11.1.min.js"></script>
 <script src="<?php echo base_url_ci;?>public/js/bootstrap3.0.js"></script>
 </head>
+<script>
+	var base_url_ci = "<?php echo base_url_ci;?>";
+</script>
 <body>
 <div class="header-w3layoutstop" >
 		<div class="container">  

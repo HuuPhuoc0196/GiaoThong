@@ -31,6 +31,9 @@
 {
     redirect(base_url_ci . 'admin/login');
 }?>
+<script>
+	var base_url_ci = "<?php echo base_url_ci;?>";
+</script>
 </head>
 <body>
 <section id="container">

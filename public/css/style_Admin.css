@@ -3781,3 +3781,9 @@ div#graph11 {
     color: #fff;
     text-transform: uppercase;
 }
+.error{
+	color: red;
+}
+.sucess{
+	color: #50c43c;
+}
