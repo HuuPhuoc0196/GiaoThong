@@ -19,8 +19,11 @@ class Service extends CI_Controller
             $source = $val['source'];
             $url = $val['url'];
             $content = file_get_contents($url);
+            $patternContent = $val['pattern_content'];
             $pattern = $val['pattern'];
-            preg_match_all($pattern, $content, $datalist);
+            preg_match($patternContent, $content, $dataContentlist);
+            $dataContentlist = implode("|",$dataContentlist);
+            preg_match_all($pattern, $dataContentlist, $datalist);
             foreach ($datalist[1] as $key => $value) {
                 if (! isset($datalist[1][$key]))
                     continue;
@@ -38,7 +41,7 @@ class Service extends CI_Controller
                     $urlDetail = $source . $datalist[1][$key];
                 }
                 
-                $urlImage = $datalist[2][$key];
+                $urlImage = $datalist[3][$key];
                 
                 $contentDetail = file_get_contents($urlDetail);
                 $patternDetail = $val['pattern_detail'];
@@ -62,8 +65,8 @@ class Service extends CI_Controller
                 $data = array(
                     'link_detail' => $urlDetail,
                     'image' => $image,
-                    'title' => trim($datalist[3][$key]),
-                    'summary' => trim((empty($datalist[4][$key])?$datalist[3][$key]:$datalist[4][$key])),
+                    'title' => trim((empty(trim($datalist[2][$key]))?$datalist[4][$key]:$datalist[2][$key])),
+                    'summary' => trim((empty(trim($datalist[4][$key]))?$datalist[2][$key]:$datalist[4][$key])),
                     'source' => $val['source'],
                     'status' => 0
                 );
@@ -85,13 +88,30 @@ class Service extends CI_Controller
 
     public function testdom()
     {
-        $source = "http://www.tapchigiaothong.vn";
-        $url = "https://news.zing.vn/giao-thong.html";
+        $source = "https://luatduonggia.vn";
+        $url = "https://luatduonggia.vn/tu-van-phap-luat/tu-van-phap-luat-giao-thong/";
         $content = file_get_contents($url);
-        $pattern = '#<article.*href="(.*)".*src="(.*)".*<a.*>(.*)<.*summary">(.*)<#imsU';
-        preg_match_all($pattern, $content, $datalist);
-        echo '<pre>';
-        print_r($datalist);
-        echo '</pre>';
+        $patternContent = '#(?<=class="main-content-category">).*(?<=<div class="bottom-main-content">)#imsU';
+        $pattern = '#<article.*<a href="(.*)">(.*)<div.*src="(.*)".*class="entry-content">(.*)<.*</article>#imsU';
+        preg_match($patternContent, $content, $dataContentlist);
+        $dataContentlist = implode("|",$dataContentlist);
+        preg_match_all($pattern,$dataContentlist,$datalist);
+        
+        
+         //echo $dataContentlist;
+         echo '<pre>';
+         print_r($datalist);
+         echo '</pre>';
+    }
+    public function testdom2()
+    {
+         $urlDetail = "https://luatduonggia.vn/o-to-xe-may-di-nguoc-chieu-thi-muc-phat-la-bao-nhieu-tien/";
+         $contentDetail = file_get_contents($urlDetail);
+         $patternDetail = '#id="primary".*class="left-info">(.*)</div>.*<h1 class="entry-title">(.*)</article>(.*)<#imsU';
+         preg_match($patternDetail, $contentDetail, $datadetail);
+         
+         echo '<pre>';
+         print_r($datadetail[2]);
+         echo '</pre>';
     }
 }

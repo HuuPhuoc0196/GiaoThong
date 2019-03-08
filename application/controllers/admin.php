@@ -545,9 +545,10 @@ class Admin extends CI_Controller
                 $this->m_map->update($id, $data);
                 $data = array(
                     "status" => true,
-                    "link" => base_url_ci . 'admin/listNews',
+                    "link" => base_url_ci . 'admin/listMap',
                     "message" => "Cập nhật thành công"
                 );
+                print_r(json_encode($data));die;
             } else {
                 $data = array(
                     "status" => false,
@@ -587,9 +588,10 @@ class Admin extends CI_Controller
             if (empty($dataError)) {
                 $data = array(
                     "url" => $_POST['url'],
-                    "source" => htmlentities($_POST['source']),
-                    "pattern" => htmlentities($_POST['pattern']),
-                    "pattern_detail" => htmlentities($_POST['pattern_detail'])
+                    "source" => $_POST['source'],
+                    "pattern" => $_POST['pattern'],
+                    "pattern_content" => $_POST['pattern_content'],
+                    "pattern_detail" => $_POST['pattern_detail']
                 );
                 $this->m_dom->insert($data);
                 $data = array(
@@ -700,6 +702,10 @@ class Admin extends CI_Controller
         if(empty($_POST['pattern'])){
             $dataError['pattern'] = "Pattern là không được trống";
         }
+        
+        if(empty($_POST['pattern_content'])){
+            $dataError['pattern_content'] = "Pattern Content là không được trống";
+        }
     
         if(empty($_POST['pattern_detail'])){
             $dataError['pattern_detail'] = "Pattern detail là không được trống";
@@ -729,6 +735,10 @@ class Admin extends CI_Controller
         
         if(empty($_POST['pattern'])){
             $dataError['pattern'] = "Pattern là không được trống";
+        }  
+        
+        if(empty($_POST['pattern_content'])){
+            $dataError['pattern_content'] = "Pattern Content là không được trống";
         }
         
         if(empty($_POST['pattern_detail'])){
@@ -748,9 +758,10 @@ class Admin extends CI_Controller
             if (empty($dataError)) {
                 $data = array(
                     "url" => $_POST['url'],
-                    "source" => htmlentities($_POST['source']),
-                    "pattern" => htmlentities($_POST['pattern']),
-                    "pattern_detail" => htmlentities($_POST['pattern_detail'])
+                    "source" => $_POST['source'],
+                    "pattern" => $_POST['pattern'],
+                    "pattern_content" => $_POST['pattern_content'],
+                    "pattern_detail" => $_POST['pattern_detail']
                 );
                 $result = $this->m_dom->update($data, $id);
                 $data = array(

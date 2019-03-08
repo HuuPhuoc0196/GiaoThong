@@ -9,7 +9,7 @@
 				<div class="panel-heading">Sửa Thông tin DOM</div>
 				<div class="row w3-res-tb">
 					<div class="col-sm-3 ">
-						<h4 class="sucess"></h4>
+						<h4 id="sucess"></h4>
 						<form action="<?php echo base_url_ci;?>admin/addDom" method="post">
 							<div class="input-group">
 								<span>Url:</span> <br /> <input type="text" name="url" id="url"
@@ -25,10 +25,16 @@
 							<div id="source-error"></div>
 							<div class="input-group">
 								<span>Pattern:</span><br /> <input type="text" name="pattern"
-									value="" placeholder="Pattern" id="Pattern"
+									value="" placeholder="pattern" id="pattern"
 									style="width: 500px;" required>
 							</div>
 							<div id="pattern-error"></div>
+							<div class="input-group">
+								<span>Pattern Content:</span><br /> <input type="text" name="pattern_content"
+									value="" placeholder="Pattern content" id="pattern_content"
+									style="width: 500px;" required>
+							</div>
+							<div id="pattern_content-error"></div>
 							<div class="input-group">
 								<span>Pattern Detail:</span><br /> <input type="text"
 									name="pattern_detail"
