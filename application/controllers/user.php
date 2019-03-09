@@ -14,7 +14,7 @@ class User extends CI_Controller
 	
 	public function index()
 	{
-		$this->load->view('user/loginUser');
+		$this->load->view('user/login_user');
 	}
 	
 	public function login()
@@ -28,7 +28,7 @@ class User extends CI_Controller
 	        if(!$this->m_user->login($username, $password))
 	        {
 	            $data ['error_login'] = "Tài khoản hoặc mật khẩu không đúng";
-	            $this->load->view('user/loginUser',$data);
+	            $this->load->view('user/login_user',$data);
 	        }else
 	        {
 	            $login['user'] = $this->m_user->findUserByUsername($username)[0];
@@ -37,7 +37,7 @@ class User extends CI_Controller
 	        }
 	    
 	    }else {
-	        $this->load->view('user/loginUser');
+	        $this->load->view('user/login_user');
 	    }
 	}
 	

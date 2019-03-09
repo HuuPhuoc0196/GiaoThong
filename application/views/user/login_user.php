@@ -1,3 +1,4 @@
+
 <?php $data['data'] = 'Đăng Nhập';?>
 <?php $data['login_user'] = ' class="act"';?>
 <?php $this->load->view('template/header',$data);?>
@@ -6,33 +7,26 @@
 <div class="login elite-app">
 	<div class="container container_bg">
 	<div class="tittle-agileinfo">
-				<h3>ĐĂNG KÝ NGAY</h3>
+				<h3>ĐĂNG NHẬP</h3>
 			</div>
 	<div class="col-md-7 login-form-w3-agile">
-			<form action="#" method="post">
-				
+			 <form action="#" method="post">
 				<div class="w3_form_body_grid">
-				<i class="fa fa-user-circle" aria-hidden="true"></i>
-					<input type="text" name="Name" placeholder="Họ và tên" required="">
-                </div>
-                <div class="w3_form_body_grid">
-				<i class="fa fa-user-circle" aria-hidden="true"></i>
-					<input type="text" name="Name" placeholder="Tên tài khoản" required="">
+				<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+					<input type="email" name="Email" placeholder="Tên tài khoản" required="">
 				</div>
-				
 				<div class="w3_form_body_grid">
-				<i class="fa fa-envelope" aria-hidden="true"></i>
-					<input type="email" name="Email" placeholder="Email" required="">
-				</div>
-				<div class="w3_form_body_grid w3_form_body_grid1">
 				<i class="fa fa-lock" aria-hidden="true"></i>
-					<input type="password" name="Password" placeholder="Mật khẩu" required="">
-                </div>
-                <div class="w3_form_body_grid w3_form_body_grid1">
-				<i class="fa fa-lock" aria-hidden="true"></i>
-					<input type="password" name="Password" placeholder="Nhập lại mật khẩu" required="">
+					<input type="password" name="Password" placeholder="Password" required="">
 				</div>
-				<input type="submit" value="đăng ký">
+				<div class="agile_remember">
+					
+					<div class="agile_remember_right">
+						<a href="#">Bạn quên mật khẩu?</a>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<input type="submit" value="Đăng nhập">
 			</form>
 			<h4>Tiếp tục với</h4>
 			<div class="social_icons agileinfo_social_asd">
@@ -64,18 +58,9 @@
 				<li><i class="fa fa-check" aria-hidden="true"></i>Đa dạng</li>
 			</ul>
 			<h5>Bạn chưa có tài khoản?<i class="fa fa-hand-o-down" aria-hidden="true"></i></h5>
-			<div class="sim-button button12"><a href="<?php echo base_url_ci;?>user/login">Đăng nhập</a></div>
-		</div>
-		<div class="col-md-4 login-right-info right-info-find">
-			<h3 class="subhead-agileits">Những gì chúng tôi có</h3>
-			<ul>
-				<li><i class="fa fa-ellipsis-v" aria-hidden="true"></i>Tin tức luôn được cập nhât thường xuyên</li>
-				<li><i class="fa fa-ellipsis-v" aria-hidden="true"></i>Hệ thống camera toàn cảnh chính xác</li>
-				<li><i class="fa fa-ellipsis-v" aria-hidden="true"></i>Bản đồ thể hiện vị trí kẹt xe</li>
-			</ul>
+			<div class="sim-button button12"><a href="<?php echo base_url_ci;?>user/register">Đăng ký</a></div>
 		</div>
 	</div>
 </div>
-<!--login-inner-->
 
-<?php $this->load->view('template/footer');?>
+<?php $this->load->view('template/footer');?> 

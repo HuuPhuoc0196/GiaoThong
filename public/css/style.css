@@ -2601,15 +2601,13 @@ ul.wmuSliderPagination {
 .typo,
 .contact,
 .slicebox-slider,
-.single {
-    padding: 5em 0;
-}
+.single {}
 
 h3.title,
 .map h3 {
     font-size: 1.7em;
     color: #000;
-    margin: 0;
+    margin-top: 30px;
     text-transform: uppercase;
     font-weight: 400;
 }
@@ -2737,7 +2735,7 @@ h3.title,
 }
 
 .contact-grids {
-    margin: 3em 0 0;
+    margin: 3em 1em;
 }
 
 
@@ -5996,7 +5994,7 @@ input.ShowHide_Button {
     text-align: center;
     color: #27A511;
     font-size: 2em;
-    font-weight: 600;
+    font-weight: 800;
 }
 
 .login-form-w3-agile,
@@ -6161,13 +6159,13 @@ label.radio {
     color: #fff;
     border: none;
     width: 100%;
-    background: #EA3621;
+    background: #27A511;
     margin: 1.5em 0 0;
     text-transform: uppercase;
 }
 
 .login-form-w3-agile input[type="submit"]:hover {
-    background: #27A511;
+    background: #ea3621;
 }
 
 .login-form-w3-agile h4 {
@@ -6246,7 +6244,7 @@ label.radio {
 }
 
 .twitter {
-    background: #00acee;
+    background: #ea3621;
 }
 
 
@@ -6340,7 +6338,7 @@ label.radio {
 }
 
 .right-info-find {
-    margin-top: 1.5em!important;
+    margin-top: 0!important;
 }
 
 
