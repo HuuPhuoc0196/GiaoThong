@@ -14,6 +14,17 @@ class M_Camera extends CI_Model
 	    $result = $this->db->select('*')->order_by('id')->get($this->table)->result_array();
 	    return $result;
 	}
+
+	public function getCameraHome($count)
+    {
+        $result = $this->db->select("*")
+            ->where('status', '0')
+            ->limit($count, 0)
+            ->order_by('id desc')
+            ->get($this->table)
+			->result_array();
+        return $result;
+    }
 	
 	public function checkNameUpdate($data){
 	    $this->db->select('id');
