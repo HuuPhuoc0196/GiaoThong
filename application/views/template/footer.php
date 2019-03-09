@@ -83,17 +83,10 @@
 
                 </a>
                 <ul class="mfb-component__list">
-                    <li>
-                        <a href="contact.php"
-                            data-mfb-label="Liên hệ"
-                            class="mfb-component__button--child">
-                            <i class="fa fa-envelope"style="padding-top:
-                            20px;padding-left:20px;"></i>
-                        </a>
-                    </li>
-                    <li>
+                   
+                    <li <?php if(isset($register)) echo $register?>>
                         <a
-                            href="register.php"
+                            href="<?php echo base_url_ci;?>user/register"
                              data-mfb-label="Đăng ký"
                             class="mfb-component__button--child">
                             <i class="fa fa-edit"style="padding-top:
@@ -101,8 +94,8 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="login.php" data-mfb-label="Đăng nhập"
+                    <li <?php if(isset($login_user)) echo $login_user?>>
+                        <a href="<?php echo base_url_ci;?>user/login" data-mfb-label="Đăng nhập"
                             class="mfb-component__button--child">
                             <i class="fa fa-unlock"style="padding-top:
                             20px;padding-left:20px;"></i>
