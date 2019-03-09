@@ -1,328 +1,161 @@
 <?php $data['data'] = 'Trang chủ';?>
-<?php $this->load->view('template/header',$data);?>
-<?php $menu_class['home'] = ' class="active"';?>
-<?php $this->load->view('template/menu',$menu_class);?>
-<?php $this->load->view('template/slider');?>
+<?php $data['home'] = ' class="act"';?>
+<?php $this->load->view('template/header_home',$data);?>
+<script src="<?php echo base_url_ci;?>public/js/adminCamera.js"></script>
+<div id="top" class="callbacks_container">
+    <ul class="rslides" id="slider3">
+	<?php foreach ($hotNews as $val){?>
+        <li>
+            <div class="banner-info-slider">
+                <ul>
+                    <li><a href="<?php echo base_url_ci;?>news/detail/<?php echo $val['id'];?>">
+                    <?php
+                    $source = $val['source'];
+                    $source = str_replace("http://","",$source);
+                    $source = str_replace("www.","",$source);
+                    $source = str_replace(".com","",$source);
+                    $source = str_replace(".vn","",$source);
+                    echo $source;?>
 
-<!-- /banner-->
-<!-- services -->
-	<div class="services">
-		<div class="container"> 
-		<div class="ser-wthree">
-			<div class="services-agileinfo">   
-				<div class="col-sm-4 col-xs-6 services-w3grids">
-					<div class="ser-agile">
-						<div class="services-icon hvr-radial-in">
-							<i class="fa fa-check-square-o" aria-hidden="true"></i>
-						</div>
-						<h4>Tổng hợp tin tức</h4>
-						<p>THÔNG TIN GIAO THÔNG là website tổng hợp mọi tin tức về giao thông mới nhất 
-                        trong cả nước. Tin tức sẽ trở nên đa dạng phong phú hơn. </p>
-					</div>
-				</div>
-				<div class="col-sm-4 col-xs-6 services-w3grids">
-					<div class="ser-agile">
-						<div class="services-icon hvr-radial-in">
-							<i class="fa fa-check-square-o" aria-hidden="true"></i>
-						</div>
-						<h4>Nhận dạng kẹt xe</h4>
-						<p>THÔNG TIN GIAO THÔNG sẽ liệt kê các danh sách các điểm kẹt xe trên bản đồ. Từ đó người sử dụng sẽ
-                      nhận dạng được địa điểm chính xác hơn.</p>
-					</div> 
-				</div> 
-				<div class="col-sm-4 col-xs-6 services-w3grids">
-					<div class="ser-agile">
-						<div class="services-icon hvr-radial-in">
-							<i class="fa fa-check-square-o" aria-hidden="true"></i>
-						</div>
-						<h4>Thông tin chính xác </h4>
-						<p>THÔNG TIN GIAO THÔNG đảm bảo các tin tức về giao thông là hoàn toàn chính xác. Vì đây là website tổng hợp tin tức từ các website
-                        hàng đầu khác.</p>
-					</div>
-				</div>
-				<div class="clearfix"> </div> 
-			</div>
-			</div>
-		</div>
-	</div>
-	<!-- //services -->
-	<br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-	<!--/Menu-->
-	<section class="banner-bottom menu" id="menu">
-		<div class="container">
-			<h3 class="tittle">Tin tức giao thông</h3>
-			<div class="row inner-sec">
-				<div class="tabs">
-					<ul class="nav nav-pills mb-5 justify-content-center" id="pills-tab" role="tablist">
-						<li class="nav-item">
-							<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
-							    aria-selected="true">Nổi bật nhất</a>
-						</li>
+                    </a></li>
+                    <li><?php echo $val['time_post'];?></li>
+                </ul>
+                <h1><?php echo $val['title'];?></h1>
+                <p><?php echo $val['summary'];?>
+                    <span></span></p>
+                <div class="more">
+                    <a href="<?php echo base_url_ci;?>news/detail/<?php echo $val['id'];?>" class="type-1">
+                        <span> Xem ngay </span>
+                        <span> Xem ngay </span>
+                    </a>
+                </div>
+            </div>
+        </li>
+	<?php }?>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+<!-- banner -->
+<?php $this->load->view('template/share');?>
+<!-- banner-bottom -->
+<div class="banner-bottom">
+    <div class="container container_bg">
 
-					</ul>
-					<div class="tab-content" id="pills-tabContent">
-						<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-							<div class="menu-grids my-lg-4 my-md-2">
-								<div class="row inner-menu mt-4">
-								<?php foreach ($hotNews as $val){?>
-								<a href="<?php echo base_url_ci;?>news/detail/<?php echo $val['id'];?>">
-									<div class="col-md-6 menu-grid-left" data-aos="fade-down" style="height: 500px;">
-										<div class="row mt-2">
-											<div class="col-md-5 menu-img">
-												<img src="<?php echo base_url_ci;?>public/images/<?php echo $val['image'];?>" class="img-fluid rounded-circle" alt="">
-											</div>
-											<div class="col-md-7 menu-img-info mt-4 mt-md-2">
-												<h5><?php echo $val['title'];?></h5>
-												
-												<p class="sub-meta mt-2">
+        <?php $this->load->view('template/move_text');?>
+        <!-- video-grids -->
+        <div class="video-grids">
+            <div class="col-md-8 video-grids-left">
+                <div class="video-grids-left1">
+                   
+                </div>
+            </div>
+            <div class="col-md-4 video-grids-right">
+                 <?php $this->load->view('template/weather');?>  
+            </div>
+            <div class="clearfix"> </div>
+        
+        <!-- //video-grids -->
+        <a href="" class="cam">Hệ thống camera</a>
+        <div class="video-grids">
+            <?php foreach ($listCamera as $val){?>
+                <div class="col-md-3 img_cam">
+                    <img src="<?php echo $val['src'];?>" class="camera">
+                  <a href=""><i class="fa fa-play-circle"></i> <span><?php echo $val['name'];?><span></a>
+                </div>
+            <?php }?>
+        </div>
+        <!-- news-and-events -->
+        <div class="news">
+            <div class="news-grids">
+                <div class="col-md-8 news-grid-left">
+                    <h3>Bản tin tổng hợp</h3>
+                    <ul>
+                    <?php foreach ($listNews as $val){?>
+                        <li>
+                            <div class="news-grid-left1">
+                                <img src="<?php echo base_url_ci;?>public/images/<?php echo $val['image'];?>" alt="" class="img-responsive" />
+                            </div>
+                            <div class="news-grid-right1">
+                                <h4><a href="<?php echo base_url_ci;?>news/detail/<?php echo $val['id'];?>"><?php echo $val['title'];?></a></h4>
+                                <h5>Nguồn : <a href="<?php echo base_url_ci;?>news/detail/<?php echo $val['id'];?>">
+                                <?php
+                                    $source = $val['source'];
+                                    $source = str_replace("http://","",$source);
+                                    $source = str_replace("www.","",$source);
+                                    $source = str_replace(".com","",$source);
+                                    $source = str_replace(".vn","",$source);
+                                    echo $source;?>
+                                </a>
+                                    <label>|</label> <i><?php echo $val['time_post'];?></i></h5>
+                                <p><?php echo $val['summary'];?></p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </li>
+                    <?php }?>
+                    </ul>
+                    <div class="more" style="margin-bottom:30px">
+                        <a href="single.html" class="type-2">
+                            <span > Xem thêm </span>
 
-													Nguồn </p>
-                                                    <p><a style="color:#030"><?php echo $val['source'];?> </a></p>
-													<p style ="text-size:16px;"><?php echo $val['summary'];?></p>
-											</div>
-										</div>
-									
-									</div>
-									</a>
-									<?php }?>
-									
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 news-grid-right">
+                    <div class="news-grid-rght1">
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                        <h4 style="color:#090; margin-left:20%;margin-bottom:30px">VỊ TRÍ CỦA CHÚNG TÔI</h4>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26359652.109742895!2d-113.72446020222534!3d36.24602872499641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited+States!5e0!3m2!1sen!2sin!4v1450786850582"
+                                frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="news-grid-rght1">
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                        <h4 style="color:#090; margin-left:20%;margin-bottom:30px; margin-top:20px;">THỜI TIẾT HÔM NAY</h4>
+                            <div class="weather-left-info">
+                                <div class="weather-left-top weather-right-top wow bounceInUp animated" data-wow-delay=".5s">
+                                    <canvas id="partly-cloudy-day" width="75" height="75"></canvas>
+                                    <h3>25°C</h3>
+                                    <p>Sáng, Hôm nay</p>
+                                </div>
+                                <div class="weather-right-bottom">
+                                    <div class="weather-right-bottom-left wow bounceInLeft animated" data-wow-delay=".5s">
+                                        <canvas id="clear-night" width="60" height="60"></canvas>
 
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--//Menu-->
-	<!--/Gallry-->
-<!-- 	<div class="trending-ads"> -->
-<!-- 				<div class="container"> -->
-				<!-- slider -->
-<!-- 				<div class="trend-ads"> -->
-<!-- 					<h2>Tin tức mới </h2> -->
-<!-- 							<ul id="flexiselDemo3"> -->
-<!-- 								<li> -->
-<!-- 									<div class="col-md-3 biseller-column"> -->
-<!-- 										<a href="single.html"> -->
-<!--											<img class="300*300"src="<?php // echo base_url_ci;?>public/images/p1.jpg"/>
-<!-- 											<span class="price"> Mới</span> -->
-<!-- 										</a>  -->
-<!-- 										<div class="ad-info"> -->
-<!-- 											<h5>There are many variations of passages</h5> -->
-<!-- 											<span>1 hour ago</span> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-3 biseller-column"> -->
-<!-- 										<a href="single.html"> -->
-<!--											<img class="300*300" src="<?php //echo base_url_ci;?>public/images/p2.jpg"/>
-<!-- 											<span class="price"> Mới</span> -->
-<!-- 										</a>  -->
-<!-- 										<div class="ad-info"> -->
-<!-- 											<h5>Lorem Ipsum is simply dummy</h5> -->
-<!-- 											<span>3 hour ago</span> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-3 biseller-column"> -->
-<!-- 										<a href="single.html"> -->
-<!--											<img class="300*300" src="<?php //echo base_url_ci;?>public/images/p3.jpg"/>
-<!-- 											<span class="price"> Mới</span> -->
-<!-- 										</a>  -->
-<!-- 										<div class="ad-info"> -->
-<!-- 											<h5>It is a long established fact that a reader</h5> -->
-<!-- 											<span>8 hour ago</span> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-3 biseller-column"> -->
-<!-- 										<a href="single.html"> -->
-<!--											<img class="300*300" src="<?php //echo base_url_ci;?>public/images/p4.jpg"/>
-<!-- 											<span class="price"> Mới</span> -->
-<!-- 										</a>  -->
-<!-- 										<div class="ad-info"> -->
-<!-- 											<h5>passage of Lorem Ipsum you need to be</h5> -->
-<!-- 											<span>19 hour ago</span> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</li> -->
-<!-- 								<li> -->
-								
-<!-- 									<div class="col-md-3 biseller-column"> -->
-<!-- 										<a href="single.html"> -->
-<!--											<img class="300*300" src="<?php //echo base_url_ci;?>public/images/p5.jpg"/>
-<!-- 											<span class="price"> Mới</span> -->
-<!-- 										</a>  -->
-<!-- 										<div class="ad-info"> -->
-<!-- 											<h5>There are many variations of passages</h5> -->
-<!-- 											<span>1 hour ago</span> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-3 biseller-column"> -->
-<!-- 										<a href="single.html"> -->
-<!--											<img class="300*300" src="<?php //echo base_url_ci;?>public/images/p6.jpg"/>
-<!-- 											<span class="price"> Mới</span> -->
-<!-- 										</a>  -->
-<!-- 										<div class="ad-info"> -->
-<!-- 											<h5>passage of Lorem Ipsum you need to be</h5> -->
-<!-- 											<span>1 day ago</span> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-3 biseller-column"> -->
-<!-- 										<a href="single.html"> -->
-<!--											<img class="300*300" src="<?php //echo base_url_ci;?>public/images/p7.jpg"/>
-<!-- 											<span class="price"> Mới</span> -->
-<!-- 										</a>  -->
-<!-- 										<div class="ad-info"> -->
-<!-- 											<h5>It is a long established fact that a reader</h5> -->
-<!-- 											<span>9 hour ago</span> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-3 biseller-column"> -->
-<!-- 										<a href="single.html"> -->
-<!--											<img class="300*300" src="<?php // echo base_url_ci;?>public/images/p8.jpg"/>
-<!-- 											<span class="price"> Mới</span> -->
-<!-- 										</a>  -->
-<!-- 										<div class="ad-info"> -->
-<!-- 											<h5>Lorem Ipsum is simply dummy</h5> -->
-<!-- 											<span>3 hour ago</span> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</li> -->
-<!-- 								<li> -->
-<!-- 									<div class="col-md-3 biseller-column"> -->
-<!-- 										<a href="single.html"> -->
-<!--											<img class="300*300" src="<?php //echo base_url_ci;?>public/images/p9.jpg"/>
-<!-- 											<span class="price"> Mới</span> -->
-<!-- 										</a>  -->
-<!-- 										<div class="ad-info"> -->
-<!-- 											<h5>Lorem Ipsum is simply dummy</h5> -->
-<!-- 											<span>3 hour ago</span> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-3 biseller-column"> -->
-<!-- 										<a href="single.html"> -->
-<!--											<img class="300*300" src="<?php //echo base_url_ci;?>public/images/p10.jpg"/>
-<!-- 											<span class="price"> Mới</span> -->
-<!-- 										</a>  -->
-<!-- 										<div class="ad-info"> -->
-<!-- 											<h5>It is a long established fact that a reader</h5> -->
-<!-- 											<span>9 hour ago</span> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-3 biseller-column"> -->
-<!-- 										<a href="single.html"> -->
-<!--											<img class="300*300" src="<?php //echo base_url_ci;?>public/images/p11.jpg"/>
-<!-- 											<span class="price"> Mới</span> -->
-<!-- 										</a>  -->
-<!-- 										<div class="ad-info"> -->
-<!-- 											<h5>passage of Lorem Ipsum you need to be</h5> -->
-<!-- 											<span>1 day ago</span> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-3 biseller-column"> -->
-<!-- 										<a href="single.html"> -->
-<!--											<img class="300*300" src="<?php //echo base_url_ci;?>public/images/p12.jpg"/>
-<!-- 											<span class="price"> Mới</span> -->
-<!-- 										</a>  -->
-<!-- 										<div class="ad-info"> -->
-<!-- 											<h5>There are many variations of passages</h5> -->
-<!-- 											<span>1 hour ago</span> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</li> -->
-<!-- 						</ul> -->
-<!-- 					<script type="text/javascript"> -->
-<!-- 						 $(window).load(function() {
-<!-- 							$("#flexiselDemo3").flexisel({
-<!-- 								visibleItems:1,
-<!--  								animationSpeed: 1000,
-<!-- 							autoPlay: true,
-<!-- 							autoPlaySpeed: 5000,    		
-<!-- 							pauseOnHover: true,
-<!-- 								enableResponsiveBreakpoints: true,
-<!-- 								responsiveBreakpoints: { 
-<!-- 								portrait: { 
-<!-- 										changePoint:480,
-<!-- 									visibleItems:1
-<!-- 									}, 
-<!-- 									landscape: { 
-<!-- 									changePoint:640,
-<!-- 									visibleItems:1
-<!--  									},
-<!--  									tablet: { 
-<!--  										changePoint:768,
-<!--  										visibleItems:1
-<!--  									}
-<!--  								}
-<!-- 							});
-							
-<!-- 						});
-<!-- 					   </script>
-<!--					   <script type="text/javascript" src="<?php //echo base_url_ci;?>public/js/jquery.flexisel.js"></script>
-<!-- 					</div>    -->
-<!-- 			</div> -->
-			<!-- //slider -->				
-<!-- 			</div> -->
-
-    <!--/banner-bottom-->
-<!-- 	<section class="banner-bottom"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<h3 class="tittle">Bản đồ giao thông</h3> -->
-<!-- 			<div class="row inner-sec"> -->
-<!-- 				<div class="col-lg-6 about-img" data-aos="flip-right"> -->
-<!-- 					<img src="<?php //echo base_url_ci;?>public/images/ab.jpg" class="img-fluid" alt="">
-<!-- 				</div> -->
-<!-- 				<div class="col-lg-6 about-info text-left" data-aos="flip-left" > -->
-                
-<!-- 					<h4 class="sub-hd mb-4">Nhận dạng các điểm kẹt xe một cách trực quan </h4> -->
-<!--                     <br> -->
-<!-- 					<p>Truy cập trang bản đồ của THÔNG TIN GIAO THÔNG và click chọn điểm kẹt xe trong danh sách các điểm kẹt xe. -->
-<!--                     Vị trí kẹt xe mà bạn muốn tìm sẽ được hiển thị trên bản đồ nhanh chống. -->
-<!--                      </p> -->
-                     
-<!-- 					<p class="sup-para mt-2">Ngoài ra bạn có thể truy cập google.map để tìm tuyến đường khác mà ít kẹt xe nhất.Điều này giúp bạn điều chỉnh  -->
-<!--                     lộ trình đi hợp lý và tiện lợi hơn.       </p> -->
-<!--                     <br> -->
-<!-- 					<div class="view my-4"> -->
-<!-- 						<a href="single.html" class="btn btn-primary read-m">Truy cập ngay</a> -->
-<!-- 					</div> -->
-<!--                     <br> -->
-<!--                     </br> -->
+                                        <h4>Tối, TP.HCM</h4>
+                                    </div>
+                                    <div class="weather-right-bottom-right wow bounceInRight animated" data-wow-delay=".5s">
+                                        <h3>17°C</h3>
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-grid-rght2">
+                        <h3>THEO DÕI BẢN TIN CỦA CHÚNG TÔI</h3>
+                        <p>Nhận tin tức và cập nhật mới nhất bằng cách
+                            đăng ký nhận bản tin hàng ngày của chúng
+                            tôi.</p>
+                        <form>
+                            <input type="text" value="Email của bạn ..." onfocus="this.value= '';" onblur="if
+                                                        (this.value == '') {this.value= 'Email của bạn ...';}">
+                            <input type="submit" value="Gửi">
+                        </form>
+                    </div>
                     
-<!-- 					<img src="<?php // echo base_url_ci;?>public/images/banner3.jpg" class="img-fluid" alt="">
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</section> -->
-	<!--//banner-bottom-->
-	<!--/banner-bottom-->
-	<section class="grid-info-section">
-		<div class="container">
-			<h3 class="tittle">Điểm kẹt xe</h3>
-			<div class="row inner-sec">
-				<ul id="flexiselDemo1">
-					<?php foreach ($hotMap as $val) {?>
-					<li><a href="<?php echo base_url_ci;?>map/index_map/<?php echo $val['id'];?>">
-						<div class="blog-item text-center">
-							<img src="<?php echo base_url_ci;?>public/images/img_ketxe.jpg" alt=" " class="img-fluid rounded-circle" />
-							<div class="floods-text">
-							<h3><?php echo $val['name'];?></h3>
-							</div>
-						</div>
-						</a>
-					</li>
-					<?php }?>
-				</ul>
-			</div>
-		</div>
-	</section>
-	
+                </div>
+            </div>
+            <!-- //news-and-events -->
+                    </div>
+                   
+    </div>
 
+<script>
+
+var myVar = setInterval(AdminCamera.showImageUrl, 5000);
+</script>
 
 <?php $this->load->view('template/footer');?>

@@ -3,6 +3,7 @@
 class M_news extends CI_Model
 {
     private $table = "tblnews";
+    private $tblDetail = "tbldetail";
     public function __construct()
     {
         parent::__construct();
@@ -115,8 +116,23 @@ class M_news extends CI_Model
 
     public function getNewsHot($count)
     {
-        $result = $this->db->select('*')
+        $result = $this->db->select("$this->table.*, $this->tblDetail.time_post")
             ->where('status', '1')
+            ->where("$this->table.id = $this->tblDetail.id_news")
+            ->from($this->tblDetail)
+            ->limit($count, 0)
+            ->order_by('id desc')
+            ->get($this->table)
+            ->result_array();
+        return $result;
+    }
+
+    public function getNewsList($count)
+    {
+        $result = $this->db->select("$this->table.*, $this->tblDetail.time_post")
+            ->where('status', '0')
+            ->where("$this->table.id = $this->tblDetail.id_news")
+            ->from($this->tblDetail)
             ->limit($count, 0)
             ->order_by('id desc')
             ->get($this->table)
