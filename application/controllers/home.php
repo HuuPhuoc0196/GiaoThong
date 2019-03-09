@@ -15,8 +15,8 @@ class Home extends CI_Controller {
     {
         $count_home = $this->m_home->getHome();
         $data['hotNews'] = $this->m_news->getNewsHot($count_home["count_news"]);
-        $data['listNews'] = $this->m_news->getNewsList(5);
-        $data['listCamera'] = $this->m_camera->getCameraHome(4);
+        $data['listNews'] = $this->m_news->getNewsList($count_home["count_news"]);
+        $data['listCamera'] = $this->m_camera->getCameraHome($count_home["count_camera"]);
         $data['hotMap'] = $this->m_map->getMapHot($count_home["count_map"]);
         $this->load->view('home/home', $data);
     }

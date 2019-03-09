@@ -1,7 +1,7 @@
 <?php $data['data'] = 'Trang chủ';?>
 <?php $data['home'] = ' class="act"';?>
 <?php $this->load->view('template/header_home',$data);?>
-<script src="<?php echo base_url_ci;?>public/js/adminCamera.js"></script>
+<script src="<?php echo base_url_ci;?>public/js/camera.js"></script>
 <div id="top" class="callbacks_container">
     <ul class="rslides" id="slider3">
 	<?php foreach ($hotNews as $val){?>
@@ -12,6 +12,7 @@
                     <?php
                     $source = $val['source'];
                     $source = str_replace("http://","",$source);
+                    $source = str_replace("https://","",$source);
                     $source = str_replace("www.","",$source);
                     $source = str_replace(".com","",$source);
                     $source = str_replace(".vn","",$source);
@@ -47,8 +48,8 @@
         <!-- video-grids -->
         <div class="video-grids">
             <div class="col-md-8 video-grids-left">
-                <div class="video-grids-left1">
-                   
+            <span id="result-map"></span>
+                <div class="video-grids-left1" id="googleMap">
                 </div>
             </div>
             <div class="col-md-4 video-grids-right">
@@ -83,6 +84,7 @@
                                 <?php
                                     $source = $val['source'];
                                     $source = str_replace("http://","",$source);
+                                    $source = str_replace("https://","",$source);
                                     $source = str_replace("www.","",$source);
                                     $source = str_replace(".com","",$source);
                                     $source = str_replace(".vn","",$source);
@@ -154,8 +156,118 @@
     </div>
 
 <script>
+var myVar = setInterval(Camera.showImageUrl, 5000);
 
-var myVar = setInterval(AdminCamera.showImageUrl, 5000);
+function loadmap() {
+	var geocoder = new google.maps.Geocoder;
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition, showError);
+	} 
+	else {
+		$('#result-map').innerHTML = "Trình duyệt không hỗ trợ Geolocation.";
+	}
+}
+
+function getLocation() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition, showError);
+	} 
+	else {
+		$('#result-map').innerHTML = "Trình duyệt không hỗ trợ Geolocation.";
+	}
+}
+
+function showPosition(position) {
+	islat = position.coords.latitude;
+	islng = position.coords.longitude;
+	var myCenter = new google.maps.LatLng(islat,islng);
+	var mapCanvas =  document.getElementById("googleMap");
+	var mapOptions = {center: myCenter, 
+		zoom: 18,
+		panControl: true,
+	    zoomControl: true,
+	    mapTypeControl: true,
+	    scaleControl: true,
+	    streetViewControl: true,
+	    overviewMapControl: true,
+	    rotateControl: true   
+	};
+	var map = new google.maps.Map(mapCanvas, mapOptions);
+	$.ajax({
+        url: "<?php echo base_url_ci;?>map/search",
+        type: "post",
+        data: {
+            search : ""
+        },
+		dataType: "json",
+        success: function(response) {
+            if(response['status'] == true){
+                appendDataToMap(response,map);
+            }
+        }
+    });
+	var marker = new google.maps.Marker({
+    		position:myCenter,
+    		title: "Điểm của bạn",
+		});
+	marker.setMap(map);
+
+	google.maps.event.addListener(marker,'click',function() {
+	    var infowindow = new google.maps.InfoWindow({
+	      content:"Điểm của bạn"
+	    });
+	  infowindow.open(map,marker);
+	 });
+}
+
+function showError(error) {
+	switch(error.code) {
+		case error.PERMISSION_DENIED:
+			x.innerHTML = "Trình duyệt không cho phép định vị";
+			break;
+		case error.POSITION_UNAVAILABLE:
+			x.innerHTML = "Không có thông tin";
+			break;	
+		case error.TIMEOUT:
+			x.innerHTML = "Hết thời gian";
+			break;
+		case error.UNKNOWN_ERROR:
+			x.innerHTML = "Lỗi chưa xác định";
+			break;
+	}
+}
+
+function appendDataToMap(response,map){
+	response['data'].forEach(function(key) {
+	    CentralPark = new google.maps.LatLng(key['lat'], key['lng']);
+	    var type = key['type'];
+	    addMarker(CentralPark,map,type);
+	});
+}
+
+//Function for adding a marker to the page.
+function addMarker(location,map,type) {
+	var icon = {
+	        url: "<?php echo base_url_ci;?>public/images/iconMap"+ type +".png", // url
+	        scaledSize: new google.maps.Size(32,32), // size
+	    };
+    marker = new google.maps.Marker({
+        position: location,
+        icon: icon,
+        map: map
+    });
+    google.maps.event.addListener(marker,'click',function() {
+        var infowindow = new google.maps.InfoWindow({
+          content:"Điểm kẹt xe!"
+        });
+    infowindow.open(map,marker);
+    });
+}
+
+</script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-M500zF9hEI3OoOPyK_dVHfWDyZcx5fI&callback=loadmap">
 </script>
 
 <?php $this->load->view('template/footer');?>
