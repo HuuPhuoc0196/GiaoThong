@@ -2,92 +2,73 @@
 <?php $data['news'] = ' class="act"';?>
 <?php $this->load->view('template/header',$data);?>
 <?php $this->load->view('template/share');?>
-<div class="news-and-events">
-    <div class="container container_bg">
-
+<!-- breaking-news -->
+<div class="breaking-news">
+		<div class="container container_bg">
         <?php $this->load->view('template/move_text');?>
+			<div class="breaking-news-grids">
+				<div class="col-md-8 breaking-news-grid-left">
+					<div class="wmuSlider example1">
+						<div class="wmuSliderWrapper">
+							<article style="position: absolute; width: 100%; opacity: 0;"> 
+								<div class="banner-wrap">
+									<div class="baner-beaking">
+										<p>Tiêu đề</p>
+									</div>
+								</div>
+							</article>
+							<article style="position: absolute; width: 100%; opacity: 0;"> 
+								<div class="banner-wrap">
+									<div class="baner-beaking baner-beaking1">
+										<p>Tiêu đề</p>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+					<script src="<?php echo base_url_ci;?>public/js/jquery.wmuSlider.js"></script> 
+					  <script>
+						$('.example1').wmuSlider();         
+					 </script> 
 
-        <div class="upcoming-events-grids">
-            <div class="col-md-8 upcoming-events-left">
-                <h3>Tin tức nổi bật</h3>
-                <div class="gallery">
-                    <div class="col-md-5 gallery-left">
+				<div class="gallery">
+                    <div class="col-md-5 ">
                         <div class="grid">
                             <figure class="effect-lexi">
-                                <img src="images/21.jpg" alt="" class="img-responsive" />
+                                <img src="<?php echo base_url_ci;?>public/images/21.jpg" alt="" class="img-responsive" />
                                 <figcaption>
 
-                                    <p>Học luật và biết luật</p>
+                                    <p>Học luật và áp dụng luật</p>
                                 </figcaption>
                             </figure>
+                            
                         </div>
                     </div>
-                    <div class="col-md-7 gallery-right">
-                        <div class="gallery-right1">
-                            <div class="gallery-right1-left">
-                                <img src="images/12.jpg" alt=" " class="img-responsive" />
+                    <div class="col-md-7 ">
+                        <div class="clock-grids wow fadeInUp animated" data-wow-delay=".5s">
+                            <div class="clock-left">
+                                <div id="myclock"></div>
                             </div>
-                            <div class="gallery-right1-right">
-                                <p><a href="single.html">Quis autem vel eum iure reprehenderit</a><i>Error sit
-                                        voluptatem accusantium doloremque.</i><span>31.12.2015</span></p>
+                            <div class="clock-bottom">
+                                <div class="clock">
+                                    <div id="Date"></div>
+                                    <ul>
+                                        <li id="hours"> </li>
+                                        <li id="point">:</li>
+                                        <li id="min"> </li>
+                                        <li id="point">:</li>
+                                        <li id="sec"> </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="gallery-right1">
-                            <div class="gallery-right1-left">
-                                <img src="images/16.jpg" alt=" " class="img-responsive" />
-                            </div>
-                            <div class="gallery-right1-right">
-                                <p><a href="single.html">Quis autem vel eum iure
-                                        reprehenderit</a><span>31.12.2015</span></p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="gallery-right1">
-                            <div class="gallery-right1-left">
-                                <img src="images/18.jpg" alt=" " class="img-responsive" />
-                            </div>
-                            <div class="gallery-right1-right">
-                                <p><a href="single.html">Quis autem vel eum iure reprehenderit</a><i>Error sit
-                                        voluptatem accusantium doloremque.</i><span>31.12.2015</span></p>
-                            </div>
-                            <div class="clearfix"> </div>
                         </div>
                     </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="upcoming-events-left-grids">
-                    <div class="col-md-6 upcoming-events-left1">
-                        <div class="upcoming-events-left11">
-                            <img src="images/19.jpg" alt=" " class="img-responsive" />
-
-                            <div class="news-eve">
-                                <a href="index.php">
-                                    <h4>tiêu đề</h4>
-                                </a>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-md-6 upcoming-events-left2">
-                        <div class="upcoming-events-left11">
-                            <img src="images/20.jpg" alt=" " class="img-responsive" />
-
-                            <div class="news-eve">
-                                <a href="index.php">
-                                    <h4>tiêu đề</h4>
-                                </a>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="clearfix"> </div>
                     
+                    <div class="clearfix"> </div>
                 </div>
+                
             </div>
-            <div class="col-md-4 upcoming-events-right">
+				<div class="col-md-4 upcoming-events-right">
                 <h3>Bạn có biết ?</h3>
                 <div class="banner-bottom-video-grid-left">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -213,6 +194,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingSix">
                                 <h4 class="panel-title">
@@ -242,27 +224,28 @@
                             </div>
                         </div>
                         <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingSeven">
+                            <div class="panel-heading" role="tab" id="headingTen">
                                 <h4 class="panel-title">
                                     <a class="pa_italic collapsed" role="button" data-toggle="collapse"
-                                        data-parent="#accordion" href="#collapseSeven" aria-expanded="false"
-                                        aria-controls="collapseSeven">
+                                        data-parent="#accordion" href="#collapseTen" aria-expanded="false"
+                                        aria-controls="collapseTen">
                                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i
-                                            class="glyphicon glyphicon-minus" aria-hidden="true"></i>Nhận diện biển báo
-                                        hiệu đường bộn
+                                            class="glyphicon glyphicon-minus" aria-hidden="true"></i>Cấm người đi bộ đi
+                                        vào đường cao tốc
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel"
-                                aria-labelledby="headingSeven">
+                            <div id="collapseTen" class="panel-collapse collapse" role="tabpanel"
+                                aria-labelledby="headingTen">
                                 <div class="panel-body">
-                                    Nếu như tín hiệu đèn giao thông có 3 màu thì biển báo hiệu đường bộ có 05 nhóm, gồm:
-                                    <br> - Biển báo cấm để biểu thị các điều cấm;
-                                    <br> - Biển báo nguy hiểm để cánh báo các tình huống nguy hiểm có thể xảy ra;
-                                    <br> - Biển hiệu lệnh để báo các hiệu lệnh phải thi hành;
-                                    <br> - Biển chỉ dẫn để chỉ dần hướng đi hoặc các điều cần biết;
-                                    <br> - Biển phụ để thuyết minh bổ sung các loại biển báo cấm, biển báo nguy hiểm,
-                                    biển hiệu lệnh và biển chỉ dẫn.
+                                    Điều 26 Luật giao thông đường bộ 2008 cấm người đi bộ, xe thô sơ, xe gắn máy, xe mô
+                                    tô và máy kéo; xe máy chuyên dùng có tốc độ thiết kế nhỏ hơn 70km/h đi vào đường cao
+                                    tốc
+                                    , trừ người, phương tiện, thiết bị phục vụ việc quản lý, bảo trì đường cao tốc.
+                                    <br>
+                                    Với các phương tiện khác, khi đi vào đường cao tốc, người lái xe phải có tín hiệu
+                                    xin vào và phải nhường đường cho xe đang chạy trên đường,
+                                    khi thấy an toàn mới cho xe nhập vào dòng xe…
                                 </div>
                             </div>
                         </div>
@@ -321,45 +304,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingTen">
-                                <h4 class="panel-title">
-                                    <a class="pa_italic collapsed" role="button" data-toggle="collapse"
-                                        data-parent="#accordion" href="#collapseTen" aria-expanded="false"
-                                        aria-controls="collapseTen">
-                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i
-                                            class="glyphicon glyphicon-minus" aria-hidden="true"></i>Cấm người đi bộ đi
-                                        vào đường cao tốc
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseTen" class="panel-collapse collapse" role="tabpanel"
-                                aria-labelledby="headingTen">
-                                <div class="panel-body">
-                                    Điều 26 Luật giao thông đường bộ 2008 cấm người đi bộ, xe thô sơ, xe gắn máy, xe mô
-                                    tô và máy kéo; xe máy chuyên dùng có tốc độ thiết kế nhỏ hơn 70km/h đi vào đường cao
-                                    tốc
-                                    , trừ người, phương tiện, thiết bị phục vụ việc quản lý, bảo trì đường cao tốc.
-                                    <br>
-                                    Với các phương tiện khác, khi đi vào đường cao tốc, người lái xe phải có tín hiệu
-                                    xin vào và phải nhường đường cho xe đang chạy trên đường,
-                                    khi thấy an toàn mới cho xe nhập vào dòng xe…
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
             <div class="clearfix"> </div>
         </div>
-        <div class="news">
+			<div class="news">
             <div class="news-grids">
                 <div class="col-md-8 news-grid-left">
                     <h3>Tin tức liên quan</h3>
                     <ul>
                         <li>
                             <div class="news-grid-left1">
-                                <img src="images/16.jpg" alt=" " class="img-responsive" />
+                                <img src="<?php echo base_url_ci;?>public/images/16.jpg" alt=" " class="img-responsive" />
                             </div>
                             <div class="news-grid-right1">
                                 <h4><a href="single.html">Mexico's oil giant is in uncharted waters</a></h4>
@@ -371,7 +329,7 @@
                         </li>
                         <li>
                             <div class="news-grid-left1">
-                                <img src="images/17.jpg" alt=" " class="img-responsive" />
+                                <img src="<?php echo base_url_ci;?>public/images/17.jpg" alt=" " class="img-responsive" />
                             </div>
                             <div class="news-grid-right1">
                                 <h4><a href="single.html">second wave of votes to legalize marijuana</a></h4>
@@ -383,7 +341,7 @@
                         </li>
                         <li>
                             <div class="news-grid-left1">
-                                <img src="images/13.jpg" alt=" " class="img-responsive" />
+                                <img src="<?php echo base_url_ci;?>public/images/13.jpg" alt=" " class="img-responsive" />
                             </div>
                             <div class="news-grid-right1">
                                 <h4><a href="single.html">Antares rocket, bound for space station, explodes</a></h4>
@@ -395,7 +353,7 @@
                         </li>
                         <li>
                             <div class="news-grid-left1">
-                                <img src="images/12.jpg" alt=" " class="img-responsive" />
+                                <img src="<?php echo base_url_ci;?>public/images/12.jpg" alt=" " class="img-responsive" />
                             </div>
                             <div class="news-grid-right1">
                                 <h4><a href="single.html">stronger family bonds, two years after hurricane sandy</a>
@@ -408,7 +366,7 @@
                         </li>
                         <li>
                             <div class="news-grid-left1">
-                                <img src="images/15.jpg" alt=" " class="img-responsive" />
+                                <img src="<?php echo base_url_ci;?>public/images/15.jpg" alt=" " class="img-responsive" />
                             </div>
                             <div class="news-grid-right1">
                                 <h4><a href="single.html">royal crush giants and force game 7</a></h4>
@@ -419,12 +377,58 @@
                             <div class="clearfix"> </div>
                         </li>
                     </ul>
+                    <ul class="pagination modal-3">
+                        <li><a href="#" class="prev1">Trang đầu</a></li>
+                        <li><a href="#" class="prev">&laquo;</a></li>
+                        <li><a href="#" class="active">1</a></li>
+                        <li> <a href="#">2</a></li>
+                        <li> <a href="#">3</a></li>
+                        <li> <a href="#">4</a></li>
+                        <li> <a href="#">5</a></li>
+                        <li> <a href="#">6</a></li>
+                        <li> <a href="#">7</a></li>
+                        <li> <a href="#">8</a></li>
+                        <li> <a href="#">9</a></li>
+                        <li><a href="#" class="next">&raquo;</a></li>
+                        <li><a href="#" class="prev1">Trang cuối</a></li>
+                    </ul>
                 </div>
                 <div class="col-md-4 news-grid-right">
-                    <?php include_once("weather.php")?>
+                <div class="news-grid-rght1">
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                        <h4 style="color:#090; margin-left:20%;margin-bottom:30px">VỊ TRÍ CỦA CHÚNG TÔI</h4>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5971263383844!2d106.63755031428747!3d10.8421112609438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752984a36a471d%3A0x5628f842d92e23dc!2zMjgvNEIgxJDGsOG7nW5nIFBoYW4gSHV5IMONY2gsIFBoxrDhu51uZyAxMiwgR8OyIFbhuqVwLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1552143678871" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                <div class="news-grid-rght1">
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                        <h4 style="color:#090; margin-left:20%;margin-bottom:30px; margin-top:20px;">THỜI TIẾT HÔM NAY</h4>
+                            <div class="weather-left-info">
+                                <div class="weather-left-top weather-right-top wow bounceInUp animated" data-wow-delay=".5s">
+                                    <canvas id="partly-cloudy-day" width="75" height="75"></canvas>
+                                    <h3>25°C</h3>
+                                    <p>Sáng, Hôm nay</p>
+                                </div>
+                                <div class="weather-right-bottom">
+                                    <div class="weather-right-bottom-left wow bounceInLeft animated" data-wow-delay=".5s">
+                                        <canvas id="clear-night" width="60" height="60"></canvas>
+
+                                        <h4>Tối, TP.HCM</h4>
+                                    </div>
+                                    <div class="weather-right-bottom-right wow bounceInRight animated" data-wow-delay=".5s">
+                                        <h3>17°C</h3>
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    
+                
                 </div>
             </div>
         </div>
     </div>
-    <!-- //news-and-events -->
+<!-- //breaking-news -->
 <?php $this->load->view('template/footer');?>

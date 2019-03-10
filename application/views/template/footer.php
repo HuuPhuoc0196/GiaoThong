@@ -292,6 +292,9 @@
                             });
                         });
                         </script>
+<<<<<<< HEAD
+         
+=======
          <!-- pop-up-box -->
          <script type="text/javascript" src="<?php echo base_url_ci;?>public/js/modernizr.custom.min.js"></script>
                     <script src="<?php echo base_url_ci;?>public/js/jquery.magnific-popup.js" type="text/javascript"></script>
@@ -341,6 +344,7 @@
                 });
                 </script>
                 <script type="text/javascript" src="<?php echo base_url_ci;?>public/js/jquery.flexisel.js"></script>
+>>>>>>> master
         <script src="<?php echo base_url_ci;?>public/js/mfb.js"></script>
         <script src="<?php echo base_url_ci;?>public/js/mfb.min.js"></script>
         <!-- for bootstrap working -->

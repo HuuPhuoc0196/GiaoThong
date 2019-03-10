@@ -51,7 +51,7 @@
                                 <li <?php if(isset($home)) echo $home?>><a href="<?php echo base_url_ci;?>home"
                                         >Trang chủ</a></li>
                                 <li <?php if(isset($map)) echo $map?>><a href="<?php echo base_url_ci;?>map">Bản đồ</a></li>
-                                <li <?php if(isset($came)) echo $camera?>><a href="<?php echo base_url_ci;?>camera">Camera</a></li>
+                                <li <?php if(isset($camera)) echo $camera?>><a href="<?php echo base_url_ci;?>camera">Camera</a></li>
                                 <li <?php if(isset($news)) echo $news?>><a href="<?php echo base_url_ci;?>news">Tin Tức</a></li>
                                 <li <?php if(isset($aboutus)) echo $aboutus?>><a href="<?php echo base_url_ci;?>aboutus">Giới Thiệu</a></li>
                                 <li <?php if(isset($contact)) echo $contact?>><a href="<?php echo base_url_ci;?>contact">Liên Hệ</a></li>

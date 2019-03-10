@@ -951,7 +951,8 @@ a.breaking {
 
 /*--flexisel--*/
 
-.flex-slider {
+
+/* .flex-slider {
     background: #222227;
     padding: 70px 0 165px 0;
 }
@@ -961,13 +962,14 @@ a.breaking {
     margin: 0px 20px;
     padding: 80px 0;
     position: relative;
-}
+} */
 
 .container_bg {
     background-color: #fff;
 }
 
-#flexiselDemo1 {
+
+/* #flexiselDemo1 {
     display: none;
 }
 
@@ -1009,6 +1011,7 @@ a.breaking {
     cursor: pointer;
     position: relative;
 }
+ */
 
 
 /*---- Nav ---*/
@@ -1605,11 +1608,6 @@ ul.list6 li a:hover,
 
 .nav-tabs>li>a:hover {
     border: none;
-}
-
-.nav>li>a:hover,
-.nav>li>a:focus {
-    background: #FD6917;
 }
 
 a.high {
@@ -2531,24 +2529,15 @@ ul.wmuSliderPagination {
 
 /*-- //wmuslider --*/
 
-.baner-beaking h3 {
-    padding: 1em;
-    background: rgba(255, 255, 255, 0.22);
-    font-size: 1.5em;
-    text-transform: uppercase;
-    margin: 0;
-    line-height: 1.5em;
-    color: #ff1800;
-    width: 80%;
-}
-
 .baner-beaking p {
-    margin: 2em 0 0 3em;
-    width: 80%;
-    padding: 1em;
-    background: #fff;
-    font-size: .8em;
+    margin-bottom: 1em;
+    margin-top: 8em;
+    width: 100%;
+    padding: .5em;
+    background: #2cb316ad;
+    font-size: 1.2em;
     line-height: 1.8em;
+    color: #fff;
 }
 
 .breaking-news-grids {
@@ -3268,7 +3257,7 @@ h2.typoh2 {
 /*-- // Slicebox Style --*/
 
 .gallery h3 {
-    margin: 3em 0 !important;
+    margin: 8em 0 !important;
     background: #27B311;
 }
 
@@ -4042,8 +4031,8 @@ img.mobile1 {
         float: left;
         width: 50%;
     }
-    .upcoming-events-right {
-        margin: 3em 0 0;
+    .upcoming-events-left11 {
+        margin: 3em 5em;
     }
     .news {
         margin: 2em 0;
@@ -4072,9 +4061,6 @@ img.mobile1 {
     }
     img.mobile1 {
         min-height: 339px;
-    }
-    .gallery {
-        margin: 0 0 2em;
     }
     .upcoming-events-left h3,
     .upcoming-events-right h3,
@@ -6981,22 +6967,287 @@ canvas#clear-night {
     height: 250px;
 }
 
-.error{
-	color: red;
+
+/*----Phân trang-----*/
+
+.pagination {
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+    margin-top: 10px;
 }
 
-.sucess{
-	color:blue;
-}
-
-.icon-custom{
-	width: 16px;
+.pagination li {
+    display: inline;
     text-align: center;
 }
 
-.active a{
-	padding-bottom: 5px;
+.pagination a.prev1 {
+    width: 100px;
+    border-radius: none !important;
+}
+
+.pagination a {
+    float: left;
+    display: block;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px 12px;
+    color: #000;
+    margin-left: -1px;
+    border: 1px solid transparent;
+    line-height: 1.5;
+}
+
+.pagination a.active,
+.pagination a:hover {
+    cursor: default;
+    color: #fff;
+}
+
+.pagination a:active {
+    outline: none;
+    color: #fff;
+}
+
+.modal-3 a {
+    margin-left: 3px;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+}
+
+.modal-3 a.prev1:hover,
+.modal-3 a.prev1:active {
+    border-radius: none !important;
+    background-color: #fff;
+    color: #27A511;
+    font-weight: 600;
+}
+
+.modal-3 a:hover {
+    background-color: #00FF2B;
+}
+
+.modal-3 a.active,
+.modal-3 a:active {
+    background-color: #37B247;
+}
+
+
+/*----////Phân trang-----*/
+
+#flexiselDemo1,
+#flexiselDemo2,
+#flexiselDemo3 {
+    display: none;
+}
+
+.nbs-flexisel-container {
+    position: relative;
+    max-width: 100%;
+}
+
+.nbs-flexisel-item a img {
+    width: 100%;
+}
+
+.nbs-flexisel-item a {
+    display: block;
+}
+
+.nbs-flexisel-ul {
+    position: relative;
+    width: 9999px;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    text-align: center;
+}
+
+.nbs-flexisel-inner {
+    overflow: hidden;
+    padding: 2em 0;
+}
+
+.nbs-flexisel-item {
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+    position: relative;
+    width: 235px! important;
+    margin: 0 10px;
+    box-shadow: 0px 0px 12px -1px rgba(215, 215, 215, 0.44);
+    -webkit-box-shadow: 0px 0px 12px -1px rgba(215, 215, 215, 0.44);
+    -moz-box-shadow: 0px 0px 12px -1px rgba(215, 215, 215, 0.44);
+    -o-box-shadow: 0px 0px 12px -1px rgba(215, 215, 215, 0.44);
+    -ms-box-shadow: 0px 0px 12px -1px rgba(215, 215, 215, 0.44);
+    border: 1px solid #ddd;
+}
+
+.nbs-flexisel-item>img {
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    margin: 0 0%;
+}
+
+
+/*** Navigation ***/
+
+.nbs-flexisel-nav-left {
+    display: none;
+}
+
+.nbs-flexisel-nav-right {
+    display: none;
+}
+
+.review-slider {
+    margin-top: 1.4em;
+}
+
+.slide-title h4 {
+    padding: 10px 8px;
+    color: #444;
+    display: block;
+    background-color: #fff;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+}
+
+.buy-tickets {
+    display: none;
+}
+
+.date-city {
+    background-color: #FCFCFC;
+    padding: 12px 16px;
+    text-align: center;
+    position: relative;
+}
+
+.date-city h5 {
+    color: #EA57A3;
+    font-size: 1em;
+    font-weight: 400;
+    margin-bottom: 1.5em;
+}
+
+.buy-tickets {
+    background-color: #fff;
+    padding: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.buy-tickets a {
+    text-align: center;
+    color: #fff;
+    padding: 9px;
+    background: #45B39D;
+    display: block;
+    font-size: 0.95em;
+    font-weight: 400;
+    text-decoration: none;
+    border-radius: 0.3em;
+    -o-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+}
+
+.buy-tickets a:hover {
+    color: #fff;
+    background-color: #EA57A3;
+}
+
+.nbs-flexisel-item:hover div.buy-tickets {
+    display: block;
+    width: 100%;
+}
+
+.nbs-flexisel-item img {
+    border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+
+.content-grid {
+    width: 21.2%;
+}
+
+input {
+    outline: none;
+}
+
+input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    font-family: inherit;
+    font-size: 100%;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+    display: none;
+}
+
+input[type=search] {
+    background: #fff url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    border: solid 1px #27b311;
+    padding: 9px 10px 9px 32px;
+    width: 150px;
+    color: fff;
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+    margin-bottom: 29px;
+}
+
+input[type=search]:focus {
+    width: 87%;
+    background-color: #37B247;
+    border-color: rgb(247, 250, 248);
+    -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+    -moz-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+    box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+}
+
+input:-moz-placeholder {
+    color: #000;
+}
+
+input::-webkit-input-placeholder {
+    color: #000;
+}
+
+.error {
+    color: red;
+}
+
+.sucess {
+    color: blue;
+}
+
+.icon-custom {
+    width: 16px;
+    text-align: center;
+}
+
+.active a {
+    padding-bottom: 5px;
     border-bottom: 2px solid #fff;
     margin-bottom: 10px;
 }
-
