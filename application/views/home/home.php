@@ -61,8 +61,14 @@
         <a href="" class="cam">Hệ thống camera</a>
         <div class="video-grids">
             <?php foreach ($listCamera as $val){?>
+            <?php 
+                    $src = $val['src'];
+                    $indexSearch = strripos($src, "=black");
+                    $src = substr($src, 0, $indexSearch + 6);
+                    $src = $src . "&t=" . strtotime(date("Y-m-d h:i:sa"));
+            ?>
                 <div class="col-md-3 img_cam">
-                    <img src="<?php echo $val['src'];?>" class="camera">
+                    <img src="<?php echo $src;?>" class="camera">
                   <a href=""><i class="fa fa-play-circle"></i> <span><?php echo $val['name'];?><span></a>
                 </div>
             <?php }?>
