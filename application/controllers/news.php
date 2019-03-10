@@ -28,7 +28,7 @@ class News extends CI_Controller {
         if ($total_records > 0)
         {
             // get current page records
-            $result["result"] = $this->m_news->getview($limit_per_page, $start_index);
+            $result["hotNews"] = $this->m_news->getview($limit_per_page, $start_index);
             $config['base_url'] = base_url_ci . 'news/index';
             $config['total_rows'] = $total_records;
             $config['per_page'] = $limit_per_page;
@@ -66,7 +66,7 @@ class News extends CI_Controller {
             // build paging links
             $result["links"] = $this->pagination->create_links();
         }
-        $this->load->view('news/view',$result);
+        $this->load->view('news/index_news',$result);
     }
     
      public function detail($id_news)

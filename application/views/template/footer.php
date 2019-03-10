@@ -1,4 +1,8 @@
 <!--call-->
+<script src="<?php echo base_url_ci;?>public/js/contact.js"></script>
+	<script type="text/javascript">
+		var base_url_ci = "<?php echo base_url_ci;?>";
+	</script>
 <a id="calltrap-btn" class="b-calltrap-btn calltrap_offline hidden-phone
             visible-tablet" href="tel:0382834597">
             <div id="calltrap-ico"></div>
@@ -27,17 +31,16 @@
                     </div>
                     <div class="col-md-4 footer-grid-left">
                         <h3>Liên Hệ</h3>
+                        <div id="sucess"></div>
                         <form>
-                            <input type="text" value="Họ và Tên"
-                                onfocus="this.value= '';" onblur="if (this.value
-                                == '') {this.value= 'Họ và tên';}" required="">
-                            <input type="email" value="Email"
-                                onfocus="this.value= '';" onblur="if (this.value
-                                == '') {this.value= 'Email';}" required="">
-                            <textarea onfocus="this.value= '';" onblur="if
-                                (this.value == '') {this.value= 'Nội dung...';}"
-                                required="">Nội dung...</textarea>
-                            <input type="submit" value="Gửi">
+                        <div id="name-error"></div>
+                        <input type="text" id="name" placeholder="Họ và Tên" required="">
+						<div id="email-error"></div>
+						<input type="email" id="email-contact" placeholder="Địa chỉ Email" required="">
+						<div id="content-error"></div>
+						<textarea type="text" id="content" placeholder="Nội dung..."></textarea>
+						
+						<input type="button" value="Gửi" onclick="Contact.contact()" class="button-custom">
                         </form>
                     </div>
                     <div class="col-md-4 footer-grid-left">
@@ -83,17 +86,30 @@
 
                 </a>
                 <ul class="mfb-component__list">
-                    <li>
-                        <a href="contact.php"
-                            data-mfb-label="Liên hệ"
+                
+                <?php if(isset($_SESSION['user'])) { ?>   
+                	<li>
+                        <a
+                            href=""
+                             data-mfb-label="<?php echo $_SESSION['user']['name'];?>"
                             class="mfb-component__button--child">
-                            <i class="fa fa-envelope"style="padding-top:
+                            <i class="fa fa-address-card"style="padding-top:
+                                20px;padding-left:20px;"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo base_url_ci;?>user/logout" data-mfb-label="Đăng xuất"
+                            class="mfb-component__button--child">
+                            <i class="fa fa-sign-out"style="padding-top:
                             20px;padding-left:20px;"></i>
                         </a>
                     </li>
-                    <li>
+                <?php } else {?>
+                
+                    <li <?php if(isset($register)) echo $register?>>
                         <a
-                            href="register.php"
+                            href="<?php echo base_url_ci;?>user/register"
                              data-mfb-label="Đăng ký"
                             class="mfb-component__button--child">
                             <i class="fa fa-edit"style="padding-top:
@@ -101,14 +117,14 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="login.php" data-mfb-label="Đăng nhập"
+                    <li <?php if(isset($login_user)) echo $login_user?>>
+                        <a href="<?php echo base_url_ci;?>user/login" data-mfb-label="Đăng nhập"
                             class="mfb-component__button--child">
                             <i class="fa fa-unlock"style="padding-top:
                             20px;padding-left:20px;"></i>
                         </a>
                     </li>
-                    
+                <?php }?>
                 </ul>
             </li>
         </ul>
@@ -280,7 +296,6 @@
                         </script>
          <!-- pop-up-box -->
          <script type="text/javascript" src="<?php echo base_url_ci;?>public/js/modernizr.custom.min.js"></script>
-                    <link href="<?php echo base_url_ci;?>public/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
                     <script src="<?php echo base_url_ci;?>public/js/jquery.magnific-popup.js" type="text/javascript"></script>
                     <!--//pop-up-box -->
                     <script>

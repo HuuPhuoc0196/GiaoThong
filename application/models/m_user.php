@@ -175,5 +175,39 @@ class M_User extends CI_Model
 	    return $result;
 	}
     
+	public function checkUsernameAdd($username){
+	    $this->db->select('id');
+	    $this->db->from($this->table);
+	    $this->db->where('username', $username);
+	    $result = $this->db->get();
+	    if ($result->num_rows() > 0) {
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
 	
+	public function checkEmailAdd($email){
+	    $this->db->select('id');
+	    $this->db->from($this->table);
+	    $this->db->where('email', $email);
+	    $result = $this->db->get();
+	    if ($result->num_rows() > 0) {
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
+	
+	public function checkPhoneAdd($phone){
+	    $this->db->select('id');
+	    $this->db->from($this->table);
+	    $this->db->where('phone', $phone);
+	    $result = $this->db->get();
+	    if ($result->num_rows() > 0) {
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
 }

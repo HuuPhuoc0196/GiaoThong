@@ -19,15 +19,24 @@ class Admin extends CI_Controller
     {
         if(isset($_POST['username']))
         {
-            $this->form_validation->set_rules('username', 'Username', 'trim|required|callback_checkUser');
-            $this->form_validation->set_rules('passwork', 'Password', 'trim|required');
+            $dataError = $this->valid_login();
+            if (!empty($dataError)) {
+                $data = array(
+                    "status" => false,
+                    "message" => $dataError
+                );
+                print_r(json_encode($data));die;
+            }
+            
             $username = $this->input->post('username');
             $password = md5($this->input->post('passwork'));
             if(!$this->m_user->loginAdmin($username, $password))
             {
                 $data = array(
                     "status" => false,
-                    "message" => "Tài khoản hoặc mật khẩu không đúng"
+                    "message" => array(
+                        "login" => "Tài khoản hoặc mật khẩu không hợp lệ!"
+                    )
                 );
                 print_r(json_encode($data));die;
             }else
@@ -44,6 +53,22 @@ class Admin extends CI_Controller
             $this->load->view('login');
         }
     }
+    
+    public function valid_login(){
+        $dataError = array();
+    
+        if(empty($_POST['username'])){
+            $dataError['username'] = "Tài khoản là không được trống";
+        }
+         
+        if(empty($_POST['passwork'])){
+            $dataError['passwork'] = "Mật khẩu là không được trống";
+        }
+         
+        return $dataError;
+    }
+    
+    
     public function logout()
     {
         $this->session->unset_userdata('login');

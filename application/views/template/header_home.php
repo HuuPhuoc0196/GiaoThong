@@ -48,12 +48,12 @@
                         <div class="collapse navbar-collapse nav-wil"
                             id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav"id="cl-effect-18">
-                                <li <?php if(isset($home)) echo $home?>><a href="index.php"
+                                <li <?php if(isset($home)) echo $home?>><a href="<?php echo base_url_ci;?>home"
                                         >Trang chủ</a></li>
-                                <li><a href="map.php">Bản đồ</a></li>
-                                <li><a href="camera.php">Camera</a></li>
+                                <li <?php if(isset($map)) echo $map?>><a href="<?php echo base_url_ci;?>map">Bản đồ</a></li>
+                                <li <?php if(isset($came)) echo $camera?>><a href="<?php echo base_url_ci;?>camera">Camera</a></li>
 
-                                <li role="presentation" class="dropdown">
+                                <!-- <li role="presentation" class="dropdown">
                                     <a class="dropdown-toggle"
                                         data-toggle="dropdown" href="#"
                                         role="button" aria-haspopup="true"
@@ -66,9 +66,10 @@
                                                 </a></li>
                                       
                                     </ul>
-                                </li>
-                                <li><a href="aboutus.php">Giới Thiệu</a></li>
-                                <li><a href="contact.php">Liên Hệ</a></li>
+                                </li> -->
+                                <li <?php if(isset($news)) echo $news?>><a href="<?php echo base_url_ci;?>news">Tin Tức</a></li>
+                                <li <?php if(isset($aboutus)) echo $aboutus?>><a href="<?php echo base_url_ci;?>aboutus">Giới Thiệu</a></li>
+                                <li <?php if(isset($contact)) echo $contact?>><a href="<?php echo base_url_ci;?>contact">Liên Hệ</a></li>
                             </ul>
                         </div>
                         <!-- /.navbar-collapse -->

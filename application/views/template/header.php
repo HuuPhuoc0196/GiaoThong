@@ -1,60 +1,69 @@
-<!--Website THÔNG TIN GIAO THÔNG-->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title><?php if(isset($data)) echo $data; else echo "Trang chủ"?></title>
-<link rel="icon" href="<?php echo base_url_ci;?>public/images/123-icon-mau.png" type="image/x-icon"/>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!DOCTYPE HTML>
+<html>
 
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- css -->
-<link rel="stylesheet" href="<?php echo base_url_ci;?>public/css/flexslider.css" type="text/css" media="screen" property="" />
-<link href="<?php echo base_url_ci;?>public/css/simpleLightbox.css" rel='stylesheet' type='text/css' />
-<link href="<?php echo base_url_ci;?>public/css/bootstrap4.0.css" rel="stylesheet" type="text/css" media="all" />
-<link href="<?php echo base_url_ci;?>public/css/bootstrap3.0.css" rel="stylesheet" type="text/css" media="all" />
-<link rel="stylesheet" href="<?php echo base_url_ci;?>public/css/style_DA_Home.css" type="text/css" media="all" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- font -->
-<!--// css -->
-<!-- font -->
-<link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<!-- //font -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url_ci;?>public/js/jquery-1.11.1.min.js"></script>
-<script src="<?php echo base_url_ci;?>public/js/bootstrap3.0.js"></script>
-</head>
-<script>
-	var base_url_ci = "<?php echo base_url_ci;?>";
-</script>
-<body>
-<div class="header-w3layoutstop" >
-		<div class="container"> 
-		<div class="search-grid">
-					<form action="#" method="post">
-						<input type="text" placeholder="Tìm kiếm" class="big-dog" name="Subscribe" required>
-						<button class="btn2"><i class="fa fa-search" aria-hidden="true"></i></button>
-					</form>
-				</div> 
-			<div class="hdr-w3right navbar-right">
-				<?php if(!isset($_SESSION['user'])){?><p><span class="fa fa-user-circle-o"></span><a href="<?php echo base_url_ci;?>user/" style="color: #fff; font-size:18px">&nbsp;Đăng nhập</a> </p> 
-				<?php }else{?>
-				<div class="dropdown">
-                <p class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user-circle-o"></span>
-                <a href="" style="color: #fff; font-size:18px">&nbsp;<?php echo $_SESSION['user']['username']?></a> 
-                    <p>
-                    
-                    <ul class="dropdown-menu">
-                         <li><a href="#"><i class="fa fa-user"></i> &nbsp; <?php echo $_SESSION['user']['name']?></a></li>
-                        <li><a href="#"><i class=" fa fa-envelope"></i> &nbsp; <?php echo $_SESSION['user']['email']?></a></li>
-                        <li><a href="<?php echo base_url_ci;?>user/logout"><i class="fa fa-key"></i>&nbsp; Thoát</a></li>
-                    </ul>
-                 </div> 
-        		<?php }?>
-			</div>
-				
+    <head>
+        <title><?php if(isset($data)) echo $data; else echo "Trang chủ"?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="<?php echo base_url_ci;?>public/images/logo1.png" type="image/x-icon" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       
+        <!-- Custom Theme files -->
+        <link href="<?php echo base_url_ci;?>public/css/bootstrap.css" rel="stylesheet" type="text/css"
+            media="all" />
+        <link href="<?php echo base_url_ci;?>public/css/style.css" rel="stylesheet" type="text/css" media="all"
+            />
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- js -->
+        <script src="<?php echo base_url_ci;?>public/js/jquery-1.11.1.min.js"></script>
+        <!-- //js -->
+        <link href="<?php echo base_url_ci;?>public/css/mfb.min.css" rel="stylesheet" type="text/css"
+            media="all" />
+    </head>
+
+    <body>
+        <!-- banner -->
+        <div class="banner1">
+            <div class="banner-info1">
+                <div class="container">
+                    <nav class="navbar navbar-default">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle
+                                collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div class="logo">
+                                <a class="navbar-brand" href="index.php"><span><img
+                                            class="lg" src="<?php echo base_url_ci;?>public/images/logo.png"></span>
+                                    Giao Thông</a>
+                            </div>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse nav-wil"
+                            id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav"id="cl-effect-18">
+                                <li <?php if(isset($home)) echo $home?>><a href="<?php echo base_url_ci;?>home"
+                                        >Trang chủ</a></li>
+                                <li <?php if(isset($map)) echo $map?>><a href="<?php echo base_url_ci;?>map">Bản đồ</a></li>
+                                <li <?php if(isset($came)) echo $camera?>><a href="<?php echo base_url_ci;?>camera">Camera</a></li>
+                                <li <?php if(isset($news)) echo $news?>><a href="<?php echo base_url_ci;?>news">Tin Tức</a></li>
+                                <li <?php if(isset($aboutus)) echo $aboutus?>><a href="<?php echo base_url_ci;?>aboutus">Giới Thiệu</a></li>
+                                <li <?php if(isset($contact)) echo $contact?>><a href="<?php echo base_url_ci;?>contact">Liên Hệ</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+
+                    </nav>
+                </div>
 		</div>
 	</div>
+    
+<!-- //banner -->
+
 
