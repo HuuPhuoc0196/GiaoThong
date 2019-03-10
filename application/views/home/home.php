@@ -63,7 +63,7 @@
             <?php foreach ($listCamera as $val){?>
                 <div class="col-md-3 img_cam">
                     <img src="<?php echo $val['src'];?>" class="camera">
-                  <a href=""><i class="fa fa-play-circle"></i> <span><?php echo $val['name'];?><span></a>
+                  <a href=""><i class="fa fa-video-camera"></i> <span><?php echo $val['name'];?><span></a>
                 </div>
             <?php }?>
         </div>
@@ -108,9 +108,7 @@
                     <div class="news-grid-rght1">
                         <div role="tabpanel" class="tab-pane" id="profile">
                         <h4 style="color:#090; margin-left:20%;margin-bottom:30px">VỊ TRÍ CỦA CHÚNG TÔI</h4>
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26359652.109742895!2d-113.72446020222534!3d36.24602872499641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited+States!5e0!3m2!1sen!2sin!4v1450786850582"
-                                frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5971263383844!2d106.63755031428747!3d10.8421112609438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752984a36a471d%3A0x5628f842d92e23dc!2zMjgvNEIgxJDGsOG7nW5nIFBoYW4gSHV5IMONY2gsIFBoxrDhu51uZyAxMiwgR8OyIFbhuqVwLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1552143678871" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="news-grid-rght1">
