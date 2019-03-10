@@ -19,14 +19,12 @@
                             THÔNG</span>
 
                         <ul>
-
-                            <li><a href="index.php" class="cols">Trang chủ</a></li>
-                            <li><a href="map.php" class="cols">Bản đồ</a></li>
-                            <li><a href="news_1.php" class="cols">Bản Tin</a></li>
-                            <li><a href="camera.php" class="cols">Camera</a></li>
-                            <li><a href="aboutus.php" class="cols">Giới Thiệu</a></li>
-                            <li><a href="contact.php" class="cols">Liên Hệ</a></li>
-
+							<li <?php if(isset($home)) echo ' class="active"'?>><a href="<?php echo base_url_ci;?>home" class="cols">Trang chủ</a></li>
+                            <li <?php if(isset($map)) echo ' class="active"'?>><a href="<?php echo base_url_ci;?>map" class="cols">Bản đồ</a></li>
+                            <li <?php if(isset($camera)) echo ' class="active"'?>><a href="<?php echo base_url_ci;?>camera" class="cols">Camera</a></li>
+                            <li <?php if(isset($news)) echo ' class="active"'?>><a href="<?php echo base_url_ci;?>news "class="cols">Tin Tức</a></li>
+                            <li <?php if(isset($aboutus)) echo ' class="active"'?>><a href="<?php echo base_url_ci;?>aboutus" class="cols">Giới Thiệu</a></li>
+                            <li <?php if(isset($contact)) echo ' class="active"'?>><a href="<?php echo base_url_ci;?>contact" class="cols">Liên Hệ</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4 footer-grid-left">
