@@ -1,4 +1,8 @@
 <!--call-->
+<script src="<?php echo base_url_ci;?>public/js/contact.js"></script>
+	<script type="text/javascript">
+		var base_url_ci = "<?php echo base_url_ci;?>";
+	</script>
 <a id="calltrap-btn" class="b-calltrap-btn calltrap_offline hidden-phone
             visible-tablet" href="tel:0382834597">
             <div id="calltrap-ico"></div>
@@ -15,29 +19,26 @@
                             THÔNG</span>
 
                         <ul>
-
-                            <li><a href="index.php" class="cols">Trang chủ</a></li>
-                            <li><a href="map.php" class="cols">Bản đồ</a></li>
-                            <li><a href="news_1.php" class="cols">Bản Tin</a></li>
-                            <li><a href="camera.php" class="cols">Camera</a></li>
-                            <li><a href="aboutus.php" class="cols">Giới Thiệu</a></li>
-                            <li><a href="contact.php" class="cols">Liên Hệ</a></li>
-
+							<li <?php if(isset($home)) echo ' class="active"'?>><a href="<?php echo base_url_ci;?>home" class="cols">Trang chủ</a></li>
+                            <li <?php if(isset($map)) echo ' class="active"'?>><a href="<?php echo base_url_ci;?>map" class="cols">Bản đồ</a></li>
+                            <li <?php if(isset($camera)) echo ' class="active"'?>><a href="<?php echo base_url_ci;?>camera" class="cols">Camera</a></li>
+                            <li <?php if(isset($news)) echo ' class="active"'?>><a href="<?php echo base_url_ci;?>news "class="cols">Tin Tức</a></li>
+                            <li <?php if(isset($aboutus)) echo ' class="active"'?>><a href="<?php echo base_url_ci;?>aboutus" class="cols">Giới Thiệu</a></li>
+                            <li <?php if(isset($contact)) echo ' class="active"'?>><a href="<?php echo base_url_ci;?>contact" class="cols">Liên Hệ</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4 footer-grid-left">
                         <h3>Liên Hệ</h3>
+                        <div id="sucess"></div>
                         <form>
-                            <input type="text" value="Họ và Tên"
-                                onfocus="this.value= '';" onblur="if (this.value
-                                == '') {this.value= 'Họ và tên';}" required="">
-                            <input type="email" value="Email"
-                                onfocus="this.value= '';" onblur="if (this.value
-                                == '') {this.value= 'Email';}" required="">
-                            <textarea onfocus="this.value= '';" onblur="if
-                                (this.value == '') {this.value= 'Nội dung...';}"
-                                required="">Nội dung...</textarea>
-                            <input type="submit" value="Gửi">
+                        <div id="name-error"></div>
+                        <input type="text" id="name" placeholder="Họ và Tên" required="">
+						<div id="email-error"></div>
+						<input type="email" id="email-contact" placeholder="Địa chỉ Email" required="">
+						<div id="content-error"></div>
+						<textarea type="text" id="content" placeholder="Nội dung..."></textarea>
+						
+						<input type="button" value="Gửi" onclick="Contact.contact()" class="button-custom">
                         </form>
                     </div>
                     <div class="col-md-4 footer-grid-left">
@@ -83,7 +84,27 @@
 
                 </a>
                 <ul class="mfb-component__list">
-                   
+                
+                <?php if(isset($_SESSION['user'])) { ?>   
+                	<li>
+                        <a
+                            href=""
+                             data-mfb-label="<?php echo $_SESSION['user']['name'];?>"
+                            class="mfb-component__button--child">
+                            <i class="fa fa-address-card"style="padding-top:
+                                20px;padding-left:20px;"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo base_url_ci;?>user/logout" data-mfb-label="Đăng xuất"
+                            class="mfb-component__button--child">
+                            <i class="fa fa-sign-out"style="padding-top:
+                            20px;padding-left:20px;"></i>
+                        </a>
+                    </li>
+                <?php } else {?>
+                
                     <li <?php if(isset($register)) echo $register?>>
                         <a
                             href="<?php echo base_url_ci;?>user/register"
@@ -101,7 +122,7 @@
                             20px;padding-left:20px;"></i>
                         </a>
                     </li>
-                    
+                <?php }?>
                 </ul>
             </li>
         </ul>
@@ -271,7 +292,59 @@
                             });
                         });
                         </script>
+<<<<<<< HEAD
          
+=======
+         <!-- pop-up-box -->
+         <script type="text/javascript" src="<?php echo base_url_ci;?>public/js/modernizr.custom.min.js"></script>
+                    <script src="<?php echo base_url_ci;?>public/js/jquery.magnific-popup.js" type="text/javascript"></script>
+                    <!--//pop-up-box -->
+                    <script>
+                    $(document).ready(function() {
+                        $('.popup-with-zoom-anim').magnificPopup({
+                            type: 'inline',
+                            fixedContentPos: false,
+                            fixedBgPos: true,
+                            overflowY: 'auto',
+                            closeBtnInside: true,
+                            preloader: false,
+                            midClick: true,
+                            removalDelay: 300,
+                            mainClass: 'my-mfp-zoom-in'
+                        });
+
+                    });
+                    </script>
+         <!-- requried-jsfiles-for owl -->
+         <script type="text/javascript">
+                $(window).load(function() {
+                    $("#flexiselDemo1").flexisel({
+                        visibleItems: 3,
+                        animationSpeed: 1000,
+                        autoPlay: true,
+                        autoPlaySpeed: 3000,
+                        pauseOnHover: true,
+                        enableResponsiveBreakpoints: true,
+                        responsiveBreakpoints: {
+                            portrait: {
+                                changePoint: 480,
+                                visibleItems: 1
+                            },
+                            landscape: {
+                                changePoint: 640,
+                                visibleItems: 2
+                            },
+                            tablet: {
+                                changePoint: 768,
+                                visibleItems: 3
+                            }
+                        }
+                    });
+
+                });
+                </script>
+                <script type="text/javascript" src="<?php echo base_url_ci;?>public/js/jquery.flexisel.js"></script>
+>>>>>>> master
         <script src="<?php echo base_url_ci;?>public/js/mfb.js"></script>
         <script src="<?php echo base_url_ci;?>public/js/mfb.min.js"></script>
         <!-- for bootstrap working -->

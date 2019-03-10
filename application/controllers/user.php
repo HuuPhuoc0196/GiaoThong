@@ -10,6 +10,7 @@ class User extends CI_Controller
 		$this->load->library('form_validation');
 		$this->load->helper('form');
 		$this->load->library('session');
+		$this->load->helper('email');
 	}
 	
 	public function index()
@@ -19,26 +20,56 @@ class User extends CI_Controller
 	
 	public function login()
 	{
-	    if(isset($_POST['login']))
+	    if(isset($_POST['username']))
 	    {
-	        $this->form_validation->set_rules('username', 'Username', 'trim|required|callback_checkUser');
-			$this->form_validation->set_rules('password', 'Password', 'trim|required');
+	     $dataError = $this->valid_login();
+            if (!empty($dataError)) {
+                $data = array(
+                    "status" => false,
+                    "message" => $dataError
+                );
+                print_r(json_encode($data));die;
+            }
 	        $username = $this->input->post('username');
 	        $password = md5($this->input->post('password'));
 	        if(!$this->m_user->login($username, $password))
 	        {
-	            $data ['error_login'] = "Tài khoản hoặc mật khẩu không đúng";
-	            $this->load->view('user/login_user',$data);
+	            $data = array(
+                    "status" => false,
+                    "message" => array(
+                        "login" => "Tài khoản hoặc mật khẩu không hợp lệ!"
+                    )
+                );
+                print_r(json_encode($data));die;
 	        }else
 	        {
 	            $login['user'] = $this->m_user->findUserByUsername($username)[0];
 	            $this->session->set_userdata($login);
-	            redirect(base_url_ci . 'home/');
+	            $data = array(
+	                "status" => true,
+	                "message" => "",
+	                "data" => base_url_ci . 'home/'
+	            );
+	            print_r(json_encode($data));die;
 	        }
 	    
 	    }else {
 	        $this->load->view('user/login_user');
 	    }
+	}
+	
+	public function valid_login(){
+	    $dataError = array();
+	   
+	    if(empty($_POST['username'])){
+	        $dataError['username'] = "Tài khoản là không được trống";
+	    }
+	    
+	    if(empty($_POST['password'])){
+	        $dataError['password'] = "Mật khẩu là không được trống";
+	    }
+	    
+	    return $dataError;
 	}
 	
 	public function callback_checkUser($username)
@@ -56,13 +87,13 @@ class User extends CI_Controller
 	
 	public function register()
 	{
-		if (isset($_POST ['register'])) {
-			if ($this->form_validation()) {
+		if (isset($_POST ['username'])) {
+		    $dataError = $this->form_validation();
+			if (empty($dataError)) {
 				// ad user
-				$username = $_POST ['username'];
 				date_default_timezone_set('Asia/Ho_Chi_Minh');
 				$data = array (
-						'username' => $username,
+						'username' => $_POST ['username'],
 						'password' => md5($_POST ['password']),
 						'name' => $_POST ['name'],
 						'email' => $_POST ['email'],
@@ -72,15 +103,17 @@ class User extends CI_Controller
 						'create_date' => date("y-m-d H:i:s") 
 				);
 				$this->m_user->insert($data);
-				$infoUser['infoUser'] = array (
-						'username' => $username,
-						'password' => $_POST ['password'] 
-				);
-				$this->session->set_userdata($infoUser);
-				
-				redirect(base_url_ci . 'user/login');
+				$data = array(
+	                "status" => true,
+	                "message" => "Đăng ký thành công"
+	            );
+	            print_r(json_encode($data));die;
 			} else {
-				return $this->load->view('user/register');
+				$data = array(
+                    "status" => false,
+                    "message" => $dataError
+                );
+                print_r(json_encode($data));die;
 			}
 		} else {
 			$this->load->view('user/register');
@@ -124,47 +157,46 @@ class User extends CI_Controller
 	
 	public function form_validation()
 	{
-		$this->form_validation->set_rules('username', 'Username', 'required|min_length[3]|max_length[50]|is_unique[tbluser.username]', array (
-				'required' => 'Không được để trống',
-				'min_length' => 'Chiều dài tối thiệu phải lớn hơn 3 ký tự',
-				'is_unique' => '%s đã tồn tại',
-				'max_length' => 'Chiều dài tối đa không được lớn hơn 50 ký tự' 
-		));
-		$this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|max_length[50]', array (
-				'required' => 'Không được để trống',
-				'min_length' => 'Chiều dài tối thiệu phải lớn hơn 3 ký tự',
-				'max_length' => 'Chiều dài tối đa không được lớn hơn 50 ký tự' 
-		));
-		$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|min_length[3]|max_length[50]|matches[password]', array (
-				'required' => 'Không được để trống',
-				'min_length' => 'Chiều dài tối thiệu phải lớn hơn 3 ký tự',
-				'max_length' => 'Chiều dài tối đa không được lớn hơn 50 ký tự',
-				'matches' => 'Mật khẩu không trùng khớp' 
-		));
-		$this->form_validation->set_rules('email', 'Email', 'required|min_length[3]|max_length[100]|valid_email|is_unique[tbluser.email]', array (
-				'required' => 'Không được để trống',
-				'min_length' => 'Chiều dài tối thiệu phải lớn hơn 3 ký tự',
-				'max_length' => 'Chiều dài tối đa không được lớn hơn 100 ký tự',
-				'is_unique' => '%s đã tồn tại',
-				'valid_email' => 'Email không hợp lệ' 
-		));
-		$this->form_validation->set_rules('name', 'Name', 'required|min_length[3]|max_length[50]', array (
-				'required' => 'Không được để trống',
-				'min_length' => 'Chiều dài tối thiệu phải lớn hơn 3 ký tự',
-				'max_length' => 'Chiều dài tối đa không được lớn hơn 50 ký tự' 
-		));
-		$this->form_validation->set_rules('phone', 'Phone', 'required|min_length[3]|max_length[12]', array (
-				'required' => 'Không được để trống',
-				'min_length' => 'Chiều dài tối thiệu phải lớn hơn 3 ký tự',
-				'max_length' => 'Chiều dài tối đa không được lớn hơn 12 ký tự' 
-		));
-		$this->form_validation->set_rules('address', 'Address', 'required|min_length[3]|max_length[100]', array (
-				'required' => 'Không được để trống',
-				'min_length' => 'Chiều dài tối thiệu phải lớn hơn 3 ký tự',
-				'max_length' => 'Chiều dài tối đa không được lớn hơn 100 ký tự' 
-		));
-		
-		return $this->form_validation->run();
+
+	    $dataError = array();
+	   
+	    if($this->m_user->checkUsernameAdd($_POST['username'])){
+	        $dataError['username'] = "Tên đăng nhập đã tồn tại";
+	    }else if(empty($_POST['username'])){
+	        $dataError['username'] = "Tên đăng nhập là không được trống";
+	    }
+	    
+	    if($this->m_user->checkEmailAdd($_POST['email'])){
+	        $dataError['email'] = "Địa chỉ email đã tồn tại";
+	    }else if(empty($_POST['email'])){
+	        $dataError['email'] = "Địa chỉ email là không được trống";
+	    }else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false){
+            $dataError['email'] = "Vui lòng nhập địa chỉ email hợp lệ!";
+        }
+
+	    if($this->m_user->checkPhoneAdd($_POST['phone'])){
+	        $dataError['phone'] = "Số điện thoại đã tồn tại";
+	    }else if(empty($_POST['phone'])){
+	        $dataError['phone'] = "Số điện thoại là không được trống";
+	    }else if(!is_numeric($_POST['phone']) || $_POST['phone'] < 1 ){
+            $dataError['phone'] = "Số điện thoại không hợp lệ";
+        }
+	    
+	    if(empty($_POST['password'])){
+	        $dataError['password'] = "Mật khẩu là không được trống";
+	    }
+	    
+	    if(empty($_POST['re_password'])){
+	        $dataError['re_password'] = "Vui lòng nhập lại mật khẩu";
+	    }else if($_POST['re_password'] !== $_POST['password']){
+	        $dataError['re_password'] = "Nhập lại mật khẩu không đúng";
+	    }
+	    
+	    if(empty($_POST['name'])){
+	        $dataError['name'] = "Họ và tên là không được trống";
+	    }
+	    
+	    return $dataError;
 	}
 	public function form_validation_update()
 	{

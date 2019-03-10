@@ -3,6 +3,15 @@
 <?php $data['login_user'] = ' class="act"';?>
 <?php $this->load->view('template/header',$data);?>
 <?php $this->load->view('template/share');?>
+<script src="<?php echo base_url_ci;?>public/js/user.js"></script>
+	<script type="text/javascript">
+		var base_url_ci = "<?php echo base_url_ci;?>";
+	</script>
+	
+	<?php if(isset($_SESSION['user']))
+{
+    redirect(base_url_ci . 'home');
+}?>
 
 <div class="login elite-app">
 	<div class="container container_bg">
@@ -11,14 +20,17 @@
 			</div>
 	<div class="col-md-7 login-form-w3-agile">
 			 <form action="#" method="post">
+			 	<div id="login-error"></div>
 				<div class="w3_form_body_grid">
-				<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-					<input type="email" name="Email" placeholder="Tên tài khoản" required="">
+				<i class="fa fa-user-circle-o" aria-hidden="true" style="width: 16px;text-align: center;"></i>
+					<input type="email" id="username" name="Email" placeholder="Tên tài khoản" required="">
 				</div>
+				<div id="username-error"></div>
 				<div class="w3_form_body_grid">
-				<i class="fa fa-lock" aria-hidden="true"></i>
-					<input type="password" name="Password" placeholder="Password" required="">
+				<i class="fa fa-lock" aria-hidden="true" style="width: 16px;text-align: center;"></i>
+					<input type="password" id="password" name="Password" placeholder="password" required="">
 				</div>
+				<div id="password-error"></div>
 				<div class="agile_remember">
 					
 					<div class="agile_remember_right">
@@ -26,7 +38,7 @@
 					</div>
 					<div class="clearfix"> </div>
 				</div>
-				<input type="submit" value="Đăng nhập">
+				<input type="button" value="Đăng nhập" id="login" class="button-login-custom" onclick="User.login()">
 			</form>
 			<h4>Tiếp tục với</h4>
 			<div class="social_icons agileinfo_social_asd">
@@ -62,5 +74,15 @@
 		</div>
 	</div>
 </div>
+
+<script>
+
+document.onkeyup = function (event) {
+	  if (event.which == 13 || event.keyCode == 13) {
+		  $('#login').click();
+	  }
+};
+</script>
+
 
 <?php $this->load->view('template/footer');?> 

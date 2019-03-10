@@ -1921,7 +1921,32 @@ a.high {
     text-transform: uppercase;
 }
 
+.footer-grid-left .button-custom {
+    outline: none;
+    border: none;
+    background: #27b311;
+    padding: 9px 0;
+    width: 40%;
+    font-size: 1em;
+    color: #fff;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    -ms-border-radius: 7px;
+    transition: .5s all;
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    -o-transition: .5s all;
+    -ms-transition: .5s all;
+    text-transform: uppercase;
+}
+
 .footer-grid-left input[type="submit"]:hover {
+    background: #ff1800;
+}
+
+.footer-grid-left .button-custom:hover {
     background: #ff1800;
 }
 
@@ -2698,7 +2723,27 @@ h3.title,
     -ms-transition: .5s all;
 }
 
+.contact-grid .button-contact-custom {
+    outline: none;
+    border: none;
+    width: 100%;
+    background: #27B311;
+    color: #fff;
+    font-size: 1em;
+    text-transform: uppercase;
+    padding: 12px 0px;
+    transition: .5s all;
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    -o-transition: .5s all;
+    -ms-transition: .5s all;
+}
+
 .contact-grid input[type="submit"]:hover {
+    background: #ff1800;
+}
+
+.contact-grid .button-contact-custom:hover {
     background: #ff1800;
 }
 
@@ -6150,7 +6195,23 @@ label.radio {
     text-transform: uppercase;
 }
 
+.login-form-w3-agile .button-login-custom {
+    outline: none;
+    padding: 10px 0;
+    font-size: 1em;
+    color: #fff;
+    border: none;
+    width: 100%;
+    background: #27A511;
+    margin: 1.5em 0 0;
+    text-transform: uppercase;
+}
+
 .login-form-w3-agile input[type="submit"]:hover {
+    background: #ea3621;
+}
+
+.login-form-w3-agile .button-login-custom:hover {
     background: #ea3621;
 }
 
@@ -7170,4 +7231,23 @@ input:-moz-placeholder {
 
 input::-webkit-input-placeholder {
     color: #000;
+}
+
+.error {
+    color: red;
+}
+
+.sucess {
+    color: blue;
+}
+
+.icon-custom {
+    width: 16px;
+    text-align: center;
+}
+
+.active a {
+    padding-bottom: 5px;
+    border-bottom: 2px solid #fff;
+    margin-bottom: 10px;
 }

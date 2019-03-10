@@ -22,7 +22,11 @@
                     <li><?php echo $val['time_post'];?></li>
                 </ul>
                 <h1><?php echo $val['title'];?></h1>
-                <p><?php echo $val['summary'];?>
+                 <?php 
+                    $summary = $val['summary'];
+                    $summary = preg_replace('/style=".*"/', "", $summary);
+                 ?>
+                <p><?php echo $summary;?>
                     <span></span></p>
                 <div class="more">
                     <a href="<?php echo base_url_ci;?>news/detail/<?php echo $val['id'];?>" class="type-1">
@@ -61,9 +65,15 @@
         <a href="" class="cam">Hệ thống camera</a>
         <div class="video-grids">
             <?php foreach ($listCamera as $val){?>
+            <?php 
+                    $src = $val['src'];
+                    $indexSearch = strripos($src, "=black");
+                    $src = substr($src, 0, $indexSearch + 6);
+                    $src = $src . "&t=" . strtotime(date("Y-m-d h:i:sa"));
+            ?>
                 <div class="col-md-3 img_cam">
-                    <img src="<?php echo $val['src'];?>" class="camera">
-                  <a href=""><i class="fa fa-video-camera"></i> <span><?php echo $val['name'];?><span></a>
+                   <a href="<?php echo $src;?>"> <img src="<?php echo $src;?>" class="camera">
+                  <i class="fa fa-play-circle"></i> <span><?php echo $val['name'];?><span></a>
                 </div>
             <?php }?>
         </div>
@@ -91,7 +101,11 @@
                                     echo $source;?>
                                 </a>
                                     <label>|</label> <i><?php echo $val['time_post'];?></i></h5>
-                                <p><?php echo $val['summary'];?></p>
+                                    <?php 
+                                        $summary = $val['summary'];
+                                        $summary = preg_replace('/style=".*"/', "", $summary);
+                                    ?>
+                                <p><?php echo $summary;?></p>
                             </div>
                             <div class="clearfix"> </div>
                         </li>
@@ -221,16 +235,16 @@ function showPosition(position) {
 function showError(error) {
 	switch(error.code) {
 		case error.PERMISSION_DENIED:
-			x.innerHTML = "Trình duyệt không cho phép định vị";
+			$('#result-map').innerHTML = "Trình duyệt không cho phép định vị";
 			break;
 		case error.POSITION_UNAVAILABLE:
-			x.innerHTML = "Không có thông tin";
+			$('#result-map').innerHTML = "Không có thông tin";
 			break;	
 		case error.TIMEOUT:
-			x.innerHTML = "Hết thời gian";
+			$('#result-map').innerHTML = "Hết thời gian";
 			break;
 		case error.UNKNOWN_ERROR:
-			x.innerHTML = "Lỗi chưa xác định";
+			$('#result-map').innerHTML = "Lỗi chưa xác định";
 			break;
 	}
 }
