@@ -12,7 +12,7 @@ class Camera extends CI_Controller {
     
     public function index()
     {
-        $this->load->view('camera/index');
+        $this->load->view('camera/index_camera');
     }
     
     public function deleteCamera($id)
