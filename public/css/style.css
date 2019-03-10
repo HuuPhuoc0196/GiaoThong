@@ -6988,7 +6988,15 @@ canvas#clear-night {
 .sucess{
 	color:blue;
 }
+
 .icon-custom{
 	width: 16px;
     text-align: center;
 }
+
+.active a{
+	padding-bottom: 5px;
+    border-bottom: 2px solid #fff;
+    margin-bottom: 10px;
+}
+
