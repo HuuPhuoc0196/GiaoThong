@@ -114,4 +114,10 @@ class Service extends CI_Controller
          print_r($datadetail[1]);
          echo '</pre>';
     }
+    
+    public function test(){
+        $summary = '<p><strong style="color:#333">Tạp chí GTVT </strong> - Ban ATGT tỉnh Gia Lai kiến nghị Tổng cục đường bộ VN giải pháp, xử lý, cải tạo nút giao, để khắc phục nguy cơ mất an toàn giao thông.                    <span></span></p>';    
+        $summary = preg_replace('/style=".*"/', "", $summary);
+        print_r($summary);die;
+    }
 }

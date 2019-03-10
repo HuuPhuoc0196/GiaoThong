@@ -2,37 +2,54 @@
 <?php $data['login_user'] = ' class="act"';?>
 <?php $this->load->view('template/header',$data);?>
 <?php $this->load->view('template/share');?>
-
+<script src="<?php echo base_url_ci;?>public/js/user.js"></script>
+	<script type="text/javascript">
+		var base_url_ci = "<?php echo base_url_ci;?>";
+	</script>
 <div class="login elite-app">
 	<div class="container container_bg">
 	<div class="tittle-agileinfo">
 				<h3>ĐĂNG KÝ NGAY</h3>
+				<div id=sucess></div>
 			</div>
 	<div class="col-md-7 login-form-w3-agile">
 			<form action="#" method="post">
-				
 				<div class="w3_form_body_grid">
-				<i class="fa fa-user-circle" aria-hidden="true"></i>
-					<input type="text" name="Name" placeholder="Họ và tên" required="">
+				<i class="fa fa-user-circle icon-custom" aria-hidden="true"></i>
+					<input type="text" name="name" id="name" placeholder="Họ và tên" required="">
                 </div>
+                <div id="name-error"></div>
                 <div class="w3_form_body_grid">
-				<i class="fa fa-user-circle" aria-hidden="true"></i>
-					<input type="text" name="Name" placeholder="Tên tài khoản" required="">
+				<i class="fa fa-user icon-custom" aria-hidden="true"></i>
+					<input type="text" name="username" id="username" placeholder="Tên tài khoản" required="">
 				</div>
-				
+				<div id="username-error"></div>
 				<div class="w3_form_body_grid">
-				<i class="fa fa-envelope" aria-hidden="true"></i>
-					<input type="email" name="Email" placeholder="Email" required="">
+				<i class="fa fa-phone icon-custom" aria-hidden="true"></i>
+					<input type="text" name="phone" id="phone" placeholder="Số điện thoại" required="">
 				</div>
+				<div id="phone-error"></div>
+				<div class="w3_form_body_grid">
+				<i class="fa fa-envelope icon-custom" aria-hidden="true"></i>
+					<input type="email" name="email" id="email" placeholder="Địa chỉ Email" required="">
+				</div>
+				<div id="email-error"></div>
 				<div class="w3_form_body_grid w3_form_body_grid1">
-				<i class="fa fa-lock" aria-hidden="true"></i>
-					<input type="password" name="Password" placeholder="Mật khẩu" required="">
+				<i class="fa fa-lock icon-custom" aria-hidden="true"></i>
+					<input type="password" name="password" id="password" placeholder="Mật khẩu" required="">
                 </div>
+                <div id="password-error"></div>
                 <div class="w3_form_body_grid w3_form_body_grid1">
-				<i class="fa fa-lock" aria-hidden="true"></i>
-					<input type="password" name="Password" placeholder="Nhập lại mật khẩu" required="">
+				<i class="fa fa-lock icon-custom" aria-hidden="true"></i>
+					<input type="password" name="re_password" id="re_password" placeholder="Nhập lại mật khẩu" required="">
 				</div>
-				<input type="submit" value="đăng ký">
+				<div id="re_password-error"></div>
+                <div class="w3_form_body_grid w3_form_body_grid1">
+				<i class="fa fa-address-card icon-custom" aria-hidden="true"></i>
+					<input type="text" name="address" id="address" placeholder="Địa chỉ của bạn" required="">
+				</div>
+				<div id="address-error"></div>
+				<input type="button" id="register" value="đăng ký" class="button-login-custom" onclick="User.register()">
 			</form>
 			<h4>Tiếp tục với</h4>
 			<div class="social_icons agileinfo_social_asd">
@@ -77,5 +94,12 @@
 	</div>
 </div>
 <!--login-inner-->
+<script>
 
+document.onkeyup = function (event) {
+	  if (event.which == 13 || event.keyCode == 13) {
+		  $('#register').click();
+	  }
+};
+</script>
 <?php $this->load->view('template/footer');?>

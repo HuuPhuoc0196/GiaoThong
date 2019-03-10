@@ -2,6 +2,10 @@
 <?php $data['contact'] = ' class="act"';?>
 <?php $this->load->view('template/header',$data);?>
 <?php $this->load->view('template/share');?>
+<script src="<?php echo base_url_ci;?>public/js/contact.js"></script>
+	<script type="text/javascript">
+		var base_url_ci = "<?php echo base_url_ci;?>";
+	</script>
 <!-- contact -->
 <div class="contact">
 		<div class="container container_bg">
@@ -48,11 +52,15 @@
 					</div>
 				</div>
 				<div class="col-md-5 contact-grid">
+					<div id="sucess"></div>
 					<form>
-						<input type="text" value="Họ và tên" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Họ và tên';}" required="">
-						<input type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-						<textarea type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nội dung...';}" required="">Nội dung...</textarea>
-						<input type="submit" value="Gửi" >
+						 <div id="name-error"></div>
+                        <input type="text" id="name" placeholder="Họ và Tên" required="">
+						<div id="email-error"></div>
+						<input type="email" id="email-contact" placeholder="Địa chỉ Email" required="">
+						<div id="content-error"></div>
+						<textarea type="text" id="content" placeholder="Nội dung..."></textarea>
+						<input type="button" value="Gửi" onclick="Contact.contact()" class="button-contact-custom">
 					</form>
 				</div>
 				<div class="col-md-4 contact-grid">
@@ -60,8 +68,8 @@
 						<h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Bạn yêu thích website ?</h3>
 					</div>
 					<form>
-						<input type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-						<input type="submit" value="Đăng ký" >
+						<input type="email" value="Email" id="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+						<input type="button" value="Đăng ký" class="button-contact-custom">
 					</form>
 				</div>
 				<div class="clearfix"> </div>

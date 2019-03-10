@@ -22,7 +22,11 @@
                     <li><?php echo $val['time_post'];?></li>
                 </ul>
                 <h1><?php echo $val['title'];?></h1>
-                <p><?php echo $val['summary'];?>
+                 <?php 
+                    $summary = $val['summary'];
+                    $summary = preg_replace('/style=".*"/', "", $summary);
+                 ?>
+                <p><?php echo $summary;?>
                     <span></span></p>
                 <div class="more">
                     <a href="<?php echo base_url_ci;?>news/detail/<?php echo $val['id'];?>" class="type-1">
@@ -61,9 +65,15 @@
         <a href="" class="cam">Hệ thống camera</a>
         <div class="video-grids">
             <?php foreach ($listCamera as $val){?>
+            <?php 
+                    $src = $val['src'];
+                    $indexSearch = strripos($src, "=black");
+                    $src = substr($src, 0, $indexSearch + 6);
+                    $src = $src . "&t=" . strtotime(date("Y-m-d h:i:sa"));
+            ?>
                 <div class="col-md-3 img_cam">
-                    <img src="<?php echo $val['src'];?>" class="camera">
-                  <a href=""><i class="fa fa-video-camera"></i> <span><?php echo $val['name'];?><span></a>
+                   <a href="<?php echo $src;?>"> <img src="<?php echo $src;?>" class="camera">
+                  <i class="fa fa-play-circle"></i> <span><?php echo $val['name'];?><span></a>
                 </div>
             <?php }?>
         </div>
@@ -91,7 +101,11 @@
                                     echo $source;?>
                                 </a>
                                     <label>|</label> <i><?php echo $val['time_post'];?></i></h5>
-                                <p><?php echo $val['summary'];?></p>
+                                    <?php 
+                                        $summary = $val['summary'];
+                                        $summary = preg_replace('/style=".*"/', "", $summary);
+                                    ?>
+                                <p><?php echo $summary;?></p>
                             </div>
                             <div class="clearfix"> </div>
                         </li>
@@ -108,7 +122,7 @@
                     <div class="news-grid-rght1">
                         <div role="tabpanel" class="tab-pane" id="profile">
                         <h4 style="color:#090; margin-left:20%;margin-bottom:30px">VỊ TRÍ CỦA CHÚNG TÔI</h4>
-                            <<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5971263383844!2d106.63755031428747!3d10.8421112609438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752984a36a471d%3A0x5628f842d92e23dc!2zMjgvNEIgxJDGsOG7nW5nIFBoYW4gSHV5IMONY2gsIFBoxrDhu51uZyAxMiwgR8OyIFbhuqVwLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1552143678871" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5971263383844!2d106.63755031428747!3d10.8421112609438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752984a36a471d%3A0x5628f842d92e23dc!2zMjgvNEIgxJDGsOG7nW5nIFBoYW4gSHV5IMONY2gsIFBoxrDhu51uZyAxMiwgR8OyIFbhuqVwLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1552143678871" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="news-grid-rght1">
@@ -221,16 +235,16 @@ function showPosition(position) {
 function showError(error) {
 	switch(error.code) {
 		case error.PERMISSION_DENIED:
-			x.innerHTML = "Trình duyệt không cho phép định vị";
+			$('#result-map').innerHTML = "Trình duyệt không cho phép định vị";
 			break;
 		case error.POSITION_UNAVAILABLE:
-			x.innerHTML = "Không có thông tin";
+			$('#result-map').innerHTML = "Không có thông tin";
 			break;	
 		case error.TIMEOUT:
-			x.innerHTML = "Hết thời gian";
+			$('#result-map').innerHTML = "Hết thời gian";
 			break;
 		case error.UNKNOWN_ERROR:
-			x.innerHTML = "Lỗi chưa xác định";
+			$('#result-map').innerHTML = "Lỗi chưa xác định";
 			break;
 	}
 }
