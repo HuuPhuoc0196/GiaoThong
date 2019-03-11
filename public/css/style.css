@@ -2449,7 +2449,7 @@ ul.wmuSliderPagination {
 }
 
 .baner-beaking {
-    background: url(../images/22.jpg) no-repeat 0px 0px;
+    /* background: url(../images/22.jpg) no-repeat 0px 0px; */
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -6889,7 +6889,7 @@ canvas#clear-night {
     color: #fff;
     font-weight: 500;
     background-color: #000;
-    margin-left: 10px;
+    margin-left: 16px;
 }
 
 .img_cam {
@@ -7145,5 +7145,83 @@ h4.heading {
     font-weight: 700;
 }
 
+.active a {
+    padding-bottom: 5px;
+    border-bottom: 2px solid #fff;
+    margin-bottom: 10px;
+}
 
-/*-- //services-- */
+.placeholder-custom-fooder ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1;
+    /* Firefox */
+}
+
+.placeholder-custom-fooder :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: white;
+}
+
+.placeholder-custom-fooder ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: white;
+}
+
+.placeholder-custom ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    opacity: 1;
+    /* Firefox */
+}
+
+.placeholder-custom :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: black;
+}
+
+.placeholder-custom ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: black;
+}
+
+.active-paginnation-custom a {
+    background-color: #37B247;
+    cursor: default;
+    color: #fff;
+}
+
+.pagination .prev1 a {
+    width: 100px;
+    border-radius: none !important;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.h-550 {
+    height: 550px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.mr-10 {
+    margin-left: 10px
+}
+
+.pl-20 {
+    padding-left: 20px;
+}
+
+@media (max-width:1024px) {
+    .pt-10-custom {
+        padding-top: 16px;
+    }
+}

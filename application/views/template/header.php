@@ -46,7 +46,7 @@
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse nav-wil"
-                            id="bs-example-navbar-collapse-1">
+                            id="bs-example-navbar-collapse-1" style="padding-bottom: 0px;">
                             <ul class="nav navbar-nav"id="cl-effect-18">
                                 <li <?php if(isset($home)) echo $home?>><a href="<?php echo base_url_ci;?>home"
                                         >Trang chủ</a></li>

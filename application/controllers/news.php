@@ -28,7 +28,7 @@ class News extends CI_Controller {
         if ($total_records > 0)
         {
             // get current page records
-            $result["hotNews"] = $this->m_news->getview($limit_per_page, $start_index);
+            $result["hotNews"] = $this->m_news->getnews($limit_per_page, $start_index);
             $config['base_url'] = base_url_ci . 'news/index';
             $config['total_rows'] = $total_records;
             $config['per_page'] = $limit_per_page;
@@ -39,27 +39,27 @@ class News extends CI_Controller {
             $config['use_page_numbers'] = TRUE;
             $config['reuse_query_string'] = TRUE;
              
-            $config['first_link'] = 'First Page';
-            $config['first_tag_open'] = '<button type="button" class="btn btn-success">';
-            $config['first_tag_close'] = '</button>';
+            $config['first_link'] = 'Trang đầu';
+            $config['first_tag_open'] = '<li class="prev1">';
+            $config['first_tag_close'] = '</li>';
              
-            $config['last_link'] = 'Last Page';
-            $config['last_tag_open'] = '<button type="button" class="btn btn-success">';
-            $config['last_tag_close'] = '</button>';
+            $config['last_link'] = 'Trang cuối';
+            $config['last_tag_open'] = '<li class="prev1">';
+            $config['last_tag_close'] = '</li>';
              
-            $config['next_link'] = 'Next Page';
-            $config['next_tag_open'] = '<button type="button" class="btn btn-success">';
-            $config['next_tag_close'] = '</button>';
+            $config['next_link'] = '&raquo;';
+            $config['next_tag_open'] = '<li>';
+            $config['next_tag_close'] = '</li>';
         
-            $config['prev_link'] = 'Prev Page';
-            $config['prev_tag_open'] = '<button type="button" class="btn btn-success">';
-            $config['prev_tag_close'] = '</button>';
+            $config['prev_link'] = '&laquo;';
+            $config['prev_tag_open'] = '<li>';
+            $config['prev_tag_close'] = '</li>';
         
-            $config['cur_tag_open'] = '<button type="button" class="btn btn-success">';
-            $config['cur_tag_close'] = '</button>';
+            $config['cur_tag_open'] = '<li class="active-paginnation-custom"><a href="#">';
+            $config['cur_tag_close'] = '</a></li>';
         
-            $config['num_tag_open'] = '<button type="button" class="btn btn-success">';
-            $config['num_tag_close'] = '</button>';
+            $config['num_tag_open'] = '<li>';
+            $config['num_tag_close'] = '</li>';
         
             $this->pagination->initialize($config);
              

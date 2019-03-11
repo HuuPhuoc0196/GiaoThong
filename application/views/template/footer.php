@@ -27,7 +27,7 @@
                             <li <?php if(isset($contact)) echo ' class="active"'?>><a href="<?php echo base_url_ci;?>contact" class="cols">Liên Hệ</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-4 footer-grid-left">
+                    <div class="col-md-4 footer-grid-left placeholder-custom-fooder">
                         <h3>Liên Hệ</h3>
                         <div id="sucess"></div>
                         <form>
@@ -292,8 +292,11 @@
                             });
                         });
                         </script>
+<<<<<<< HEAD
          
 
+=======
+>>>>>>> master
         <script src="<?php echo base_url_ci;?>public/js/mfb.js"></script>
         <script src="<?php echo base_url_ci;?>public/js/mfb.min.js"></script>
         <!-- for bootstrap working -->

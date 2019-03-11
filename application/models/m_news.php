@@ -18,14 +18,16 @@ class M_news extends CI_Model
             ->result_array();
         return $result;
     }
-
+    
     public function getnews($limit, $start)
     {
-        $result = $this->db->select('*')
-            ->limit($limit, $start)
-            ->order_by('id, status desc')
-            ->get($this->table)
-            ->result_array();
+        $result = $this->db->select("$this->table.*, $this->tblDetail.time_post")
+        ->where("$this->table.id = $this->tblDetail.id_news")
+        ->from($this->tblDetail)
+        ->limit($limit, $start)
+        ->order_by('id desc')
+        ->get($this->table)
+        ->result_array();
         return $result;
     }
 
