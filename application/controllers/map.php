@@ -11,7 +11,7 @@ class Map extends CI_Controller
 
     public function index()
     {
-        $this->load->view('map/index');
+        $this->load->view('map/index_map');
     }
     
 
