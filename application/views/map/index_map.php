@@ -1,53 +1,68 @@
-<?php $this->load->view('template/header_map');?>
-<?php $menu_class['map'] = ' class="active"';?>
-<?php $this->load->view('template/menu',$menu_class);?>
-<script type="text/javascript">
-function loadmap() {
-	var lat = "<?php if(isset($map)) echo $map['lat']; else echo "10.837210"?>";
-	var lng = "<?php if(isset($map)) echo $map['lng']; else echo "106.635468"?>";
-	var myCenter = new google.maps.LatLng(lat,lng);
-	var mapCanvas =  document.getElementById("googleMap");
-	var mapOptions = {center: myCenter, 
-		zoom: 18,
-		panControl: true,
-	    zoomControl: true,
-	    mapTypeControl: true,
-	    scaleControl: true,
-	    streetViewControl: true,
-	    overviewMapControl: true,
-	    rotateControl: true   
-	};
-	var map = new google.maps.Map(mapCanvas, mapOptions);
-	var marker = new google.maps.Marker({position:myCenter});
-	marker.setMap(map);
+<?php $data['data'] = 'Bản đồ';?>
+<?php $data['map'] = ' class="act"';?>
+<?php $this->load->view('template/header',$data);?>
+<?php $this->load->view('template/share');?>
+<div class="banner-bottom">
+    <div class="container container_bg">
 
-	google.maps.event.addListener(marker,'click',function() {
-	    var infowindow = new google.maps.InfoWindow({
-	      content:"Điểm kẹt xe!"
-	    });
-	  infowindow.open(map,marker);
-	 });
-// 	google.maps.event.addListener(map, 'click', function(event) {
-// 	    placeMarker(map, event.latLng);
-// 	 });
-}
-
-// function placeMarker(map, location) {
-//   var marker = new google.maps.Marker({
-//     position: location,
-//     map: map
-//   });
-//    var infowindow = new google.maps.InfoWindow({
-//      content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
-//    });
-//    infowindow.open(map,marker);
-//}
-
-</script>
-<div class="container text-center">    
-  <h3><b>Bản đồ</b></h3>
-   <div id="googleMap" style="width:100%;height:500px;"></div>
-  <hr>
+       
+        <!-- video-grids -->
+        <div class="video-grids">
+            <div class="col-md-8 video-grids-left">
+			<div class="sim-button button12" data-toggle="modal" data-target="#myModal">Thông báo tuyến đường đặc biệt </div> 
+            <span id="result-map"></span>
+                <div class="video-grids-left1">
+                </div>
+            </div>
+            <div class="col-md-4 video-grids-right">
+                <form>
+                    <input type="search" placeholder="Tìm kiếm ngay">
+                </form>
+                
+            <div class="clock-grids wow fadeInUp animated" data-wow-delay=".5s">
+                <div class="clock-heading">
+                    <h3>Đồng Hồ</h3>
+                </div>
+                <div class="clock-left">
+                    <div id="myclock"></div>
+                </div>
+                <div class="clock-bottom">
+                    <div class="clock">
+                        <div id="Date"></div>
+                        <ul>
+                            <li id="hours"> </li>
+                            <li id="point">:</li>
+                            <li id="min"> </li>
+                            <li id="point">:</li>
+                            <li id="sec"> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+			<div class="clearfix"> </div>
+		
+			<div class="modal fade" id="myModal" role="dialog">
+			<!--Modal-->
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+				
+					<h4 class="modal-title">Tuyến đường đặc biệt</h4>
+					</div>
+					<div class="modal-body">
+					<div class="sim-button button12" >Thông báo tuyến đường kẹt xe </div> 
+					<div class="sim-button button12" >Thông báo tuyến đường bị hư hỏng </div> 
+					<div class="sim-button button12" >Thông báo tuyến đường đang xây dựng </div> 
+					<div class="sim-button button12" >Thông báo tuyến đường xảy ra tai nạn </div> 
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn-red" data-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+	</div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkMto13TJ9-5AU-HbmeeFTIPpeDjag8wc&callback=loadmap"></script>
 <?php $this->load->view('template/footer');?>

@@ -14,7 +14,7 @@
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5971263383844!2d106.63755031428747!3d10.8421112609438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752984a36a471d%3A0x5628f842d92e23dc!2zMjgvNEIgxJDGsOG7nW5nIFBoYW4gSHV5IMONY2gsIFBoxrDhu51uZyAxMiwgR8OyIFbhuqVwLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1552143678871" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 			</div>
 			<div class="contact-grids">
-				<div class="col-md-3 contact-grid">
+				<div class="col-md-5 contact-grid">
 					<div class="call">
 						<div class="col-xs-3 contact-grdl">
 							<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
@@ -51,7 +51,7 @@
 						<div class="clearfix"> </div>
 					</div>
 				</div>
-				<div class="col-md-5 contact-grid">
+				<div class="col-md-7 contact-grid">
 					<div id="sucess"></div>
 					<form>
 						 <div id="name-error"></div>
@@ -63,15 +63,7 @@
 						<input type="button" value="Gửi" onclick="Contact.contact()" class="button-contact-custom">
 					</form>
 				</div>
-				<div class="col-md-4 contact-grid">
-					<div class="newsletter1">
-						<h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Bạn yêu thích website ?</h3>
-					</div>
-					<form>
-						<input type="email" value="Email" id="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-						<input type="button" value="Đăng ký" class="button-contact-custom">
-					</form>
-				</div>
+			
 				<div class="clearfix"> </div>
 			</div>
 		</div>

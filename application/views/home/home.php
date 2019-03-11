@@ -57,7 +57,8 @@
                 </div>
             </div>
             <div class="col-md-4 video-grids-right">
-                 <?php $this->load->view('template/weather');?>  
+                 <?php $this->load->view('template/weather');?> 
+    </div> 
             </div>
             <div class="clearfix"> </div>
         
@@ -148,17 +149,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="news-grid-rght2">
-                        <h3>THEO DÕI BẢN TIN CỦA CHÚNG TÔI</h3>
-                        <p>Nhận tin tức và cập nhật mới nhất bằng cách
-                            đăng ký nhận bản tin hàng ngày của chúng
-                            tôi.</p>
-                        <form>
-                            <input type="text" value="Email của bạn ..." onfocus="this.value= '';" onblur="if
-                                                        (this.value == '') {this.value= 'Email của bạn ...';}">
-                            <input type="submit" value="Gửi">
-                        </form>
-                    </div>
+                    
                     
                 </div>
             </div>

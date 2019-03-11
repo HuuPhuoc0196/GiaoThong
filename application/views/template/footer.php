@@ -292,59 +292,8 @@
                             });
                         });
                         </script>
-<<<<<<< HEAD
          
-=======
-         <!-- pop-up-box -->
-         <script type="text/javascript" src="<?php echo base_url_ci;?>public/js/modernizr.custom.min.js"></script>
-                    <script src="<?php echo base_url_ci;?>public/js/jquery.magnific-popup.js" type="text/javascript"></script>
-                    <!--//pop-up-box -->
-                    <script>
-                    $(document).ready(function() {
-                        $('.popup-with-zoom-anim').magnificPopup({
-                            type: 'inline',
-                            fixedContentPos: false,
-                            fixedBgPos: true,
-                            overflowY: 'auto',
-                            closeBtnInside: true,
-                            preloader: false,
-                            midClick: true,
-                            removalDelay: 300,
-                            mainClass: 'my-mfp-zoom-in'
-                        });
 
-                    });
-                    </script>
-         <!-- requried-jsfiles-for owl -->
-         <script type="text/javascript">
-                $(window).load(function() {
-                    $("#flexiselDemo1").flexisel({
-                        visibleItems: 3,
-                        animationSpeed: 1000,
-                        autoPlay: true,
-                        autoPlaySpeed: 3000,
-                        pauseOnHover: true,
-                        enableResponsiveBreakpoints: true,
-                        responsiveBreakpoints: {
-                            portrait: {
-                                changePoint: 480,
-                                visibleItems: 1
-                            },
-                            landscape: {
-                                changePoint: 640,
-                                visibleItems: 2
-                            },
-                            tablet: {
-                                changePoint: 768,
-                                visibleItems: 3
-                            }
-                        }
-                    });
-
-                });
-                </script>
-                <script type="text/javascript" src="<?php echo base_url_ci;?>public/js/jquery.flexisel.js"></script>
->>>>>>> master
         <script src="<?php echo base_url_ci;?>public/js/mfb.js"></script>
         <script src="<?php echo base_url_ci;?>public/js/mfb.min.js"></script>
         <!-- for bootstrap working -->
