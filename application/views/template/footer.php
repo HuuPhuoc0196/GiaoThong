@@ -292,11 +292,6 @@
                             });
                         });
                         </script>
-<<<<<<< HEAD
-         
-
-=======
->>>>>>> master
         <script src="<?php echo base_url_ci;?>public/js/mfb.js"></script>
         <script src="<?php echo base_url_ci;?>public/js/mfb.min.js"></script>
         <!-- for bootstrap working -->
