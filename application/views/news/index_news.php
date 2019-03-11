@@ -10,20 +10,15 @@
 				<div class="col-md-8 breaking-news-grid-left">
 					<div class="wmuSlider example1">
 						<div class="wmuSliderWrapper">
+						<?php for($i = 0; $i < 2; $i++){?>
 							<article style="position: absolute; width: 100%; opacity: 0;"> 
 								<div class="banner-wrap">
-									<div class="baner-beaking">
-										<p>Tiêu đề</p>
+									<div class="baner-beaking" style="background: url(<?php echo base_url_ci;?>public/images/<?php echo $hotNews[$i]['image']?>) no-repeat 0px 0px; background-size:cover;">
+										<p><?php echo $hotNews[$i]['title'];?></p>
 									</div>
 								</div>
 							</article>
-							<article style="position: absolute; width: 100%; opacity: 0;"> 
-								<div class="banner-wrap">
-									<div class="baner-beaking baner-beaking1">
-										<p>Tiêu đề</p>
-									</div>
-								</div>
-							</article>
+							<?php }?>
 						</div>
 					</div>
 					<script src="<?php echo base_url_ci;?>public/js/jquery.wmuSlider.js"></script> 
@@ -315,82 +310,24 @@
                 <div class="col-md-8 news-grid-left">
                     <h3>Tin tức liên quan</h3>
                     <ul>
+                    <?php for($i = 2; $i < count($hotNews); $i++){?>
                         <li>
                             <div class="news-grid-left1">
-                                <img src="<?php echo base_url_ci;?>public/images/16.jpg" alt=" " class="img-responsive" />
+                                <img src="<?php echo base_url_ci;?>public/images/<?php echo $hotNews[$i]['image']?>" alt=" " class="img-responsive" />
                             </div>
                             <div class="news-grid-right1">
-                                <h4><a href="single.html">Mexico's oil giant is in uncharted waters</a></h4>
-                                <h5>By <a href="#">Elizibeth Malkin</a> <label>|</label> <i>31.12.2015</i></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
+                                <h4><a href="<?php echo base_url_ci;?>news/detail/<?php echo $hotNews[$i]['id'];?>"><?php echo $hotNews[$i]['title'];?></a></h4>
+                                <h5>Bởi: <i><?php echo $hotNews[$i]['source'];?></i> <label>|</label> <i><?php echo $hotNews[$i]['time_post'];?></i></h5>
+                                <p><?php echo $hotNews[$i]['summary'];?></p>
                             </div>
                             <div class="clearfix"> </div>
                         </li>
-                        <li>
-                            <div class="news-grid-left1">
-                                <img src="<?php echo base_url_ci;?>public/images/17.jpg" alt=" " class="img-responsive" />
-                            </div>
-                            <div class="news-grid-right1">
-                                <h4><a href="single.html">second wave of votes to legalize marijuana</a></h4>
-                                <h5>By <a href="#">james smith</a> <label>|</label> <i>31.12.2015</i></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </li>
-                        <li>
-                            <div class="news-grid-left1">
-                                <img src="<?php echo base_url_ci;?>public/images/13.jpg" alt=" " class="img-responsive" />
-                            </div>
-                            <div class="news-grid-right1">
-                                <h4><a href="single.html">Antares rocket, bound for space station, explodes</a></h4>
-                                <h5>By <a href="#">Michael Drew</a> <label>|</label> <i>31.12.2015</i></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </li>
-                        <li>
-                            <div class="news-grid-left1">
-                                <img src="<?php echo base_url_ci;?>public/images/12.jpg" alt=" " class="img-responsive" />
-                            </div>
-                            <div class="news-grid-right1">
-                                <h4><a href="single.html">stronger family bonds, two years after hurricane sandy</a>
-                                </h4>
-                                <h5>By <a href="#">james smith</a> <label>|</label> <i>31.12.2015</i></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </li>
-                        <li>
-                            <div class="news-grid-left1">
-                                <img src="<?php echo base_url_ci;?>public/images/15.jpg" alt=" " class="img-responsive" />
-                            </div>
-                            <div class="news-grid-right1">
-                                <h4><a href="single.html">royal crush giants and force game 7</a></h4>
-                                <h5>By <a href="#">Michael Drew</a> <label>|</label> <i>31.12.2015</i></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </li>
+                        <?php }?>
                     </ul>
                     <ul class="pagination modal-3">
-                        <li><a href="#" class="prev1">Trang đầu</a></li>
-                        <li><a href="#" class="prev">&laquo;</a></li>
-                        <li><a href="#" class="active">1</a></li>
-                        <li> <a href="#">2</a></li>
-                        <li> <a href="#">3</a></li>
-                        <li> <a href="#">4</a></li>
-                        <li> <a href="#">5</a></li>
-                        <li> <a href="#">6</a></li>
-                        <li> <a href="#">7</a></li>
-                        <li> <a href="#">8</a></li>
-                        <li> <a href="#">9</a></li>
-                        <li><a href="#" class="next">&raquo;</a></li>
-                        <li><a href="#" class="prev1">Trang cuối</a></li>
+                        <?php if (isset($links)) { ?>
+                            <?php echo $links ?>
+                        <?php }?>
                     </ul>
                 </div>
                 <div class="col-md-4 news-grid-right">
