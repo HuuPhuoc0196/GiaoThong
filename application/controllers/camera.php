@@ -12,7 +12,61 @@ class Camera extends CI_Controller {
     
     public function index()
     {
-        $this->load->view('camera/index_camera');
+            // init params
+            $result = array();
+            $limit_per_page = 10;
+            $start_index = ($this->uri->segment(3)) ? $this->uri->segment(3) - 1 : 0;
+            $start_index = $start_index * $limit_per_page;
+            $total_records = $this->m_camera->get_total();
+            if ($total_records > 0)
+            {
+                // get current page records
+                if (isset($_POST['search']) && ! empty($_POST['search'])) {
+                    $search = $_POST['search'];
+                    $result['camera'] = $this->m_camera->searchCamera($search, $limit_per_page, $start_index);
+                    $result['search'] = $search;
+                    $total_records = $this->m_camera->get_total_search($search);
+                } else {
+                    $result["camera"] = $this->m_camera->getCameraList($limit_per_page, $start_index);
+                }
+                $config['base_url'] = base_url_ci . 'camera/index';
+                $config['total_rows'] = $total_records;
+                $config['per_page'] = $limit_per_page;
+                $config["uri_segment"] = 3;
+        
+                // custom paging configuration
+                $config['num_links'] = 2;
+                $config['use_page_numbers'] = TRUE;
+                $config['reuse_query_string'] = TRUE;
+                 
+                $config['first_link'] = 'Trang đầu';
+                $config['first_tag_open'] = '<li class="prev1">';
+                $config['first_tag_close'] = '</li>';
+                 
+                $config['last_link'] = 'Trang cuối';
+                $config['last_tag_open'] = '<li class="prev1">';
+                $config['last_tag_close'] = '</li>';
+                 
+                $config['next_link'] = '&raquo;';
+                $config['next_tag_open'] = '<li>';
+                $config['next_tag_close'] = '</li>';
+        
+                $config['prev_link'] = '&laquo;';
+                $config['prev_tag_open'] = '<li>';
+                $config['prev_tag_close'] = '</li>';
+        
+                $config['cur_tag_open'] = '<li class="active-paginnation-custom"><a href="#">';
+                $config['cur_tag_close'] = '</a></li>';
+        
+                $config['num_tag_open'] = '<li>';
+                $config['num_tag_close'] = '</li>';
+        
+                $this->pagination->initialize($config);
+                 
+                // build paging links
+                $result["links"] = $this->pagination->create_links();
+            }
+            $this->load->view('camera/index_camera',$result);
     }
     
     public function deleteCamera($id)

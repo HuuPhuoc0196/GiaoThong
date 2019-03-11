@@ -11,10 +11,32 @@ class M_Camera extends CI_Model
 	
 	public function getCamera()
 	{
-	    $result = $this->db->select('*')->order_by('id')->get($this->table)->result_array();
+	    $result = $this->db->select('*')->order_by('id desc')->get($this->table)->result_array();
+	    return $result;
+	}
+	
+	public function getCameraList($limit, $start)
+	{
+	    $result = $this->db->select("*")
+	    ->where('status', '0')
+	    ->limit($limit, $start)
+	    ->order_by('id desc')
+	    ->get($this->table)
+	    ->result_array();
 	    return $result;
 	}
 
+	public function get_total()
+	{
+	    return $this->db->count_all($this->table);
+	}
+	
+	public function get_total_search($search)
+	{
+	    $query = $this->db->like('des', $search)->get($this->table);
+	    return $query->num_rows();
+	}
+	
 	public function getCameraHome($count)
     {
         $result = $this->db->select("*")
@@ -119,16 +141,11 @@ class M_Camera extends CI_Model
 	    $result = $this->db->select('*')
 	    ->like('des', $search)
 	    ->limit($limit, $start)
-	    ->order_by('name')
+	    ->order_by('id desc')
 	    ->where('status','0')
 	    ->get($this->table)
 	    ->result_array();
 	    return $result;
-	}
-	
-	public function get_total()
-	{
-	    return $this->db->count_all($this->table);
 	}
 	
 }
