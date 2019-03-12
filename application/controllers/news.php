@@ -4,6 +4,7 @@ class News extends CI_Controller {
         parent::__construct();
         $this->load->model('m_news');
         $this->load->model('m_newsDetail');
+        $this->load->model('m_home');
         $this->load->library('pagination');
     }
     
@@ -71,8 +72,11 @@ class News extends CI_Controller {
     
      public function detail($id_news)
      {
+         $count_home = $this->m_home->getHome();
          $result['result_detail'] = $this->m_newsDetail->getViewByID($id_news);
          $result['result_news'] = $this->m_news->getViewByID($id_news);
+         $result['hotNews'] = $this->m_news->getNewsHot($count_home["count_news"]);
+         $result['listNews'] = $this->m_news->getNewsList($count_home["count_news"]);
          $this->load->view('news/detail',$result);
      }
     

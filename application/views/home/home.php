@@ -113,7 +113,7 @@
                     <?php }?>
                     </ul>
                     <div class="more" style="margin-bottom:30px">
-                        <a href="single.html" class="type-2">
+                        <a href="<?php echo base_url_ci;?>news" class="type-2">
                             <span > Xem thêm </span>
 
                         </a>

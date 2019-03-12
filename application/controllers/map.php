@@ -17,7 +17,6 @@ class Map extends CI_Controller
 
     public function insert()
     {
-
         if (!isset($_POST['lat']) 
             && !isset($_POST['lng'])
             && !isset($_POST['name'])
@@ -32,12 +31,10 @@ class Map extends CI_Controller
         $dataLatLng = array(
             "lat" => $_POST['lat'],
             "lng" => $_POST['lng'],
+            "type" => $_POST['type'],
             "status" => 0
         );
-        $dataName = array(
-            "name" => $_POST['name']
-        ); 
-        $datafind = $this->m_map->findMap($dataLatLng,$dataName);
+        $datafind = $this->m_map->findMap($dataLatLng);
         if ($datafind != null) {
             echo json_encode(array(
                 "status" => false,
