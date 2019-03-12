@@ -46,14 +46,13 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-				
-					<h4 class="modal-title"></h4>
+					<h4 class="modal-title">Thông báo tuyến đường !</h4>
 					</div>
 					<div class="modal-body">
-					<div class="sim-button button12" onClick="insertMap(1)">Thông báo tuyến đường kẹt xe </div> 
-					<div class="sim-button button12" onClick="insertMap(2)">Thông báo tuyến đường bị hư hỏng </div> 
-					<div class="sim-button button12" onClick="insertMap(3)">Thông báo tuyến đường đang xây dựng </div> 
-					<div class="sim-button button12" onClick="insertMap(4)">Thông báo tuyến đường xảy ra tai nạn </div> 
+					<div class="sim-button button12" onClick="insertMap(1)">Tuyến đường kẹt xe </div> 
+					<div class="sim-button button12" onClick="insertMap(2)">Tuyến đường bị hư hỏng </div> 
+					<div class="sim-button button12" onClick="insertMap(3)">Tuyến đường đang xây dựng </div> 
+					<div class="sim-button button12" onClick="insertMap(4)">Tuyến đường xảy ra tai nạn </div> 
 					</div>
 					<div class="modal-footer">
 					<button type="button" class="btn-red" data-dismiss="modal">Đóng</button>
@@ -142,7 +141,7 @@ function getMap()
         	    });
         		google.maps.event.addListener(marker,'click',function() {
         		    var infowindow = new google.maps.InfoWindow({
-        		      content:"Điểm kẹt xe!"
+        		      content:"Điểm kẹt xe!" + response["data"]["type"]
         		    });
         		  infowindow.open(map,marker);
         		 });
@@ -239,8 +238,7 @@ function showPosition(position) {
         }
     });
 	var marker = new google.maps.Marker({
-    		position:myCenter,
-    		title: "Điểm của bạn",
+    		position:myCenter
 		});
 	marker.setMap(map);
 
@@ -283,17 +281,29 @@ function addMarker(location,map,type) {
 	        url: "<?php echo base_url_ci;?>public/images/iconMap"+ type +".png", // url
 	        scaledSize: new google.maps.Size(32,32), // size
 	    };
+	var contentMap = "";
+    switch(type){
+   		case "1": contentMap = "Tuyến đường kẹt xe"; break;
+   		case "2": contentMap = "Tuyến đường bị hư hỏng"; break;
+   		case "3": contentMap = "Tuyến đường đang xây dựng"; break;
+   		case "4": contentMap = "Tuyến đường xảy ra tai nạn"; break;
+    }
     marker = new google.maps.Marker({
         position: location,
         icon: icon,
-        map: map
+        map: map,
+        content: contentMap
     });
-    google.maps.event.addListener(marker,'click',function() {
-        var infowindow = new google.maps.InfoWindow({
-          content:"Điểm kẹt xe!"
-        });
-    infowindow.open(map,marker);
-    });
+	
+    var bounds = new google.maps.LatLngBounds();
+    var infowindow = new google.maps.InfoWindow();
+    google.maps.event.addListener(marker, 'click', (function (marker, infowindow) {
+        return function () {
+            infowindow.setContent(this.content);
+            infowindow.open(map, this);
+        };
+    })(marker, infowindow));
+    bounds.extend(marker.position);
 }
 
 </script>

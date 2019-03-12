@@ -145,6 +145,22 @@ class M_User extends CI_Model
 		}
 	}
 	
+	public function checkPhone($username, $phone)
+	{
+	    $this->db->select('id');
+	    $this->db->from($this->table);
+	    $this->db->where(array (
+	        'username !=' => $username,
+	        'phone' => $phone
+	    ));
+	    $result = $this->db->get();
+	    if ($result->num_rows() > 0) {
+	        return false;
+	    } else {
+	        return true;
+	    }
+	}
+	
 	public function update($username, $data)
 	{
 		$this->db->where('username', $username);
