@@ -254,17 +254,29 @@ function addMarker(location,map,type) {
 	        url: "<?php echo base_url_ci;?>public/images/iconMap"+ type +".png", // url
 	        scaledSize: new google.maps.Size(32,32), // size
 	    };
+	var contentMap = "";
+    switch(type){
+   		case "1": contentMap = "Tuyến đường kẹt xe"; break;
+   		case "2": contentMap = "Tuyến đường bị hư hỏng"; break;
+   		case "3": contentMap = "Tuyến đường đang xây dựng"; break;
+   		case "4": contentMap = "Tuyến đường xảy ra tai nạn"; break;
+    }
     marker = new google.maps.Marker({
         position: location,
         icon: icon,
-        map: map
+        map: map,
+        content: contentMap
     });
-    google.maps.event.addListener(marker,'click',function() {
-        var infowindow = new google.maps.InfoWindow({
-          content:"Điểm kẹt xe!"
-        });
-    infowindow.open(map,marker);
-    });
+	
+    var bounds = new google.maps.LatLngBounds();
+    var infowindow = new google.maps.InfoWindow();
+    google.maps.event.addListener(marker, 'click', (function (marker, infowindow) {
+        return function () {
+            infowindow.setContent(this.content);
+            infowindow.open(map, this);
+        };
+    })(marker, infowindow));
+    bounds.extend(marker.position);
 }
 
 </script>
