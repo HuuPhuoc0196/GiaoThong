@@ -103,6 +103,7 @@
                             20px;padding-left:20px;"></i>
                         </a>
                     </li>
+                    
                 <?php } else {?>
                 
                     <li <?php if(isset($register)) echo $register?>>
@@ -126,8 +127,8 @@
                 </ul>
             </li>
         </ul>
-        <!--Modal profile-->
-        <div class="modal fade" id="myModal" role="dialog">
+           <!--Modal profile-->
+           <div class="modal fade" id="myModal" role="dialog">
 			<!--Modal-->
 			<div class="modal-dialog ">
 				<div class="modal-content">
@@ -139,39 +140,30 @@
 					<p>
 					</p> 
 					<form action="#" method="post">
-				<div class="w3_form_body_grid">
-				<i class="fa fa-user-circle icon-custom" aria-hidden="true"></i>
-					<input type="text" name="name" id="name" placeholder="Họ và tên" required="">
-                </div>
-                <div id="name-error"></div>
-                <div class="w3_form_body_grid">
+                    <div class="w3_form_body_grid">
 				<i class="fa fa-user icon-custom" aria-hidden="true"></i>
-					<input type="text" name="username" id="username" placeholder="Tên tài khoản" required="">
+					<input type="text" name="username_profile" id="username_profile" placeholder="Tên tài khoản" required="">
 				</div>
 				<div id="username-error"></div>
 				<div class="w3_form_body_grid">
+				<i class="fa fa-user-circle icon-custom" aria-hidden="true"></i>
+					<input type="text" name="name_profile" id="name_profile" placeholder="Họ và tên" required="">
+                </div>
+                <div id="name-error"></div>
+                
+				<div class="w3_form_body_grid">
 				<i class="fa fa-phone icon-custom" aria-hidden="true"></i>
-					<input type="text" name="phone" id="phone" placeholder="Số điện thoại" required="">
+					<input type="text" name="phone_profile" id="phone_profile" placeholder="Số điện thoại" required="">
 				</div>
 				<div id="phone-error"></div>
 				<div class="w3_form_body_grid">
 				<i class="fa fa-envelope icon-custom" aria-hidden="true"></i>
-					<input type="email" name="email" id="email" placeholder="Địa chỉ Email" required="">
+					<input type="email" name="email_profile" id="email_profile" placeholder="Địa chỉ Email" required="">
 				</div>
 				<div id="email-error"></div>
-				<div class="w3_form_body_grid w3_form_body_grid1">
-				<i class="fa fa-lock icon-custom" aria-hidden="true"></i>
-					<input type="password" name="password" id="password" placeholder="Mật khẩu" required="">
-                </div>
-                <div id="password-error"></div>
-                <div class="w3_form_body_grid w3_form_body_grid1">
-				<i class="fa fa-lock icon-custom" aria-hidden="true"></i>
-					<input type="password" name="re_password" id="re_password" placeholder="Nhập lại mật khẩu" required="">
-				</div>
-				<div id="re_password-error"></div>
                 <div class="w3_form_body_grid w3_form_body_grid1">
 				<i class="fa fa-map-marker icon-custom" aria-hidden="true"></i>
-					<input type="text" name="address" id="address" placeholder="Địa chỉ của bạn" required="">
+					<input type="text" name="address_profile" id="address_profile" placeholder="Địa chỉ của bạn" required="">
 				</div>
 				<div id="address-error"></div>
 				

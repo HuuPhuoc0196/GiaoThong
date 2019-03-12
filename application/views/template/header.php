@@ -38,7 +38,7 @@
                                 <span class="icon-bar"></span>
                             </button>
                             <div class="logo">
-                                <a class="navbar-brand" href="index.php"><span><img
+                                <a class="navbar-brand" href="<?php echo base_url_ci;?>home"><span><img
                                             class="lg" src="<?php echo base_url_ci;?>public/images/logo.png"></span>
                                     Giao Thông</a>
                             </div>
