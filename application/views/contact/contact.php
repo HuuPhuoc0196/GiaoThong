@@ -51,11 +51,7 @@
 						<div class="clearfix"> </div>
 					</div>
 				</div>
-<<<<<<< HEAD
-				<div class="col-md-7 contact-grid">
-=======
-				<div class="col-md-5 contact-grid placeholder-custom">
->>>>>>> master
+				<div class="col-md-7 contact-grid placeholder-custom">
 					<div id="sucess"></div>
 					<form>
 						 <div id="name-error"></div>

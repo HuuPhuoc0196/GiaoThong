@@ -11,7 +11,7 @@
         <div class="video-grids">
             <div class="col-md-8 video-grids-left">
             <span id="result-map"></span>
-                <div class="video-grids-left1">
+                <div class="video-grids-left2">
                 <?php if(!empty($camera)){?>
                 <?php 
                     $src = $camera[0]['src'];
