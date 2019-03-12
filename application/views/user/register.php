@@ -1,7 +1,7 @@
-<?php $data['data'] = 'Đăng Nhập';?>
+<?php $data['data'] = 'Đăng Ký';?>
 <?php $data['login_user'] = ' class="act"';?>
 <?php $this->load->view('template/header',$data);?>
-<?php $this->load->view('template/share');?>
+
 <script src="<?php echo base_url_ci;?>public/js/user.js"></script>
 	<script type="text/javascript">
 		var base_url_ci = "<?php echo base_url_ci;?>";
@@ -45,7 +45,7 @@
 				</div>
 				<div id="re_password-error"></div>
                 <div class="w3_form_body_grid w3_form_body_grid1">
-				<i class="fa fa-address-card icon-custom" aria-hidden="true"></i>
+				<i class="fa fa-map-marker icon-custom" aria-hidden="true"></i>
 					<input type="text" name="address" id="address" placeholder="Địa chỉ của bạn" required="">
 				</div>
 				<div id="address-error"></div>

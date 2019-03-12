@@ -948,6 +948,13 @@ a.breaking {
     border: solid 1px #060;
 }
 
+.video-grids-left2 {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    border: solid 1px #060;
+}
+
 .container_bg {
     background-color: #fff;
 }
@@ -3643,8 +3650,17 @@ img.mobile1 {
 
 @media (max-width:1680px) {
     .move-text {
-        width: 97.5%;
+        width: 95.5%;
         margin-left: .8em;
+    }
+    .img_cam img {
+        width: 100%;
+        height: 250px;
+    }
+    .img_cam span {
+        margin: 10px;
+        color: #27A511;
+        font-size: 15px;
     }
 }
 
@@ -3658,14 +3674,20 @@ img.mobile1 {
 }
 
 @media (max-width:1024px) {
+    div#myclock canvas {
+        width: 250px !important;
+        height: 250px !important;
+    }
+    .img_cam img {
+        width: 100%;
+        height: 200px;
+    }
     .lg {
         width: 40px;
         height: 30px;
     }
     .navbar-brand span {}
-    .navbar-default .navbar-nav>li>a {
-        padding: 18px 10px 0;
-    }
+    .navbar-default .navbar-nav>li>a {}
     .cl-effect-18 a.effect1::before,
     .cl-effect-18 a.effect1::after {
         left: -11% !important;
@@ -3831,6 +3853,15 @@ img.mobile1 {
         width: 100%;
         background-size: 100%;
     }
+    .img_cam img {
+        margin: 0 15%;
+        width: 70%;
+        height: 330px;
+    }
+    .img_cam i {
+        margin-left: 15%;
+        color: #27A511;
+    }
 }
 
 @media (max-width:800px) {
@@ -3960,7 +3991,8 @@ img.mobile1 {
     }
     .banner1,
     .banner-info1 {
-        min-height: 200px;
+        min-height: 100px;
+        max-height: 100px;
     }
     .gallery-left {
         float: left;
@@ -4034,6 +4066,15 @@ img.mobile1 {
     .wom-right {
         margin: 4em 0 0;
     }
+    .img_cam img {
+        margin: 0 5%;
+        width: 90%;
+        height: 360px;
+    }
+    .img_cam i {
+        margin-left: 5%;
+        color: #27A511;
+    }
 }
 
 @media (max-width:767px) {
@@ -4093,6 +4134,12 @@ img.mobile1 {
     .news-grid-rght2:after {
         width: 500px;
         background-size: 100%;
+    }
+    .video-grids-left2 {
+        height: 470px !important;
+    }
+    .h-550 {
+        height: 420px !important;
     }
 }
 
@@ -4213,6 +4260,21 @@ img.mobile1 {
     }
     .banner-info-slider {
         padding: 2em 0 0 3em;
+    }
+    .video-grids-left1 {
+        height: 400px !important;
+    }
+}
+
+@media (max-width: 520px) {
+    .img_cam img {
+        margin: 0;
+        width: 100%;
+        height: 270px;
+    }
+    .img_cam i {
+        margin-left: 0;
+        color: #27A511;
     }
 }
 
@@ -4495,6 +4557,12 @@ img.mobile1 {
     .newsletter1 {
         padding: 4em 1em 2.5em 0.5em;
     }
+    .item img,
+    .tab_list img,
+    .news-grid-left1 img {
+        margin-top: 30px !important;
+        height: 80px !important;
+    }
 }
 
 @media (max-width: 414px) {
@@ -4655,6 +4723,14 @@ img.mobile1 {
     .breaking-news-grid-right ul li {
         margin: 1.5em 0;
     }
+    .item img,
+    .tab_list img,
+    .news-grid-left1 img {
+        margin-top: 50px;
+    }
+    .video-grids-left1 {
+        height: 250px;
+    }
 }
 
 @media (max-width:375px) {
@@ -4669,9 +4745,39 @@ img.mobile1 {
         width: 300px;
         background-size: 100%;
     }
+    .img_cam img {
+        margin: 0;
+        width: 100%;
+        height: 220px;
+    }
+    .video-grids-left2 {
+        height: 400px;
+    }
+    .h-550 {
+        height: 360px;
+    }
 }
 
 @media (max-width:320px) {
+    div#myclock canvas {
+        width: 200px !important;
+        height: 200px !important;
+    }
+    .video-grids-left2 {
+        height: 300px !important;
+    }
+    .h-550 {
+        height: 250px !important;
+    }
+    .item img,
+    .tab_list img,
+    .news-grid-left1 img {
+        margin-top: 0;
+        margin-left: 20%;
+    }
+    .video-grids-left1 {
+        height: 200px;
+    }
     .banner-info-slider ul li {
         font-size: 13px;
     }
@@ -5973,7 +6079,8 @@ input.ShowHide_Button {
 }
 
 .login-form-w3-agile,
-.login-right-info {
+.login-right-info,
+.login-form-w3-agile1 {
     padding: 2.5em;
     border: 2px solid #27A511;
 }
@@ -5981,6 +6088,10 @@ input.ShowHide_Button {
 .login-form-w3-agile,
 .login-right-info {
     margin: 3em .5em;
+}
+
+.login-form-w3-agile1 {
+    margin: .5em 0;
 }
 
 .w3_form_body_grid span {
@@ -5999,6 +6110,9 @@ input.ShowHide_Button {
 .login-form-w3-agile input[type="email"],
 .login-form-w3-agile input[type="password"],
 .login-form-w3-agile input[type="text"],
+.login-form-w3-agile1 input[type="email"],
+.login-form-w3-agile1 input[type="password"],
+.login-form-w3-agile1 input[type="text"],
 .frm-field {
     outline: none;
     border: none;
@@ -6477,8 +6591,8 @@ div#myclock {
 }
 
 div#myclock canvas {
-    width: 300px !important;
-    height: 300px !important;
+    width: 300px;
+    height: 300px;
 }
 
 .alarm {
@@ -6898,17 +7012,6 @@ canvas#clear-night {
 
 .img_cam a {
     margin-top: 30px;
-}
-
-.img_cam span {
-    margin: 10px;
-    color: #27A511;
-    font-size: 15px;
-}
-
-.img_cam img {
-    width: 100%;
-    height: 250px;
 }
 
 

@@ -1,7 +1,7 @@
 <?php $data['data'] = 'Tin Tức';?>
 <?php $data['news'] = ' class="act"';?>
 <?php $this->load->view('template/header',$data);?>
-<?php $this->load->view('template/share');?>
+
 <!-- breaking-news -->
 <div class="breaking-news">
 		<div class="container container_bg">
