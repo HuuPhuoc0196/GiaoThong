@@ -105,13 +105,13 @@ class Service extends CI_Controller
     }
     public function testdom2()
     {
-         $urlDetail = "http://www.tapchigiaothong.vn/bo-gtvt-quyet-trien-khai-xong-thu-phi-khong-dung-trong-nam-2019-d73091.html";
+         $urlDetail = "https://vietnammoi.vn/nam-tai-xe-keu-cuu-that-thanh-trong-xe-hop-xoay-ngang-bi-xe-tai-day-hon-20m-tren-quoc-lo-1-20190309155539631.htm";
          $contentDetail = file_get_contents($urlDetail);
-         $patternDetail = '#reg-date">(.*)<.*<p style="text-align: justify;">(.*)<p style="text-align: right;">(.*)</p>#imsU';
+         $patternDetail = '#class="col685 left">.*class="icon icon-time"></i>(.*)</span>.*data-article-target>(.*)<div class="clearfix">.*class="clear">.*class="author".*>(.*)</p>#imsU';
          preg_match($patternDetail, $contentDetail, $datadetail);
          
          echo '<pre>';
-         print_r($datadetail[1]);
+         print_r($datadetail[2]);
          echo '</pre>';
     }
     

@@ -947,6 +947,12 @@ a.breaking {
     height: 540px;
     border: solid 1px #060;
 }
+.video-grids-left2 {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    border: solid 1px #060;
+}
 
 .video-grids-left2 {
     position: relative;
@@ -998,6 +1004,7 @@ a.breaking {
 .item img,
 .tab_list img,
 .news-grid-left1 img {
+	margin: 30px 0;
     padding: .15em;
     background: #fff;
     border: 1px dotted #919191;
@@ -1530,7 +1537,7 @@ ul.list6 li a:hover,
     margin-right: 0;
     border-radius: 0;
 }
-
+/*
 .nav-tabs>li.active>a,
 .nav-tabs>li.active>a:hover,
 .nav-tabs>li.active>a:focus {
@@ -1540,6 +1547,8 @@ ul.list6 li a:hover,
     border: none;
     border-bottom: none;
 }
+
+*/
 
 .nav-tabs>li>a {
     border: none;
@@ -7323,8 +7332,97 @@ h4.heading {
     padding-left: 20px;
 }
 
+.ml-8{
+	margin-left: 8px;
+}
+
+.mr-8{
+	margin-right: 8px;
+}
 @media (max-width:1024px) {
     .pt-10-custom {
         padding-top: 16px;
     }
+}
+
+.icon-custom{
+	width: 16px;
+	text-align: center;
+}
+
+.hiden-table tbody{
+	display: none;
+}
+
+.hiden-table .inner-article{
+	display: none;
+}
+
+.hiden-table .breadcrumbs{
+	display: none;
+}
+
+.hiden-table .entry-meta{
+	display: none;
+}
+
+input {
+    outline: none;
+}
+
+input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    font-family: inherit;
+    font-size: 100%;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+    display: none;
+}
+
+input[type=search] {
+    background: #fff url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    border: solid 1px #27b311;
+    padding: 9px 10px 9px 32px;
+    width: 150px;
+    color: fff;
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+    margin-bottom: 29px;
+}
+
+input[type=search]:focus {
+    width: 87%;
+    background-color: #37B247;
+    border-color: rgb(247, 250, 248);
+    -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+    -moz-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+    box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+}
+
+input:-moz-placeholder {
+    color: #000;
+}
+
+input::-webkit-input-placeholder {
+    color: #000;
+}
+
+.error{
+	color: red;
+}
+
+.sucess{
+	color: blue;
+}
+
+.sucess-custom-map{
+	text-align: center;
+    margin-top: 16px;
 }
