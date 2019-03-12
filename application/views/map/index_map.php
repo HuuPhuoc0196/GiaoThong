@@ -46,7 +46,6 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-				
 					<h4 class="modal-title">Thông báo tuyến đường !</h4>
 					</div>
 					<div class="modal-body">
@@ -140,7 +139,6 @@ function getMap()
         	            }
         	        }
         	    });
-        	    console.log(response["data"]["type"]);
         		google.maps.event.addListener(marker,'click',function() {
         		    var infowindow = new google.maps.InfoWindow({
         		      content:"Điểm kẹt xe!" + response["data"]["type"]
@@ -274,7 +272,6 @@ function appendDataToMap(response,map){
 	    CentralPark = new google.maps.LatLng(key['lat'], key['lng']);
 	    var type = key['type'];
 	    addMarker(CentralPark,map,type);
-	    console.log(key["id"]);
 	});
 }
 

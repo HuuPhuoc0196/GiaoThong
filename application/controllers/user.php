@@ -122,37 +122,43 @@ class User extends CI_Controller
 	
 	public function updateProfile()
 	{
-		$data_user ['user'] = $this->m_user->findUserByUsername($_SESSION ['username']) [0];
-		$this->session->set_userdata($data_user);
-		if (isset($_POST ['update'])) {
-			if ($this->form_validation_update()) {
-				$username = $_SESSION ['username'];
-				$password = md5($_POST ['password']);
-				if ($this->m_user->checkEmail($username, $_POST ['email'])) {
-					if ($this->m_user->login($username, $password)) {
-						date_default_timezone_set('Asia/Ho_Chi_Minh');
-						$data = array (
-								'name' => $_POST ['name'],
-								'email' => $_POST ['email'],
-								'phone' => $_POST ['phone'],
-								'address' => $_POST ['address'] 
-						);
-						$this->m_user->update($username, $data);
-						redirect(base_url_ci . 'user/updateProfile');
-					} else {
-						$update ['error_password'] = 'Mật khẩu không đúng';
-						return $this->load->view('user/updateProfile', $update);
-					}
-				} else {
-					$update ['error_email'] = 'Email đã tồn tại';
-					return $this->load->view('user/updateProfile', $update);
-				}
-			} else {
-				return $this->load->view('user/updateProfile');
-			}
-		} else {
-			$this->load->view('user/updateProfile');
-		}
+	    if (isset($_POST ['username'])) {
+	        $username = $_POST ['username'];
+	        $dataError = $this->form_validation_update();
+	        if (empty($dataError)) {
+	            // ad user
+	            $data = array (
+					'name' => $_POST ['name'],
+					'email' => $_POST ['email'],
+					'phone' => $_POST ['phone'],
+					'address' => $_POST ['address'] 
+    			);
+    			$this->m_user->update($username, $data);
+	            $data = array(
+	                "status" => true,
+	                "message" => "Cập nhật thành công"
+	            );
+	            print_r(json_encode($data));die;
+	        } else {
+	            $data = array(
+	                "status" => false,
+	                "message" => $dataError
+	            );
+	            print_r(json_encode($data));die;
+	        }
+	    }
+	}
+	
+	public function showProfile(){
+	    if (isset($_POST ['username'])) {
+	        $username = $_POST ['username'];
+	        $dataUser = $this->m_user->getUserByUsername($username);
+	        $data = array(
+	            "status" => true,
+	            "data" => $dataUser
+	        );
+	        print_r(json_encode($data));die;
+	    }
 	}
 	
 	public function form_validation()
@@ -200,35 +206,33 @@ class User extends CI_Controller
 	}
 	public function form_validation_update()
 	{
-		$this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|max_length[50]', array (
-				'required' => 'Không được để trống',
-				'min_length' => 'Chiều dài tối thiệu phải lớn hơn 3 ký tự',
-				'max_length' => 'Chiều dài tối đa không được lớn hơn 50 ký tự' 
-		));
-		$this->form_validation->set_rules('email', 'Email', 'required|min_length[3]|max_length[100]|valid_email', array (
-				'required' => 'Không được để trống',
-				'min_length' => 'Chiều dài tối thiệu phải lớn hơn 3 ký tự',
-				'max_length' => 'Chiều dài tối đa không được lớn hơn 100 ký tự',
-				'is_unique' => '%s đã tồn tại',
-				'valid_email' => 'Email không hợp lệ' 
-		));
-		$this->form_validation->set_rules('name', 'Name', 'required|min_length[3]|max_length[50]', array (
-				'required' => 'Không được để trống',
-				'min_length' => 'Chiều dài tối thiệu phải lớn hơn 3 ký tự',
-				'max_length' => 'Chiều dài tối đa không được lớn hơn 50 ký tự' 
-		));
-		$this->form_validation->set_rules('phone', 'Phone', 'required|min_length[3]|max_length[12]', array (
-				'required' => 'Không được để trống',
-				'min_length' => 'Chiều dài tối thiệu phải lớn hơn 3 ký tự',
-				'max_length' => 'Chiều dài tối đa không được lớn hơn 12 ký tự' 
-		));
-		$this->form_validation->set_rules('address', 'Address', 'required|min_length[3]|max_length[100]', array (
-				'required' => 'Không được để trống',
-				'min_length' => 'Chiều dài tối thiệu phải lớn hơn 3 ký tự',
-				'max_length' => 'Chiều dài tối đa không được lớn hơn 100 ký tự' 
-		));
-		
-		return $this->form_validation->run();
+		$dataError = array();
+
+		if(!$this->m_user->findUsername($_POST['username'])){
+		    $dataError['username_profile'] = "Tài khoản không tồn tại";
+		}
+	    
+	    if(!$this->m_user->checkEmail($_POST['username'],$_POST['email'])){
+	        $dataError['email_profile'] = "Địa chỉ email đã tồn tại";
+	    }else if(empty($_POST['email'])){
+	        $dataError['email_profile'] = "Địa chỉ email là không được trống";
+	    }else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false){
+            $dataError['email_profile'] = "Vui lòng nhập địa chỉ email hợp lệ!";
+        }
+
+	    if(!$this->m_user->checkPhone($_POST['username'],$_POST['email'])){
+	        $dataError['phone_profile'] = "Số điện thoại đã tồn tại";
+	    }else if(empty($_POST['phone'])){
+	        $dataError['phone_profile'] = "Số điện thoại là không được trống";
+	    }else if(!is_numeric($_POST['phone']) || $_POST['phone'] < 1 ){
+            $dataError['phone_profile'] = "Số điện thoại không hợp lệ";
+        }
+	    
+	    if(empty($_POST['name'])){
+	        $dataError['name_profile'] = "Họ và tên là không được trống";
+	    }
+	    
+	    return $dataError;
 	}
 	
 	public function form_validation_changeUser()

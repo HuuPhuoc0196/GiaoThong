@@ -74,5 +74,53 @@ var User = {
         $('#password').val("");
         $('#re_password').val("");
         $('#address').val("");
+    },
+    showProfile : function(){
+    	User.deleteMessage();
+         $.ajax({
+             url: base_url_ci + "user/showProfile",
+             method: "POST",
+             data: {
+            	 username: username_update
+             },
+             dataType: "json",
+             success: function(response) {
+            	 $('#name_profile').val(response.data.name);
+                 $('#username_profile').val(response.data.username);
+                 $('#phone_profile').val(response.data.phone);
+                 $('#email_profile').val(response.data.email);
+                 $('#address_profile').val(response.data.address);
+             }
+         });
+    },
+    closePopup : function(){
+    	$('#myModal1').modal('hide');
+    },
+    updateProfile : function(){
+    	User.deleteMessage();
+    	var name = $('#name_profile').val();
+        var username = username_update;
+        var phone = $('#phone_profile').val();
+        var email = $('#email_profile').val();
+        var address = $('#address_profile').val();
+        $.ajax({
+            url: base_url_ci + "user/updateProfile",
+            method: "POST",
+            data: {
+                name: name,
+                username: username,
+                phone: phone,
+                email: email,
+                address: address
+            },
+            dataType: "json",
+            success: function(response) {
+            	if (!response.status) {
+                    User.fieldError(response.message);
+                } else {
+                    $("#sucess-update-profile").html("<span class='sucess'>" + response.message + "</span>");
+                }
+           }
+        });
     }
 }

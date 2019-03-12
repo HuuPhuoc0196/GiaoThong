@@ -7426,3 +7426,8 @@ input::-webkit-input-placeholder {
 	text-align: center;
     margin-top: 16px;
 }
+
+.sucess-custom-update-profile{
+	text-align: center;
+    margin-bottom: 20px;
+}
