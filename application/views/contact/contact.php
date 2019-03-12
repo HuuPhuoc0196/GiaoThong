@@ -1,7 +1,7 @@
 <?php $data['data'] = 'Liên hệ';?>
 <?php $data['contact'] = ' class="act"';?>
 <?php $this->load->view('template/header',$data);?>
-<?php $this->load->view('template/share');?>
+
 <script src="<?php echo base_url_ci;?>public/js/contact.js"></script>
 	<script type="text/javascript">
 		var base_url_ci = "<?php echo base_url_ci;?>";
@@ -51,11 +51,8 @@
 						<div class="clearfix"> </div>
 					</div>
 				</div>
-<<<<<<< HEAD
+
 				<div class="col-md-7 contact-grid">
-=======
-				<div class="col-md-5 contact-grid placeholder-custom">
->>>>>>> master
 					<div id="sucess"></div>
 					<form>
 						 <div id="name-error"></div>

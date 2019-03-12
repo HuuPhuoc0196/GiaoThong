@@ -1,7 +1,7 @@
 <?php $data['data'] = 'Giới Thiệu';?>
 <?php $data['aboutus'] = ' class="act"';?>
 <?php $this->load->view('template/header',$data);?>
-<?php $this->load->view('template/share');?>
+
 
 <div class="banner-bottom">
     <div class="container container_bg">

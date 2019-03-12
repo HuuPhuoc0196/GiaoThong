@@ -1,7 +1,7 @@
 <?php $data['data'] = 'Camera';?>
 <?php $data['camera'] = 'class="act"';?>
 <?php $this->load->view('template/header',$data);?>
-<?php $this->load->view('template/share');?>
+
 <script src="<?php echo base_url_ci;?>public/js/camera.js"></script>
 <div class="banner-bottom">
     <div class="container container_bg">
@@ -11,7 +11,7 @@
         <div class="video-grids">
             <div class="col-md-8 video-grids-left">
             <span id="result-map"></span>
-                <div class="video-grids-left1">
+                <div class="video-grids-left2">
                 <?php if(!empty($camera)){?>
                 <?php 
                     $src = $camera[0]['src'];
