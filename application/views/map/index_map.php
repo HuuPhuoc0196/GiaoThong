@@ -1,7 +1,7 @@
 <?php $data['data'] = 'Bản đồ';?>
 <?php $data['map'] = ' class="act"';?>
 <?php $this->load->view('template/header',$data);?>
-<?php $this->load->view('template/share');?>
+
 <div class="banner-bottom">
     <div class="container container_bg">
 		
@@ -41,13 +41,13 @@
             </div>
 			<div class="clearfix"> </div>
 		
-			<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal fade" id="myModal" role="dialog">
 			<!--Modal-->
-			<div class="modal-dialog modal-sm">
+			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 				
-					<h4 class="modal-title">Tuyến đường đặc biệt</h4>
+					<h4 class="modal-title"></h4>
 					</div>
 					<div class="modal-body">
 					<div class="sim-button button12" onClick="insertMap(1)">Thông báo tuyến đường kẹt xe </div> 

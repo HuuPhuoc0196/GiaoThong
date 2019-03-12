@@ -43,7 +43,7 @@
 </div>
 </div>
 <!-- banner -->
-<?php $this->load->view('template/share');?>
+
 <!-- banner-bottom -->
 <div class="banner-bottom">
     <div class="container container_bg">

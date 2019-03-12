@@ -1,7 +1,7 @@
 <?php $data['data'] = 'Liên hệ';?>
 <?php $data['contact'] = ' class="act"';?>
 <?php $this->load->view('template/header',$data);?>
-<?php $this->load->view('template/share');?>
+
 <script src="<?php echo base_url_ci;?>public/js/contact.js"></script>
 	<script type="text/javascript">
 		var base_url_ci = "<?php echo base_url_ci;?>";

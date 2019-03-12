@@ -1,7 +1,7 @@
 <?php $data['data'] = 'Camera';?>
 <?php $data['camera'] = 'class="act"';?>
 <?php $this->load->view('template/header',$data);?>
-<?php $this->load->view('template/share');?>
+
 <script src="<?php echo base_url_ci;?>public/js/camera.js"></script>
 <div class="banner-bottom">
     <div class="container container_bg">

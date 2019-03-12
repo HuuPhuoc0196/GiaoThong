@@ -1,7 +1,7 @@
 <?php $data['data'] = 'Tin Tức Chi Tiết';?>
 <?php $data['news'] = ' class="act"';?>
 <?php $this->load->view('template/header',$data);?>
-<?php $this->load->view('template/share');?>
+
 
 <!-- single -->
 <div class="single">

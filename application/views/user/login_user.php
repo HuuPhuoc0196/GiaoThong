@@ -2,7 +2,7 @@
 <?php $data['data'] = 'Đăng Nhập';?>
 <?php $data['login_user'] = ' class="act"';?>
 <?php $this->load->view('template/header',$data);?>
-<?php $this->load->view('template/share');?>
+
 <script src="<?php echo base_url_ci;?>public/js/user.js"></script>
 	<script type="text/javascript">
 		var base_url_ci = "<?php echo base_url_ci;?>";
@@ -34,7 +34,7 @@
 				<div class="agile_remember">
 					
 					<div class="agile_remember_right">
-						<a href="#">Bạn quên mật khẩu?</a>
+						<a href="#" data-toggle="modal" data-target="#myModal" >Bạn quên mật khẩu?</a>
 					</div>
 					<div class="clearfix"> </div>
 				</div>
@@ -84,5 +84,32 @@ document.onkeyup = function (event) {
 };
 </script>
 
-
+<div class="modal fade" id="myModal" role="dialog">
+			<!--Modal-->
+			<div class="modal-dialog ">
+				<div class="modal-content">
+					<div class="modal-header">
+				
+					<h4 class="modal-title">Quên mật khẩu</h4>
+					</div>
+					<div class="modal-body login-form-w3-agile1">
+					<p>Bạn quên mật khẩu đăng nhập? Xin hãy nhập địa chỉ email đăng ký thành viên ở đây.
+						Chúng tôi sẽ gửi mật khẩu mới cho bạn qua email!
+					</p> 
+					<br>
+					<br>
+					<div class="w3_form_body_grid">
+						<i class="fa fa-envelope icon-custom" aria-hidden="true"></i>
+							<input type="email" name="email" id="email" placeholder="Địa chỉ Email" required="">
+					</div>
+					<br>
+					<br>
+					
+					</div>
+					<div class="modal-footer">
+					<div class="sim-button button12" >Gửi yêu cầu</div> 
+					</div>
+				</div>
+			</div>
+		</div>
 <?php $this->load->view('template/footer');?> 
