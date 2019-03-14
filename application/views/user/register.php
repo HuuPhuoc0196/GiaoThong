@@ -51,25 +51,7 @@
 				<div id="address-error"></div>
 				<input type="button" id="register" value="đăng ký" class="button-login-custom" onclick="User.register()">
 			</form>
-			<h4>Tiếp tục với</h4>
-			<div class="social_icons agileinfo_social_asd">
-				<!-- Facebook -->
-				<a href="#" class="slide-social wthree_slide_social">
-					<div class="button">5 Likes</div>
-					<div class="facebook icon"> <i class="fa fa-facebook" aria-hidden="true"></i> </div>
-					<div class="facebook slide">
-						<p>Facebook</p>
-					</div>
-				</a>
-				<!-- Twitter -->
-				<a href="#" class="slide-social wthree_slide_social">
-					<div class="button">8 Google+</div>
-					<div class="twitter icon"> <i class="fa fa-google" aria-hidden="true"></i> </div>
-					<div class="twitter slide">
-						<p>Google+</p>
-					</div>
-				</a>
-			</div>
+			
 		</div>
 		<div class="col-md-4 login-right-info">
 			<h3 class="subhead-agileits">Những gì về chúng tôi</h3>

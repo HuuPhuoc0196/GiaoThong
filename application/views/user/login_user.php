@@ -28,7 +28,7 @@
 				<div id="username-error"></div>
 				<div class="w3_form_body_grid">
 				<i class="fa fa-lock" aria-hidden="true" style="width: 16px;text-align: center;"></i>
-					<input type="password" id="password" name="Password" placeholder="password" required="">
+					<input type="password" id="password" name="Password" placeholder="Mật Khẩu" required="">
 				</div>
 				<div id="password-error"></div>
 				<div class="agile_remember">
@@ -40,25 +40,7 @@
 				</div>
 				<input type="button" value="Đăng nhập" id="login" class="button-login-custom" onclick="User.login()">
 			</form>
-			<h4>Tiếp tục với</h4>
-			<div class="social_icons agileinfo_social_asd">
-				<!-- Facebook -->
-				<a href="#" class="slide-social wthree_slide_social">
-					<div class="button">5 Likes</div>
-					<div class="facebook icon"> <i class="fa fa-facebook" aria-hidden="true"></i> </div>
-					<div class="facebook slide">
-						<p>Facebook</p>
-					</div>
-				</a>
-				<!-- Twitter -->
-				<a href="#" class="slide-social wthree_slide_social">
-					<div class="button">8 Google+</div>
-					<div class="twitter icon"> <i class="fa fa-google" aria-hidden="true"></i> </div>
-					<div class="twitter slide">
-						<p>Google+</p>
-					</div>
-				</a>
-			</div>
+			
 		</div>
 		<div class="col-md-4 login-right-info">
 			<h3 class="subhead-agileits">Những gì về chúng tôi</h3>
