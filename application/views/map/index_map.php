@@ -14,10 +14,10 @@
                 </div>
             </div>
             <div class="col-md-4 video-grids-right">
-                <form>
-                    <input type="search" placeholder="Tìm kiếm ngay">
-                </form>
-                
+                <input type="search" placeholder="Tìm kiếm ngay" id="search" ><br/>
+                <div id="mapItem">
+                </div>
+                <span id="search-error"></span>
             <div class="clock-grids wow fadeInUp animated" data-wow-delay=".5s">
                 <div class="clock-heading">
                     <h3>Đồng Hồ</h3>
@@ -67,8 +67,30 @@
 var islat;
 var islng;
 var isname;
+var arrayMap = [];
+var myCenter;
+var mapCanvas =  document.getElementById("googleMap");
+var map;
 
-function searchMap() {
+$(document).keyup(function (e) {
+    if ($("#search").is(":focus") && (e.keyCode == 13)) {
+    	searhMap();
+    }
+});
+
+function clearOverlays() {
+      for (var i = 0; i < arrayMap.length; i++ ) {
+    	  arrayMap[i].setMap(null);
+      }
+      arrayMap.length = 0;
+}
+
+function searhMap(){
+	clearOverlays();
+	loadmap();
+}
+
+function loadMapItem() {
 	var search = $("#search").val();
 	$.ajax({
         url: "<?php echo base_url_ci;?>map/search",
@@ -86,10 +108,7 @@ function searchMap() {
                     append+='<option value="'+element['id']+'">'+element['name']+'</option>';
                 });
                 append+='</select>';
-                x.innerHTML = append;
-            }else 
-            {
-            	x.innerHTML = response["data"];
+                $('#mapItem').html(append);
             }
         }
     });
@@ -111,40 +130,8 @@ function getMap()
             {
         		lat = response["data"]["lat"];
         		lng = response["data"]["lng"];
-        		var myCenter = new google.maps.LatLng(lat,lng);
-        		var mapCanvas =  document.getElementById("googleMap");
-        		var mapOptions = {center: myCenter, 
-        			zoom: 18,
-        			panControl: true,
-        		    zoomControl: true,
-        		    mapTypeControl: true,
-        		    scaleControl: true,
-        		    streetViewControl: true,
-        		    overviewMapControl: true,
-        		    rotateControl: true   
-        		};
-        		var map = new google.maps.Map(mapCanvas, mapOptions);
-        		var marker = new google.maps.Marker({position:myCenter});
-        		marker.setMap(map);
-        		$.ajax({
-        	        url: "<?php echo base_url_ci;?>map/search",
-        	        type: "post",
-        	        data: {
-        	            search : ""
-        	        },
-        			dataType: "json",
-        	        success: function(response) {
-        	            if(response['status'] == true){
-        	                appendDataToMap(response,map);
-        	            }
-        	        }
-        	    });
-        		google.maps.event.addListener(marker,'click',function() {
-        		    var infowindow = new google.maps.InfoWindow({
-        		      content:"Điểm kẹt xe!" + response["data"]["type"]
-        		    });
-        		  infowindow.open(map,marker);
-        		 });
+         		map.setCenter(new google.maps.LatLng(lat, lng));
+        	    
             }
         }
     });
@@ -209,10 +196,12 @@ function getLocation() {
 }
 
 function showPosition(position) {
+	$('#search-error').html('');
+	$('#mapItem').html('');
+	loadMapItem();
 	islat = position.coords.latitude;
 	islng = position.coords.longitude;
-	var myCenter = new google.maps.LatLng(islat,islng);
-	var mapCanvas =  document.getElementById("googleMap");
+	myCenter = new google.maps.LatLng(islat,islng);
 	var mapOptions = {center: myCenter, 
 		zoom: 18,
 		panControl: true,
@@ -223,17 +212,21 @@ function showPosition(position) {
 	    overviewMapControl: true,
 	    rotateControl: true   
 	};
-	var map = new google.maps.Map(mapCanvas, mapOptions);
+	map = new google.maps.Map(mapCanvas, mapOptions);
+	var search = $("#search").val();
 	$.ajax({
         url: "<?php echo base_url_ci;?>map/search",
         type: "post",
         data: {
-            search : ""
+            search : search
         },
 		dataType: "json",
         success: function(response) {
             if(response['status'] == true){
-                appendDataToMap(response,map);
+                appendDataToMap(response);
+            }else
+            {
+                $('#search-error').html(response['data']);
             }
         }
     });
@@ -267,16 +260,16 @@ function showError(error) {
 	}
 }
 
-function appendDataToMap(response,map){
+function appendDataToMap(response){
 	response['data'].forEach(function(key) {
 	    CentralPark = new google.maps.LatLng(key['lat'], key['lng']);
 	    var type = key['type'];
-	    addMarker(CentralPark,map,type);
+	    addMarker(CentralPark,type);
 	});
 }
 
 //Function for adding a marker to the page.
-function addMarker(location,map,type) {
+function addMarker(location,type) {
 	var icon = {
 	        url: "<?php echo base_url_ci;?>public/images/iconMap"+ type +".png", // url
 	        scaledSize: new google.maps.Size(32,32), // size
@@ -294,6 +287,8 @@ function addMarker(location,map,type) {
         map: map,
         content: contentMap
     });
+
+    arrayMap.push(marker);
 	
     var bounds = new google.maps.LatLngBounds();
     var infowindow = new google.maps.InfoWindow();

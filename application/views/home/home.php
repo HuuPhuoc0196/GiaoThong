@@ -73,7 +73,7 @@
                     $src = $src . "&t=" . strtotime(date("Y-m-d h:i:sa"));
             ?>
                 <div class="col-md-3 img_cam">
-                   <a href="<?php echo $src;?>"> <img src="<?php echo $src;?>" class="camera">
+                   <a href="<?php echo $src;?>" target="_blank"> <img src="<?php echo $src;?>" class="camera">
                   <i class="fa fa-play-circle"></i> <span><?php echo $val['name'];?><span></a>
                 </div>
             <?php }?>

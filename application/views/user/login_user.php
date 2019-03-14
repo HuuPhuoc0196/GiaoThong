@@ -34,7 +34,7 @@
 				<div class="agile_remember">
 					
 					<div class="agile_remember_right">
-						<a href="#" data-toggle="modal" data-target="#myModal" >Bạn quên mật khẩu?</a>
+						<a href="#" data-toggle="modal" data-target="#myModal" onclick="User.deleteInfor()">Bạn quên mật khẩu?</a>
 					</div>
 					<div class="clearfix"> </div>
 				</div>
@@ -77,11 +77,19 @@
 
 <script>
 
-document.onkeyup = function (event) {
-	  if (event.which == 13 || event.keyCode == 13) {
+$(document).keyup(function (e) {
+	 if ($("#username").is(":focus") && (e.keyCode == 13)) {
 		  $('#login').click();
 	  }
-};
+	 if ($("#password").is(":focus") && (e.keyCode == 13)) {
+		  $('#login').click();
+	  }
+});
+$(document).keyup(function (e) {
+    if ($("#email-reset").is(":focus") && (e.keyCode == 13)) {
+    	User.forgotPasswork();
+    }
+});
 </script>
 
 <div class="modal fade" id="myModal" role="dialog">
@@ -98,16 +106,18 @@ document.onkeyup = function (event) {
 					</p> 
 					<br>
 					<br>
-					<div class="w3_form_body_grid">
+					<div>
 						<i class="fa fa-envelope icon-custom" aria-hidden="true"></i>
-							<input type="email" name="email" id="email" placeholder="Địa chỉ Email" required="">
+							<input type="email" name="email" id="email-reset" placeholder="Địa chỉ Email" required="">
+							<div id="email-reset-error" class="col-md-12"></div>
+							<div id="email-reset-sucess" class="col-md-12"></div>
 					</div>
 					<br>
 					<br>
 					
 					</div>
 					<div class="modal-footer">
-					<div class="sim-button button12" >Gửi yêu cầu</div> 
+					<div class="sim-button button12" onclick="User.forgotPasswork()" >Gửi yêu cầu</div> 
 					</div>
 				</div>
 			</div>

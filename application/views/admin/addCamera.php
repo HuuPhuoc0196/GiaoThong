@@ -40,7 +40,7 @@
 							onclick="AdminCamera.add()" name="add">Thêm mới</button>
 						</form>
 						<br /> <a href="<?php echo base_url_ci;?>camera/listCamera"><button
-								class="btn btn-sm btn-info btn-block" type="submit">Danh sách
+								class="btn btn-sm btn-info btn-block mb-20" type="submit">Danh sách
 								camera</button></a>
 					</div>
 					<div class="col-sm-4"></div>

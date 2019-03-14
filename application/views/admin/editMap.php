@@ -48,7 +48,7 @@
 
 						</form><br/>
 						<a href="<?php echo base_url_ci;?>admin/listMap" ><button
-								class="btn btn-sm btn-info btn-block" type="submit">Danh sách map</button></a>
+								class="btn btn-sm btn-info btn-block mb-20" type="submit">Danh sách map</button></a>
 					</div>
 					<div class="col-sm-4"></div>
 					<div class="col-sm-5"></div>

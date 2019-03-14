@@ -5,14 +5,14 @@
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a class="active" href="<?php echo base_url_ci;?>admin">
+                    <a href="<?php echo base_url_ci;?>admin" <?php if(isset($adminPage)){echo $adminPage;} ?>>
                         <i class="fa fa-dashboard"></i>
                         <span>Bảng điều khiển</span>
                     </a>
                 </li>
                 
                 <li class="sub-menu">
-                    <a href="#">
+                    <a href="#" <?php if(isset($homePage)){echo $homePage;} ?>>
                         <i class="fa fa-home"></i>
                         <span>Quản lý trang chủ</span>
                     </a>
@@ -24,7 +24,7 @@
                 </li>
                 
                 <li class="sub-menu">
-                    <a href="#">
+                    <a href="#" <?php if(isset($newsPage)){echo $newsPage;} ?>>
                         <i class="fa fa-newspaper-o"></i>
                         <span>Quản lý tin tức</span>
                     </a>
@@ -34,7 +34,7 @@
                 </li>
                 
                 <li class="sub-menu">
-                    <a href="#">
+                    <a href="#" <?php if(isset($mapPage)){echo $mapPage;} ?>>
                         <i class="fa fa-map-o"></i>
                         <span>Quản lý bản đồ</span>
                     </a>
@@ -46,17 +46,17 @@
                 </li>
                 
                 <li class="sub-menu">
-                    <a href="#">
+                    <a href="#" <?php if(isset($userPage)){echo $userPage;} ?>>
                         <i class="fa fa-user-plus"></i>
                         <span>Quản lý tài khoản</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="<?php echo base_url_ci;?>admin/listUser"><i class="fa fa-caret-right"></i>Danh sách tài khoản</a></li>
+                        <li><a href="<?php echo base_url_ci;?>admin/listUser" ><i class="fa fa-caret-right"></i>Danh sách tài khoản</a></li>
                     </ul>
                 </li>
                 
                 <li class="sub-menu">
-                    <a href="#">
+                    <a href="#" <?php if(isset($domPage)){echo $domPage;} ?>>
                         <i class="fa fa-newspaper-o"></i>
                         <span>Quản lý Dom</span>
                     </a>
@@ -66,8 +66,8 @@
                 </li>
                 
                 <li class="sub-menu">
-                    <a href="#">
-                        <i class="fa fa-newspaper-o"></i>
+                    <a href="#" <?php if(isset($cameraPage)){echo $cameraPage;} ?>>
+                        <i class="fa fa-video-camera"></i>
                         <span>Quản lý camera</span>
                     </a>
                     <ul class="sub">

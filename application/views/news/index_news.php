@@ -10,7 +10,11 @@
 				<div class="col-md-8 breaking-news-grid-left">
 					<div class="wmuSlider example1">
 						<div class="wmuSliderWrapper">
-						<?php for($i = 0; $i < 2; $i++){?>
+						<?php for($i = 0; $i < 2; $i++){
+						    if(!isset($hotNews[$i])){
+						        continue;
+						    }
+						?>
 							<article style="position: absolute; width: 100%; opacity: 0;"> 
 								<div class="banner-wrap">
 									<div class="baner-beaking" style="background: url(<?php echo base_url_ci;?>public/images/<?php echo $hotNews[$i]['image']?>) no-repeat 0px 0px; background-size:cover;">
@@ -64,6 +68,12 @@
                 
             </div>
 				<div class="col-md-4 upcoming-events-right">
+    				 <form class=".pt-10-custom" action="<?php echo base_url_ci;?>news/index" method="post">
+                    	<span><?php if(empty($hotNews)){echo "Không tìm thấy!";}?></span>
+                        <input type="search" placeholder="Tìm kiếm camera" name="search" id="search"
+                         value="<?php if(isset($search)) echo $search?>">
+                        <button type="submit" id="btn-search" style="display: none;"></button>
+                	</form>
                 <h3>Bạn có biết ?</h3>
                 <div class="banner-bottom-video-grid-left">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -368,4 +378,12 @@
         </div>
     </div>
 <!-- //breaking-news -->
+<script>
+$(document).keyup(function (e) {
+    if ($("#search").is(":focus") && (e.keyCode == 13)) {
+    	$('#btn-search').click();
+    }
+});
+
+</script>
 <?php $this->load->view('template/footer');?>
