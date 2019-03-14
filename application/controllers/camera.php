@@ -101,7 +101,8 @@ class Camera extends CI_Controller {
                 print_r(json_encode($data));die;
             }
         } else {
-            $this->load->view('admin/addCamera');
+            $data['cameraPage'] = "class='active'";
+            $this->load->view('admin/addCamera',$data);
         }
     }
     
@@ -136,6 +137,7 @@ class Camera extends CI_Controller {
         } else {
             $data['camera'] = $this->m_camera->getCameraByID($id);
             $data['status'] = true;
+            $data['cameraPage'] = "class='active'";
             $this->load->view('admin/editCamera', $data);
         }
     }
@@ -266,6 +268,7 @@ class Camera extends CI_Controller {
     
                 // build paging links
                 $data["links"] = $this->pagination->create_links();
+                $data['cameraPage'] = "class='active'";
             }
         }
         $this->load->view('admin/listCamera', $data);

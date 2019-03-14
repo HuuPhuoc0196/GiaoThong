@@ -140,6 +140,7 @@ class M_Camera extends CI_Model
 	{
 	    $result = $this->db->select('*')
 	    ->like('des', $search)
+	    ->or_like('name', $search)
 	    ->limit($limit, $start)
 	    ->order_by('id desc')
 	    ->where('status','0')

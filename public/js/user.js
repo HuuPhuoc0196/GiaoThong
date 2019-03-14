@@ -122,5 +122,28 @@ var User = {
                 }
            }
         });
+    },
+    forgotPasswork : function(){
+    	User.deleteMessage();
+        var email = $('#email-reset').val();
+        $.ajax({
+            url: base_url_ci + "user/forgotPasswork",
+            method: "POST",
+            data: {
+                email: email
+            },
+            dataType: "json",
+            success: function(response) {
+            	if (!response.status) {
+                    User.fieldError(response.message);
+                } else {
+                    $("#email-reset-sucess").html("<span class='sucess'>" + response.message + "</span>");
+                }
+           }
+        });
+    },
+    deleteInfor : function(){
+    	User.deleteMessage();
+    	$('#email-reset').val('');
     }
 }

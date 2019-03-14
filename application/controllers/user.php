@@ -152,6 +152,27 @@ class User extends CI_Controller
 	    }
 	}
 	
+	public function forgotPasswork()
+	{
+	    if (isset($_POST ['email'])) {
+	        $dataError = $this->form_validation_forgot();
+	        if (empty($dataError)) {
+	            // ad user
+	            $data = array(
+	                "status" => true,
+	                "message" => "Thông tin lấy lại tài khoản của bạn đã được gửi về email. <br/> Vui lòng check email của bạn"
+	            );
+	            print_r(json_encode($data));die;
+	        } else {
+	            $data = array(
+	                "status" => false,
+	                "message" => $dataError
+	            );
+	            print_r(json_encode($data));die;
+	        }
+	    }
+	}
+	
 	public function showProfile(){
 	    if (isset($_POST ['username'])) {
 	        $username = $_POST ['username'];
@@ -204,6 +225,20 @@ class User extends CI_Controller
 	    if(empty($_POST['name'])){
 	        $dataError['name'] = "Họ và tên là không được trống";
 	    }
+	    
+	    return $dataError;
+	}
+	
+	public function form_validation_forgot()
+	{
+		$dataError = array();
+		if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false){
+	        $dataError['email-reset'] = "Vui lòng nhập địa chỉ email hợp lệ!";
+	    }else if(empty($_POST['email'])){
+	        $dataError['email-reset'] = "Địa chỉ email là không được trống";
+	    }else  if(!$this->m_user->checkEmailAdd($_POST['email'])){
+            $dataError['email-reset'] = "Địa chỉ email không tồn tại!";
+        }
 	    
 	    return $dataError;
 	}

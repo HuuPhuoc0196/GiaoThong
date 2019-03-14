@@ -44,7 +44,7 @@
 
 						</form><br/>
 						<a href="<?php echo base_url_ci;?>admin/listNews" ><button
-								class="btn btn-sm btn-info btn-block" type="submit">Danh sách bản tin</button></a>
+								class="btn btn-sm btn-info btn-block mb-20" type="submit">Danh sách bản tin</button></a>
 					</div>
 					<div class="col-sm-4"></div>
 					<div class="col-sm-5"></div>

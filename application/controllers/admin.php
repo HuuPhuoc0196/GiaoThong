@@ -106,6 +106,7 @@ class Admin extends CI_Controller
         $data['view'] = 'home';
         $data['countUser'] = $this->m_user->get_total();
         $data['countNews'] = $this->m_news->get_total();
+        $data['adminPage'] = "class='active'";
         $this->load->view('admin/index', $data);
     }
 
@@ -160,6 +161,7 @@ class Admin extends CI_Controller
                 
                 // build paging links
                 $data["links"] = $this->pagination->create_links();
+                $data['userPage'] = "class='active'";
             }
         }
         $this->load->view('admin/listUser', $data);
@@ -216,6 +218,7 @@ class Admin extends CI_Controller
                 
                 // build paging links
                 $data["links"] = $this->pagination->create_links();
+                $data['mapPage'] = "class='active'";
             }
         }
         $this->load->view('admin/listMap', $data);
@@ -248,6 +251,7 @@ class Admin extends CI_Controller
             }
         }else{
             $data['user'] = $this->m_user->getUserByUsername($username);
+            $data['userPage'] = "class='active'";
             $this->load->view('admin/editUser', $data);
         }
     }
@@ -317,6 +321,7 @@ class Admin extends CI_Controller
                 
                 // build paging links
                 $data["links"] = $this->pagination->create_links();
+                $data['newsPage'] = "class='active'";
             }
         }
         $this->load->view('admin/listNews', $data);
@@ -518,6 +523,7 @@ class Admin extends CI_Controller
             }
         } else {
             $data['news'] = $this->m_news->getViewByID($id);
+            $data['newsPage'] = "class='active'";
             $this->load->view('admin/editNews', $data);
         }
     }
@@ -548,7 +554,8 @@ class Admin extends CI_Controller
                 print_r(json_encode($data));die;
             }
         } else {
-            $this->load->view('admin/addMap');
+            $data['mapPage'] = "class='active'";
+            $this->load->view('admin/addMap',$data);
         }
     }
 
@@ -582,6 +589,7 @@ class Admin extends CI_Controller
             }
         } else {
             $data['map'] = $this->m_map->getMapByID($id);
+            $data['mapPage'] = "class='active'";
             $this->load->view('admin/editMap', $data);
         }
     }
@@ -601,7 +609,8 @@ class Admin extends CI_Controller
                 $mess = '<div class="alert alert-danger">Lỗi cơ sở dữ liệu</div>';
             $this->load->view('dom/insert', $mess);
         } else {
-            $this->load->view('dom/insert');
+            $data['domPage'] = "class='active'";
+            $this->load->view('dom/insert',$data);
         }
     }
 
@@ -704,6 +713,7 @@ class Admin extends CI_Controller
                 
                 // build paging links
                 $data["links"] = $this->pagination->create_links();
+                $data['domPage'] = "class='active'";
             }
         }
         $this->load->view('dom/list', $data);
@@ -803,6 +813,7 @@ class Admin extends CI_Controller
             }
         } else {
             $data['dom'] = $this->m_dom->getDomByID($id);
+            $data['domPage'] = "class='active'";
             $this->load->view('dom/edit', $data);
         }
     }
@@ -831,6 +842,7 @@ class Admin extends CI_Controller
     
         }else{
             $data["countCamera"] = $this->m_home->getHome()["count_camera"];
+            $data['homePage'] = "class='active'";
             $this->load->view('countCamera/countCamera',$data);
         }
     }
@@ -859,6 +871,7 @@ class Admin extends CI_Controller
             
         }else{
             $data["countNews"] = $this->m_home->getHome()["count_news"];
+            $data['homePage'] = "class='active'";
             $this->load->view('countNew/countNews',$data);
         }
     }
@@ -887,6 +900,7 @@ class Admin extends CI_Controller
         }
         else{
             $data["countMap"] = $this->m_home->getHome()["count_map"];
+            $data['homePage'] = "class='active'";
             $this->load->view('countMap/countMap', $data);
         }
     }
