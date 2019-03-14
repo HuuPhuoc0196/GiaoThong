@@ -88,9 +88,9 @@
                 <?php if(isset($_SESSION['user'])) { ?>   
                 	<li>
                         <a
-                            href=""
+                        href="<?php echo base_url_ci;?>user/profile"
                              data-mfb-label="<?php echo $_SESSION['user']['name'];?>"
-                            class="mfb-component__button--child" data-toggle="modal" data-target="#myModal">
+                            class="mfb-component__button--child" >
                             <i class="fa fa-address-card"style="padding-top:
                                 20px;padding-left:20px;"></i>
                         </a>
