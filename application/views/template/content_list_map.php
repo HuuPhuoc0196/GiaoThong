@@ -59,17 +59,16 @@
 										<i class="fa fa-edit text-success text-active"></i>
 								</a></td>
 							</tr>
-          <?php }?>
+          <?php }}?>
         </tbody>
 					</table>
 				</div>
 				<footer class="panel-footer">
-					<div class="row">
-
-						<?php if (isset($links)) { ?>
-                <?php echo $links?>
-            <?php }} ?>
-					</div>
+					<ul class="pagination modal-3">
+                        <?php if (isset($links)) { ?>
+                            <?php echo $links ?>
+                        <?php }?>
+                    </ul>
 				</footer>
 			</div>
 		</div>
