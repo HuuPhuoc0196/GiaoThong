@@ -72,7 +72,7 @@ class Camera extends CI_Controller {
     public function deleteCamera($id)
     {
         $this->m_camera->delete($id);
-        redirect(base_url_ci . 'admin/listCamera');
+        redirect(base_url_ci . 'camera/listCamera');
     }
     
     public function addCamera()
@@ -231,7 +231,7 @@ class Camera extends CI_Controller {
                 $data['camera'] = $this->m_camera->searchCamera($search, $limit_per_page, $start_index);
                 $data['search'] = $search;
             } else {
-                $data['camera'] = $this->m_camera->getCamera($limit_per_page, $start_index);
+                $data['camera'] = $this->m_camera->getCameraList($limit_per_page, $start_index);
                 $config['base_url'] = base_url_ci . 'camera/listcamera';
                 $config['total_rows'] = $total_records;
                 $config['per_page'] = $limit_per_page;

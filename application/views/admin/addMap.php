@@ -30,10 +30,17 @@
 							</div>
 							<div id="lng-error"></div>
 							<div class="input-group">
-								<span>Trạng thái</span><br /> <input type="radio" name="status"
-									id="rd1" value="1"> Hot<br> 
-									<input type="radio" name="status" value="0"
-									id="rd2" checked="checked"> Bình thường<br>
+								<span>Loại thông báo</span><br /> 
+								<input type="radio" name="type" value="1" checked="checked"> Tuyến đường kẹt xe<br>
+								<input type="radio" name="type" value="2"> Tuyến đường hư hỏng<br> 
+								<input type="radio" name="type" value="3"> Tuyến đường đang xây dựng<br> 
+								<input type="radio" name="type" value="4"> Tuyến đường xảy ra tai nạn<br> 
+							</div>
+							<div id="status-error"></div>
+							<div class="input-group">
+								<span>Trạng thái</span><br /> 
+								<input type="radio" name="status" value="0" checked="checked"> Bình thường<br>
+								<input type="radio" name="status" value="1"> Hot<br> 
 							</div>
 							<div id="status-error"></div>
 							<button class="btn btn-danger btn-block" type="button" 

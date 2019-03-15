@@ -32,15 +32,23 @@
 							</div>
 							<div id="lng-error"></div>
 							<div class="input-group">
+								<span>Loại thông báo</span><br/>
+								<input type="radio" name="type" value="1" 
+								<?php if(isset($map['type'])&&$map['type'] == 1) {echo 'checked="checked"';}?>>Tuyến đường kẹt xe<br> 
+								<input type="radio" name="type" value="2" 
+								<?php if(isset($map['type'])&&$map['type'] == 2) {echo 'checked="checked"';}?>> Tuyến đường hư hỏng<br>
+								<input type="radio" name="type" value="3" 
+								<?php if(isset($map['type'])&&$map['type'] == 3) {echo 'checked="checked"';}?>> Tuyến đường đang xay dựng<br>
+								<input type="radio" name="type" value="4" 
+								<?php if(isset($map['type'])&&$map['type'] == 4) {echo 'checked="checked"';}?>> Tuyến đường xảy ra tai nạn<br>
+							</div>
+							<div id="type-error"></div>
+							<div class="input-group">
 								<span>Trạng thái</span><br/>
-								<?php if(isset($map['status'])&&$map['status'] == 1) {?>
-								<input type="radio" name="status" value="1" checked="checked">
-								Hot<br> <input type="radio" name="status" value="0"> Bình thường<br>
-  								<?php } else {?>
-  								<input type="radio" name="status" value="1"> Hot<br> <input
-									type="radio" name="status" value="0" checked="checked"> Bình
-								thường<br>
-  								<?php }?>
+								<input type="radio" name="status" value="0" 
+								<?php if(isset($map['status'])&&$map['status'] == 0) {echo 'checked="checked"';}?>> Bình thường <br>
+								<input type="radio" name="status" value="1" 
+								<?php if(isset($map['status'])&&$map['status'] == 1) {echo 'checked="checked"';}?>> Hot<br>
 							</div>
 							<div id="status-error"></div>
 							<button class="btn btn-danger btn-block" type="button"
