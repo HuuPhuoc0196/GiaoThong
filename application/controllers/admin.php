@@ -399,6 +399,10 @@ class Admin extends CI_Controller
             $dataError['status'] = "Trang thái không hợp lệ";
         }
         
+        if(!is_numeric($_POST['type']) || $_POST['type'] < 0 || $_POST['type'] > 4){
+            $dataError['type'] = "Loại thông báo không hợp lệ";
+        }
+        
         return $dataError;
     }
     
@@ -440,6 +444,10 @@ class Admin extends CI_Controller
     
         if(!is_numeric($_POST['status']) || $_POST['status'] < 0 || $_POST['status'] > 1){
             $dataError['status'] = "Trang thái không hợp lệ";
+        }
+        
+        if(!is_numeric($_POST['type']) || $_POST['type'] < 0 || $_POST['type'] > 4){
+            $dataError['type'] = "Loại thông báo không hợp lệ";
         }
     
         return $dataError;
@@ -537,6 +545,7 @@ class Admin extends CI_Controller
                     "name" => $_POST['name'],
                     "lat" => $_POST['lat'],
                     "lng" => $_POST['lng'],
+                    "type" => $_POST['type'],
                     "status" => $_POST['status']
                 );
                 $this->m_map->insert($data);
@@ -571,6 +580,7 @@ class Admin extends CI_Controller
                     "name" => $_POST['name'],
                     "lat" => $_POST['lat'],
                     "lng" => $_POST['lng'],
+                    "type" => $_POST['type'],
                     "status" => $_POST['status']
                 );
                 $this->m_map->update($id, $data);

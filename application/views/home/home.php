@@ -63,7 +63,7 @@
             <div class="clearfix"> </div>
         
         <!-- //video-grids -->
-        <a href="" class="cam">Hệ thống camera</a>
+        <a href="<?php echo base_url_ci;?>camera" class="cam">Hệ thống camera</a>
         <div class="video-grids">
             <?php foreach ($listCamera as $val){?>
             <?php 
@@ -78,6 +78,7 @@
                 </div>
             <?php }?>
         </div>
+        <div class="clearfix"> </div>
         <!-- news-and-events -->
         <div class="news">
             <div class="news-grids">
@@ -252,7 +253,7 @@ function appendDataToMap(response,map){
 function addMarker(location,map,type) {
 	var icon = {
 	        url: "<?php echo base_url_ci;?>public/images/iconMap"+ type +".png", // url
-	        scaledSize: new google.maps.Size(32,32), // size
+	        scaledSize: new google.maps.Size(48,48), // size
 	    };
 	var contentMap = "";
     switch(type){

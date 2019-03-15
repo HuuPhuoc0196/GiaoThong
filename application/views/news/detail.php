@@ -10,6 +10,7 @@
 				<div class="col-md-8 blog-left">
 					<div class="blog-left-grid">
 						<div class="blog-leftl">
+						<?php date_default_timezone_set("Asia/Ho_Chi_Minh");?>
 							<h4>Tháng <?php echo date("m");?> <span><?php echo date("d")?></span></h4>
 							<a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i>10</a>
 						</div>
