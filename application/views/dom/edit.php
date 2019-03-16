@@ -49,7 +49,7 @@
 
 						</form>
 						<br /> <a href="<?php echo base_url_ci;?>admin/listDom"><button
-								class="btn btn-sm btn-info btn-block" type="submit">Danh sách
+								class="btn btn-sm btn-info btn-block mb-20" type="submit">Danh sách
 								DOM</button></a>
 					</div>
 					<div class="col-sm-4"></div>

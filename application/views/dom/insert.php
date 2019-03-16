@@ -6,7 +6,7 @@
 	<section class="wrapper">
 		<div class="table-agile-info">
 			<div class="panel panel-default">
-				<div class="panel-heading">Sửa Thông tin DOM</div>
+				<div class="panel-heading">Thêm mới thông tin DOM</div>
 				<div class="row w3-res-tb">
 					<div class="col-sm-3 ">
 						<h4 id="sucess"></h4>
@@ -48,7 +48,7 @@
 
 						</form>
 						<br /> <a href="<?php echo base_url_ci;?>admin/listDom"><button
-								class="btn btn-sm btn-info btn-block" type="submit">Danh sách
+								class="btn btn-sm btn-info btn-block mb-20" type="submit">Danh sách
 								DOM</button></a>
 					</div>
 					<div class="col-sm-4"></div>
