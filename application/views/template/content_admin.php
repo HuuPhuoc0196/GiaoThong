@@ -46,7 +46,7 @@
 					</div>
 					<div class="col-md-8 market-update-left">
 						<h4>Phản hồi</h4>
-						<h3>40</h3>
+						<h3><?php echo $countContact;?></h3>
 					</div>
 				  <div class="clearfix"> </div>
 				</div>

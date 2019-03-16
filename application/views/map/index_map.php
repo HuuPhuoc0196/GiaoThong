@@ -102,7 +102,7 @@ function loadMapItem() {
         success: function(response) {
             if(response["status"] == true)
             {
-                var append = '<select id="selectBox" onchange="getMap()">';
+                var append = '<select id="selectBox" class="form-control" onchange="getMap()">';
                 response['data'].forEach(function(element)
                 {
                     append+='<option value="'+element['id']+'">'+element['name']+'</option>';

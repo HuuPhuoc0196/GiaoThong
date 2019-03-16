@@ -11,6 +11,7 @@ class Admin extends CI_Controller
         $this->load->model('m_dom');
         $this->load->model('m_home');
         $this->load->model('m_map');
+        $this->load->model('m_contact');
         $this->load->library('pagination');
         $this->load->library('form_validation');
     }
@@ -106,6 +107,7 @@ class Admin extends CI_Controller
         $data['view'] = 'home';
         $data['countUser'] = $this->m_user->get_total();
         $data['countNews'] = $this->m_news->get_total();
+        $data['countContact'] = $this->m_contact->get_total();
         $data['adminPage'] = "class='active'";
         $this->load->view('admin/index', $data);
     }

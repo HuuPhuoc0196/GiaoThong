@@ -70,7 +70,7 @@
                         <span>Quản lý camera</span>
                     </a>
                     <ul class="sub">
-                    	<li><a href="<?php echo base_url_ci;?>camera/listCamera"><i class="fa fa-video-camera"></i>Danh sách camera</a></li>
+                    	<li><a href="<?php echo base_url_ci;?>camera/listCamera"><i class="fa fa-caret-right"></i>Danh sách camera</a></li>
                     </ul>
                 </li>
                 
@@ -80,7 +80,7 @@
                         <span>Quản lý phản hồi</span>
                     </a>
                     <ul class="sub">
-                    	<li><a href="<?php echo base_url_ci;?>contact/listContact"><i class="fa fa-envelope"></i>Danh sách phản hồi</a></li>
+                    	<li><a href="<?php echo base_url_ci;?>contact/listContact"><i class="fa fa-caret-right"></i>Danh sách phản hồi</a></li>
                     </ul>
                 </li>
                

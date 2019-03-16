@@ -20,7 +20,7 @@
                                 </div>
                                 <div id="countCamera-sucess"></div>
 							</div>
-                                  <input class="btn btn-success" type="button" value="Sửa đổi" name="countCamera" onclick="CountCamera.update()">
+                                  <input class="btn btn-success mb-20" type="button" value="Sửa đổi" name="countCamera" onclick="CountCamera.update()">
 						</form>
 					</div>
 				</div>
