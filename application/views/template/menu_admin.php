@@ -18,7 +18,6 @@
                     </a>
                     <ul class="sub">
 						<li><a href="<?php echo base_url_ci;?>admin/countNews"><i class="fa fa-caret-right"></i> Số lượng bản tin hot</a></li>
-						<li><a href="<?php echo base_url_ci;?>admin/countMap"><i class="fa fa-caret-right"></i> Số lượng bản đồ hot</a></li>
 						<li><a href="<?php echo base_url_ci;?>admin/countCamera"><i class="fa fa-caret-right"></i> Số lượng camera hot</a></li>
                     </ul>
                 </li>
@@ -58,7 +57,7 @@
                 <li class="sub-menu">
                     <a href="#" <?php if(isset($domPage)){echo $domPage;} ?>>
                         <i class="fa fa-newspaper-o"></i>
-                        <span>Quản lý Dom</span>
+                        <span>Quản lý mã nguồn tin tức</span>
                     </a>
                     <ul class="sub">
                     	<li><a href="<?php echo base_url_ci;?>admin/listDom"><i class="fa fa-caret-right"></i>Danh sách Dom</a></li>
@@ -72,6 +71,16 @@
                     </a>
                     <ul class="sub">
                     	<li><a href="<?php echo base_url_ci;?>camera/listCamera"><i class="fa fa-video-camera"></i>Danh sách camera</a></li>
+                    </ul>
+                </li>
+                
+                <li class="sub-menu">
+                    <a href="#" <?php if(isset($contactPage)){echo $contactPage;} ?>>
+                        <i class="fa fa-envelope"></i>
+                        <span>Quản lý phản hồi</span>
+                    </a>
+                    <ul class="sub">
+                    	<li><a href="<?php echo base_url_ci;?>contact/listContact"><i class="fa fa-envelope"></i>Danh sách phản hồi</a></li>
                     </ul>
                 </li>
                

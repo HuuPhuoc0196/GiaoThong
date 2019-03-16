@@ -35,7 +35,7 @@
 								<th>Tên</th>
 								<th>lat</th>
 								<th>long</th>
-								<th>Trạng thái</th>
+								<th>Loại thông báo</th>
 								<th>Thời gian Push</th>
 								<th style="width: 70px;">Chức năng</th>
 							</tr>
@@ -49,7 +49,12 @@
 								<th><?php echo $val['name'];?></th>
 								<th><?php echo $val['lat'];?></th>
 								<th><?php echo $val['lng'];?></th>
-								<th><?php echo ($val['status']==1)?"Hot" : "Bình thường";?></th>
+								<th><?php
+								    if($val['type']==1){echo 'Tuyến đường kẹt xe';};
+								    if($val['type']==2){echo 'Tuyến đường hư hỏng';};
+								    if($val['type']==3){echo 'Tuyến đường đang xây dựng';};
+								    if($val['type']==4){echo 'Tuyến đường xảy ra tai nạn';};
+								?></th>
 								<th><?php echo $val['pushdate'];?></th>
 								<td><a
 									href="<?php echo base_url_ci;?>admin/deleteMap/<?php echo $val['id'];?>"

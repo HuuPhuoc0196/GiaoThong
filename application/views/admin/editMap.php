@@ -43,14 +43,7 @@
 								<?php if(isset($map['type'])&&$map['type'] == 4) {echo 'checked="checked"';}?>> Tuyến đường xảy ra tai nạn<br>
 							</div>
 							<div id="type-error"></div>
-							<div class="input-group">
-								<span>Trạng thái</span><br/>
-								<input type="radio" name="status" value="0" 
-								<?php if(isset($map['status'])&&$map['status'] == 0) {echo 'checked="checked"';}?>> Bình thường <br>
-								<input type="radio" name="status" value="1" 
-								<?php if(isset($map['status'])&&$map['status'] == 1) {echo 'checked="checked"';}?>> Hot<br>
-							</div>
-							<div id="status-error"></div>
+							
 							<button class="btn btn-danger btn-block" type="button"
 								name="update" onclick="AdminMap.update()">Sửa đổi</button>
 

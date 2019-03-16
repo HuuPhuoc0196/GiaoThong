@@ -5,7 +5,6 @@ var AdminMap = {
 			var name = $('#name').val();
 			var lat = $('#lat').val();
 			var lng = $('#lng').val();
-			var status = $('input[name=status]:checked').val();
 			var type = $('input[name=type]:checked').val();
 			$.ajax({
 	   	        url: base_url_ci + "admin/addMap",
@@ -14,8 +13,7 @@ var AdminMap = {
 	   	        	name : name,
 	   	        	lat : lat,
 	   	        	lng : lng,
-	   	        	type : type,
-	   	        	status : status
+	   	        	type : type
 	   	        }, 
 	   	        dataType: "json",
 	   	        success: function(response) {
@@ -55,7 +53,6 @@ var AdminMap = {
 			var name = $('#name').val();
 			var lat = $('#lat').val();
 			var lng = $('#lng').val();
-			var status = $('input[name=status]:checked').val();
 			var type = $('input[name=type]:checked').val();
 			$.ajax({
 	   	        url: base_url_ci + "admin/editMap/" + id,
@@ -64,8 +61,7 @@ var AdminMap = {
 	   	        	name : name,
 	   	        	lat : lat,
 	   	        	lng : lng,
-	   	        	type : type,
-	   	        	status : status
+	   	        	type : type
 	   	        }, 
 	   	        dataType: "json",
 	   	        success: function(response) {

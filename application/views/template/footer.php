@@ -33,17 +33,8 @@
                     </div>
                     <div class="col-md-4 footer-grid-left placeholder-custom-fooder">
                         <h3>Liên Hệ</h3>
-                        <div id="sucess"></div>
-                        <form>
-                        <div id="name-error"></div>
-                        <input type="text" id="name" placeholder="Họ và Tên" required="">
-						<div id="email-error"></div>
-						<input type="email" id="email-contact" placeholder="Địa chỉ Email" required="">
-						<div id="content-error"></div>
-						<textarea type="text" id="content" placeholder="Nội dung..."></textarea>
-						
-						<input type="button" value="Gửi" onclick="Contact.contact()" class="button-custom">
-                        </form>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5971263383844!2d106.63755031428747!3d10.8421112609438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752984a36a471d%3A0x5628f842d92e23dc!2zMjgvNEIgxJDGsOG7nW5nIFBoYW4gSHV5IMONY2gsIFBoxrDhu51uZyAxMiwgR8OyIFbhuqVwLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1552143678871"
+                         width="100%" height="300px" frameborder="0" style="border:0" allowfullscreen></iframe>
                     </div>
                     <div class="col-md-4 footer-grid-left">
                         <h3>Giới Thiệu</h3>
