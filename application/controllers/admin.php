@@ -395,10 +395,6 @@ class Admin extends CI_Controller
             $dataError['name'] = "Địa chỉ đã tồn tại";
         }
         
-        if(!is_numeric($_POST['status']) || $_POST['status'] < 0 || $_POST['status'] > 1){
-            $dataError['status'] = "Trang thái không hợp lệ";
-        }
-        
         if(!is_numeric($_POST['type']) || $_POST['type'] < 0 || $_POST['type'] > 4){
             $dataError['type'] = "Loại thông báo không hợp lệ";
         }
@@ -440,10 +436,6 @@ class Admin extends CI_Controller
             $dataError['name'] = "Địa chỉ là không được trống";
         }else if ($this->m_map->checkNameUpdate($data2)) {
             $dataError['name'] = "Địa chỉ đã tồn tại";
-        }
-    
-        if(!is_numeric($_POST['status']) || $_POST['status'] < 0 || $_POST['status'] > 1){
-            $dataError['status'] = "Trang thái không hợp lệ";
         }
         
         if(!is_numeric($_POST['type']) || $_POST['type'] < 0 || $_POST['type'] > 4){
@@ -546,7 +538,7 @@ class Admin extends CI_Controller
                     "lat" => $_POST['lat'],
                     "lng" => $_POST['lng'],
                     "type" => $_POST['type'],
-                    "status" => $_POST['status']
+                    'pushdate' => date("y-m-d H:i:s")
                 );
                 $this->m_map->insert($data);
                 $data = array(
@@ -580,8 +572,7 @@ class Admin extends CI_Controller
                     "name" => $_POST['name'],
                     "lat" => $_POST['lat'],
                     "lng" => $_POST['lng'],
-                    "type" => $_POST['type'],
-                    "status" => $_POST['status']
+                    "type" => $_POST['type']
                 );
                 $this->m_map->update($id, $data);
                 $data = array(

@@ -31,8 +31,7 @@ class Map extends CI_Controller
         $dataLatLng = array(
             "lat" => $_POST['lat'],
             "lng" => $_POST['lng'],
-            "type" => $_POST['type'],
-            "status" => 0
+            "type" => $_POST['type']
         );
         $datafind = $this->m_map->findMap($dataLatLng);
         if ($datafind != null) {
@@ -50,7 +49,6 @@ class Map extends CI_Controller
             'lat' => $_POST['lat'],
             'lng' => $_POST['lng'],
             'type' => $_POST['type'],
-            'status' => '0',
             'pushdate' => date("y-m-d H:i:s")
         );
         $id = $this->m_map->insert($data);

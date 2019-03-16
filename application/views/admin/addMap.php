@@ -37,12 +37,6 @@
 								<input type="radio" name="type" value="4"> Tuyến đường xảy ra tai nạn<br> 
 							</div>
 							<div id="status-error"></div>
-							<div class="input-group">
-								<span>Trạng thái</span><br /> 
-								<input type="radio" name="status" value="0" checked="checked"> Bình thường<br>
-								<input type="radio" name="status" value="1"> Hot<br> 
-							</div>
-							<div id="status-error"></div>
 							<button class="btn btn-danger btn-block" type="button" 
 							onclick="AdminMap.add()" name="add">Thêm mới</button>
 						</form>
