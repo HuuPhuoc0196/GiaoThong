@@ -186,14 +186,19 @@ ul.sidebar-menu li ul.sub li a{
 
 ul.sidebar-menu li ul.sub li a:hover,
 ul.sidebar-menu li ul.sub li.active a {
-    color: #e41818;
+    color: #000;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
     display: block;
-    background: rgba(12, 51, 195, 0.33);
+    background: rgba(241, 223, 7, 0.92);
+}
+
+ul.sidebar-menu li ul.sub li a:hover i,
+ul.sidebar-menu li ul.sub li.active a i{
+    color: #000;
 }
 
 ul.sidebar-menu li {
@@ -229,8 +234,8 @@ ul.sidebar-menu li a {
 ul.sidebar-menu li a.active,
 ul.sidebar-menu li a:hover,
 ul.sidebar-menu li a:focus {
-    background: rgba(195, 12, 173, 0.33);
-    color: #e41818;
+    background: rgba(2, 2, 2, 0.94);
+    color: #fff;
     display: block;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -246,11 +251,11 @@ ul.sidebar-menu li a i {
 
 ul.sidebar-menu li a:hover i,
 ul.sidebar-menu li a:focus i {
-    color: #e41818;
+    color: #fff;
 }
 
 ul.sidebar-menu li a.active i {
-    color: #e41818;
+    color: #fff;
 }
 
 .mail-info,
