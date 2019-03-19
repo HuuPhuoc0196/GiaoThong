@@ -17,10 +17,12 @@ class User extends CI_Controller
 	{
 		$this->load->view('user/login_user');
 	}
+	
 	public function profile()
 	{
 		$this->load->view('user/profile');
 	}
+	
 	public function login()
 	{
 	    if(isset($_POST['username']))
@@ -249,6 +251,12 @@ class User extends CI_Controller
 		if(!$this->m_user->findUsername($_POST['username'])){
 		    $dataError['username_profile'] = "Tài khoản không tồn tại";
 		}
+		
+		if(empty($_POST['password'])){
+		    $dataError['password_profile'] = "Mật khẩu là không được trống";
+		}else if(!$this->m_user->login($_POST['username'],md5($_POST['password']))){
+	        $dataError['password_profile'] = "Mật khẩu không đúng";
+	    }
 	    
 	    if(!$this->m_user->checkEmail($_POST['username'],$_POST['email'])){
 	        $dataError['email_profile'] = "Địa chỉ email đã tồn tại";

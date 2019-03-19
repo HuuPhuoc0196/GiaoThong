@@ -35,9 +35,7 @@ class Admin extends CI_Controller
             {
                 $data = array(
                     "status" => false,
-                    "message" => array(
-                        "login" => "Tài khoản hoặc mật khẩu không hợp lệ!"
-                    )
+                    "message" => "Tài khoản hoặc mật khẩu không hợp lệ!"
                 );
                 print_r(json_encode($data));die;
             }else
