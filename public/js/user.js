@@ -75,24 +75,6 @@ var User = {
         $('#re_password').val("");
         $('#address').val("");
     },
-    showProfile : function(){
-    	User.deleteMessage();
-         $.ajax({
-             url: base_url_ci + "user/showProfile",
-             method: "POST",
-             data: {
-            	 username: username_update
-             },
-             dataType: "json",
-             success: function(response) {
-            	 $('#name_profile').val(response.data.name);
-                 $('#username_profile').val(response.data.username);
-                 $('#phone_profile').val(response.data.phone);
-                 $('#email_profile').val(response.data.email);
-                 $('#address_profile').val(response.data.address);
-             }
-         });
-    },
     closePopup : function(){
     	$('#myModal1').modal('hide');
     },
@@ -103,6 +85,7 @@ var User = {
         var phone = $('#phone_profile').val();
         var email = $('#email_profile').val();
         var address = $('#address_profile').val();
+        var password = $('#password_profile').val();
         $.ajax({
             url: base_url_ci + "user/updateProfile",
             method: "POST",
@@ -111,7 +94,8 @@ var User = {
                 username: username,
                 phone: phone,
                 email: email,
-                address: address
+                address: address,
+                password : password
             },
             dataType: "json",
             success: function(response) {
@@ -145,5 +129,38 @@ var User = {
     deleteInfor : function(){
     	User.deleteMessage();
     	$('#email-reset').val('');
-    }
+    },
+    
+    loadProfile : function(username){
+    	console.log(username);
+         $.ajax({
+             url: base_url_ci + "user/loadProfile",
+             method: "POST",
+             data: {
+            	 username: username
+             },
+             dataType: "json",
+             success: function(response) {
+            	 window.location.href = response.link;
+            	 User.showProfile(username);
+             }
+         });
+    },
+    showProfile : function(username){
+         $.ajax({
+             url: base_url_ci + "user/showProfile",
+             method: "POST",
+             data: {
+            	 username: username
+             },
+             dataType: "json",
+             success: function(response) {
+            	 $('#name_profile').val(response.data.name);
+                 $('#username_profile').val(response.data.username);
+                 $('#phone_profile').val(response.data.phone);
+                 $('#email_profile').val(response.data.email);
+                 $('#address_profile').val(response.data.address);
+             }
+         });
+    },
 }

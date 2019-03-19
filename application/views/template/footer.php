@@ -82,9 +82,7 @@
                 
                 <?php if(isset($_SESSION['user'])) { ?>   
                 	<li>
-                        <a href="" onclick="User.showProfile()"
-                             data-mfb-label="<?php echo $_SESSION['user']['name'];?>"
-                            class="mfb-component__button--child" data-toggle="modal" data-target="#myModal1">
+                        <a href="<?php echo base_url_ci;?>user/profile"class="mfb-component__button--child">
                             <i class="fa fa-address-card"style="padding-top:
                                 20px;padding-left:20px;"></i>
                         </a>
@@ -121,58 +119,7 @@
                 </ul>
             </li>
         </ul>
-           <!--Modal profile-->
-           <div class="modal fade" id="myModal1" role="dialog">
-			<!--Modal-->
-			<div class="modal-dialog ">
-				<div class="modal-content">
-					<div class="modal-header">
-				
-					<h4 class="modal-title">Thông tin của bạn</h4>
-					</div>
-					<div class="modal-body login-form-w3-agile1">
-					<p>
-					</p> 
-					<form action="#" method="post">
-					<h2 id="sucess-update-profile" class="sucess-custom-update-profile"></h2>
-                    <div class="w3_form_body_grid">
-				<i class="fa fa-user icon-custom" aria-hidden="true"></i>
-					<input type="text" name="username_profile" id="username_profile" placeholder="Tên tài khoản" required="" disabled="disabled">
-				</div>
-				<div id="username_profile-error"></div>
-				<div class="w3_form_body_grid">
-				<i class="fa fa-user-circle icon-custom" aria-hidden="true"></i>
-					<input type="text" name="name_profile" id="name_profile" placeholder="Họ và tên" required="">
-                </div>
-                <div id="name_profile-error"></div>
-                
-				<div class="w3_form_body_grid">
-				<i class="fa fa-phone icon-custom" aria-hidden="true"></i>
-					<input type="text" name="phone_profile" id="phone_profile" placeholder="Số điện thoại" required="">
-				</div>
-				<div id="phone_profile-error"></div>
-				<div class="w3_form_body_grid">
-				<i class="fa fa-envelope icon-custom" aria-hidden="true"></i>
-					<input type="email" name="email_profile" id="email_profile" placeholder="Địa chỉ Email" required="">
-				</div>
-				<div id="email_profile-error"></div>
-                <div class="w3_form_body_grid w3_form_body_grid1">
-				<i class="fa fa-map-marker icon-custom" aria-hidden="true"></i>
-					<input type="text" name="address_profile" id="address_profile" placeholder="Địa chỉ của bạn" required="">
-				</div>
-				<div id="address_profile-error"></div>
-				
-			</form>
-					
-					</div>
-					<div class="modal-footer">
-                        <div class="col-md-6"><div class="sim-button button12" onclick="User.updateProfile()">Cập Nhật</div></div>
-                        <div class="col-md-6"><div class="sim-button button12" onclick="User.closePopup()">Hủy</div></div>
-					
-					</div>
-				</div>
-			</div>
-		</div>
+          
         <!--Clock-->
             <!-- clock -->
             <script language="javascript" type="text/javascript" src="<?php echo base_url_ci;?>public/js/jquery.thooClock.js"></script>
