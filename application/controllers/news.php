@@ -29,13 +29,16 @@ class News extends CI_Controller {
         if ($total_records > 0)
         {
             // get current page records
-            
-            
             if (isset($_POST['search']) && ! empty($_POST['search'])) {
                 $search = $_POST['search'];
                 $result['hotNews'] = $this->m_news->searchNews($search, $limit_per_page, $start_index);
                 $result['search'] = $search;
                 $total_records = $this->m_news->get_total_search($search);
+                if(empty($result['hotNews'])){
+                    $result['search'] = $search;
+                    $total_records = $this->m_news->get_total();
+                    $result["hotNews"] = $this->m_news->getnews($limit_per_page, $start_index);
+                }
             } else {
                 $result["hotNews"] = $this->m_news->getnews($limit_per_page, $start_index);
             }
