@@ -19,6 +19,8 @@
         <!-- //js -->
         <link href="<?php echo base_url_ci;?>public/css/mfb.min.css" rel="stylesheet" type="text/css"
             media="all" />
+            <link rel='stylesheet' href='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css'>
+<script src='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js'></script>
     </head>
 
     <body>

@@ -33,7 +33,7 @@
             </div>
 				<div class="col-md-4 upcoming-events-right">
     				 <form class=".pt-10-custom" action="<?php echo base_url_ci;?>news/index" method="post">
-                    	<span><?php if(empty($hotNews)){echo "Không tìm thấy!";}?></span>
+                    	<span id="b2"><?php if(empty($hotNews)){echo "Không tìm thấy!";}?></span>
                         <input type="search" placeholder="Tìm kiếm bản tin" name="search" id="search"
                          value="<?php if(isset($search)) echo $search?>">
                         <button type="submit" id="btn-search" style="display: none;"></button>
