@@ -29,22 +29,19 @@
 					  <script>
 						$('.example1').wmuSlider();         
 					 </script> 
-
-				<div class="gallery">
-                    <div class="col-md-5 ">
-                        <div class="grid">
-                            <figure class="effect-lexi">
-                                <img src="<?php echo base_url_ci;?>public/images/21.jpg" alt="" class="img-responsive" />
-                                <figcaption>
-
-                                    <p>Học luật và áp dụng luật</p>
-                                </figcaption>
-                            </figure>
-                            
-                        </div>
-                    </div>
-                    <div class="col-md-7 ">
-                        <div class="clock-grids wow fadeInUp animated" data-wow-delay=".5s">
+                
+            </div>
+				<div class="col-md-4 upcoming-events-right">
+    				 <form class=".pt-10-custom" action="<?php echo base_url_ci;?>news/index" method="post">
+                    	<span><?php if(empty($hotNews)){echo "Không tìm thấy!";}?></span>
+                        <input type="search" placeholder="Tìm kiếm bản tin" name="search" id="search"
+                         value="<?php if(isset($search)) echo $search?>">
+                        <button type="submit" id="btn-search" style="display: none;"></button>
+                	</form>
+                	<!-- Alert -->
+                	
+                	<!-- // Alert -->
+                 <div class="clock-grids wow fadeInUp animated" data-wow-delay=".5s">
                             <div class="clock-left">
                                 <div id="myclock"></div>
                             </div>
@@ -61,21 +58,38 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="clearfix"> </div>
-                </div>
-                
+               
             </div>
-				<div class="col-md-4 upcoming-events-right">
-    				 <form class=".pt-10-custom" action="<?php echo base_url_ci;?>news/index" method="post">
-                    	<span><?php if(empty($hotNews)){echo "Không tìm thấy!";}?></span>
-                        <input type="search" placeholder="Tìm kiếm camera" name="search" id="search"
-                         value="<?php if(isset($search)) echo $search?>">
-                        <button type="submit" id="btn-search" style="display: none;"></button>
-                	</form>
-                <h3>Bạn có biết ?</h3>
-                <div class="banner-bottom-video-grid-left">
+            <div class="clearfix"> </div>
+        </div>
+			<div class="news">
+            <div class="news-grids">
+                <div class="col-md-8 news-grid-left">
+                    <h3>Tin tức liên quan</h3>
+                    <ul>
+                    <?php for($i = 2; $i < count($hotNews); $i++){?>
+                        <li>
+                            <div class="news-grid-left1">
+                                <img src="<?php echo base_url_ci;?>public/images/<?php echo $hotNews[$i]['image']?>" alt=" " class="img-responsive" />
+                            </div>
+                            <div class="news-grid-right1">
+                                <h4><a href="<?php echo base_url_ci;?>news/detail/<?php echo $hotNews[$i]['id'];?>"><?php echo $hotNews[$i]['title'];?></a></h4>
+                                <h5>Bởi: <i><?php echo $hotNews[$i]['source'];?></i> <label>|</label> <i><?php echo $hotNews[$i]['time_post'];?></i></h5>
+                                <p><?php echo $hotNews[$i]['summary'];?></p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </li>
+                        <?php }?>
+                    </ul>
+                    <ul class="pagination modal-3">
+                        <?php if (isset($links)) { ?>
+                            <?php echo $links ?>
+                        <?php }?>
+                    </ul>
+                </div>
+                <div class="col-md-4 upcoming-events-right">
+                	<h3>Bạn có biết ?</h3>
+                 <div class="banner-bottom-video-grid-left">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
@@ -312,64 +326,6 @@
                         
                     </div>
                 </div>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-			<div class="news">
-            <div class="news-grids">
-                <div class="col-md-8 news-grid-left">
-                    <h3>Tin tức liên quan</h3>
-                    <ul>
-                    <?php for($i = 2; $i < count($hotNews); $i++){?>
-                        <li>
-                            <div class="news-grid-left1">
-                                <img src="<?php echo base_url_ci;?>public/images/<?php echo $hotNews[$i]['image']?>" alt=" " class="img-responsive" />
-                            </div>
-                            <div class="news-grid-right1">
-                                <h4><a href="<?php echo base_url_ci;?>news/detail/<?php echo $hotNews[$i]['id'];?>"><?php echo $hotNews[$i]['title'];?></a></h4>
-                                <h5>Bởi: <i><?php echo $hotNews[$i]['source'];?></i> <label>|</label> <i><?php echo $hotNews[$i]['time_post'];?></i></h5>
-                                <p><?php echo $hotNews[$i]['summary'];?></p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </li>
-                        <?php }?>
-                    </ul>
-                    <ul class="pagination modal-3">
-                        <?php if (isset($links)) { ?>
-                            <?php echo $links ?>
-                        <?php }?>
-                    </ul>
-                </div>
-                <div class="col-md-4 news-grid-right">
-                <div class="news-grid-rght1">
-                        <div role="tabpanel" class="tab-pane" id="profile">
-                        <h4 style="color:#090; margin-left:20%;margin-bottom:30px">VỊ TRÍ CỦA CHÚNG TÔI</h4>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5971263383844!2d106.63755031428747!3d10.8421112609438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752984a36a471d%3A0x5628f842d92e23dc!2zMjgvNEIgxJDGsOG7nW5nIFBoYW4gSHV5IMONY2gsIFBoxrDhu51uZyAxMiwgR8OyIFbhuqVwLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1552143678871" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                <div class="news-grid-rght1">
-                        <div role="tabpanel" class="tab-pane" id="profile">
-                        <h4 style="color:#090; margin-left:20%;margin-bottom:30px; margin-top:20px;">THỜI TIẾT HÔM NAY</h4>
-                            <div class="weather-left-info">
-                                <div class="weather-left-top weather-right-top wow bounceInUp animated" data-wow-delay=".5s">
-                                    <canvas id="partly-cloudy-day" width="75" height="75"></canvas>
-                                    <h3>25°C</h3>
-                                    <p>Sáng, Hôm nay</p>
-                                </div>
-                                <div class="weather-right-bottom">
-                                    <div class="weather-right-bottom-left wow bounceInLeft animated" data-wow-delay=".5s">
-                                        <canvas id="clear-night" width="60" height="60"></canvas>
-
-                                        <h4>Tối, TP.HCM</h4>
-                                    </div>
-                                    <div class="weather-right-bottom-right wow bounceInRight animated" data-wow-delay=".5s">
-                                        <h3>17°C</h3>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                    
                     
                 
