@@ -1,11 +1,8 @@
 eclipse.preferences.version=1
 encoding//application/controllers/Admin.php=UTF-8
-encoding//application/controllers/Camera.php=UTF-8
 encoding//application/controllers/Dom.php=UTF-8
-encoding//application/controllers/Map.php=UTF-8
 encoding//application/controllers/Service.php=UTF-8
 encoding//application/controllers/Test.php=UTF-8
-encoding//application/controllers/User.php=UTF-8
 encoding//application/views/admin/addCamera.php=UTF-8
 encoding//application/views/admin/addMap.php=UTF-8
 encoding//application/views/admin/editCamera.php=UTF-8
