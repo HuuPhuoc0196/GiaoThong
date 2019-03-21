@@ -18,7 +18,8 @@
 							<article style="position: absolute; width: 100%; opacity: 0;"> 
 								<div class="banner-wrap">
 									<div class="baner-beaking" style="background: url(<?php echo base_url_ci;?>public/images/<?php echo $hotNews[$i]['image']?>) no-repeat 0px 0px; background-size:cover;">
-										<p><?php echo $hotNews[$i]['title'];?></p>
+										<a href="<?php echo base_url_ci;?>news/detail/<?php echo $hotNews[$i]['id'];?>">
+										<p><?php echo $hotNews[$i]['title'];?></p></a>
 									</div>
 								</div>
 							</article>
@@ -65,6 +66,7 @@
 			<div class="news">
             <div class="news-grids">
                 <div class="col-md-8 news-grid-left">
+                <?php if(count($hotNews) > 1){?>
                     <h3>Tin tức liên quan</h3>
                     <ul>
                     <?php for($i = 2; $i < count($hotNews); $i++){?>
@@ -81,6 +83,7 @@
                         </li>
                         <?php }?>
                     </ul>
+                    <?php }?>
                     <ul class="pagination modal-3">
                         <?php if (isset($links)) { ?>
                             <?php echo $links ?>
@@ -340,6 +343,5 @@ $(document).keyup(function (e) {
     	$('#btn-search').click();
     }
 });
-
 </script>
 <?php $this->load->view('template/footer');?>

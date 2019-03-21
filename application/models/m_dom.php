@@ -70,8 +70,8 @@ class M_dom extends CI_Model
     public function searchDom($search, $limit, $start)
     {
         $result = $this->db->select('*')
-        ->like('source', $search)
-        ->like('url', $search)
+        ->like('source', $search, 'both', false)
+        ->or_like('url', $search, 'both', false)
         ->limit($limit, $start)
         ->get($this->table)
         ->result_array();

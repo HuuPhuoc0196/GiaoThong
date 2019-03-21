@@ -3658,7 +3658,7 @@ img.mobile1 {
 
 /*-----start-responsive-design------*/
 
-@media (max-width:1680px) {
+@media (max-width:1920px) {
     .move-text {
         width: 95.5%;
         margin-left: .8em;
@@ -6303,7 +6303,6 @@ label.radio {
     border: none;
     width: 100%;
     background: #27A511;
-    margin: 1.5em 0 0;
     text-transform: uppercase;
 }
 
@@ -7350,6 +7349,10 @@ h4.heading {
 
 .mb-10 {
     margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
 }
 
 .h-550 {

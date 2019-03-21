@@ -147,10 +147,9 @@ class M_news extends CI_Model
         $result = $this->db->select("$this->table.*, $this->tblDetail.time_post")
             ->where("$this->table.id = $this->tblDetail.id_news")
             ->from($this->tblDetail)
-            ->like('title', $search)
-            ->like('summary', $search)
+            ->like('title', $search, 'both', false)
             ->limit($limit, $start)
-            ->order_by('status desc')
+            ->order_by('id desc')
             ->get($this->table)
             ->result_array();
         return $result;
@@ -158,8 +157,7 @@ class M_news extends CI_Model
     
     public function get_total_search($search)
     {
-        $query = $this->db->like('title', $search)
-            ->like('summary', $search)
+        $query = $this->db->like('title', $search, 'both', false)
             ->get($this->table);
         return $query->num_rows();
     }

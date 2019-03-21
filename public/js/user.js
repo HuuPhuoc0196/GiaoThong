@@ -60,7 +60,7 @@ var User = {
                 if (!response.status) {
                     User.fieldError(response.message);
                 } else {
-                    $("#sucess").html("<span class='sucess'>" + response.message + "</span>");
+                	showAlertSuccess("Đăng ký thành công");
                     User.deleteInput();
                 }
             }
@@ -102,7 +102,7 @@ var User = {
             	if (!response.status) {
                     User.fieldError(response.message);
                 } else {
-                    $("#sucess-update-profile").html("<span class='sucess'>" + response.message + "</span>");
+                	showAlertSuccess("Cập nhật thành công!");
                 }
            }
         });
@@ -121,7 +121,7 @@ var User = {
             	if (!response.status) {
                     User.fieldError(response.message);
                 } else {
-                    $("#email-reset-sucess").html("<span class='sucess'>" + response.message + "</span>");
+                    showAlertSuccess("Vui lòng check email để lấy lại mật khẩu");
                 }
            }
         });
@@ -160,7 +160,42 @@ var User = {
                  $('#phone_profile').val(response.data.phone);
                  $('#email_profile').val(response.data.email);
                  $('#address_profile').val(response.data.address);
+                 $('#username_profile_change').val(response.data.username);
              }
          });
     },
+    showChangePassword(){
+    	$('#password-old').val('');
+    	$('#password-new').val('');
+        $('#re-password-new').val('');
+    	$('#changePasswordModel').modal('show');
+    },
+    changePasswork : function(){
+    	User.deleteMessage();
+    	var username = $('#username_profile_change').val();
+    	var password = $('#password-old').val();
+    	var newPassword = $('#password-new').val();
+        var rePasswordNew = $('#re-password-new').val();
+        $.ajax({
+            url: base_url_ci + "user/changePasswork",
+            method: "POST",
+            data: {
+            	username: username,
+            	password: password,
+            	newPassword: newPassword,
+            	rePasswordNew: rePasswordNew
+            },
+            dataType: "json",
+            success: function(response) {
+            	if (!response.status) {
+                    User.fieldError(response.message);
+                } else {
+                    showAlertSuccess("Thay đổi mật khẩu thành công");
+                	$('#password-old').val('');
+                	$('#password-new').val('');
+                    $('#re-password-new').val('');
+                }
+           }
+        });
+    }
 }

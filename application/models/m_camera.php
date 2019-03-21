@@ -33,7 +33,7 @@ class M_Camera extends CI_Model
 	
 	public function get_total_search($search)
 	{
-	    $query = $this->db->like('des', $search)->get($this->table);
+	    $query = $this->db->like('des', $search, 'both', false)->get($this->table);
 	    return $query->num_rows();
 	}
 	
@@ -139,8 +139,8 @@ class M_Camera extends CI_Model
 	public function searchCamera($search, $limit, $start)
 	{
 	    $result = $this->db->select('*')
-	    ->like('des', $search)
-	    ->or_like('name', $search)
+	    ->like('des', $search, 'both', false)
+	    ->or_like('name', $search, 'both', false)
 	    ->limit($limit, $start)
 	    ->order_by('id desc')
 	    ->where('status','0')

@@ -17,7 +17,6 @@
                 <input type="search" placeholder="Tìm kiếm ngay" id="search" ><br/>
                 <div id="mapItem">
                 </div>
-                <span id="search-error"></span>
             <div class="clock-grids wow fadeInUp animated" data-wow-delay=".5s">
                 <div class="clock-heading">
                     <h3>Đồng Hồ</h3>
@@ -66,7 +65,6 @@
 <script>
 var islat;
 var islng;
-var isname;
 var arrayMap = [];
 var myCenter;
 var mapCanvas =  document.getElementById("googleMap");
@@ -196,7 +194,6 @@ function getLocation() {
 }
 
 function showPosition(position) {
-	$('#search-error').html('');
 	$('#mapItem').html('');
 	loadMapItem();
 	islat = position.coords.latitude;
@@ -226,7 +223,7 @@ function showPosition(position) {
                 appendDataToMap(response);
             }else
             {
-                $('#search-error').html(response['data']);
+                showAlertError(response['data']);
             }
         }
     });

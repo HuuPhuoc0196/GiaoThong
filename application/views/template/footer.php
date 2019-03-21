@@ -82,7 +82,8 @@
                 
                 <?php if(isset($_SESSION['user'])) { ?>   
                 	<li>
-                        <a href="<?php echo base_url_ci;?>user/profile"class="mfb-component__button--child">
+                        <a href="<?php echo base_url_ci;?>user/profile" data-mfb-label="Thông tin cá nhân"
+                        class="mfb-component__button--child">
                             <i class="fa fa-address-card"style="padding-top:
                                 20px;padding-left:20px;"></i>
                         </a>
@@ -288,9 +289,7 @@
                         </script>
         <script src="<?php echo base_url_ci;?>public/js/mfb.js"></script>
         <script src="<?php echo base_url_ci;?>public/js/mfb.min.js"></script>
-        <!-- for bootstrap working -->
-        <script src="<?php echo base_url_ci;?>public/js/bootstrap.js"></script>
-        <!-- //for bootstrap working -->
+       
         <!-- smooth-scrolling-of-move-up -->
         <script>
         $(document).ready(function () {
@@ -308,6 +307,11 @@
             });
 
         });
+
+		<?php if(isset($searchNull)){?>
+			setTimeout(function(){ showAlertError('<?php echo $searchNull;?>'); }, 200)
+		<?php }?>
+        
     </script>
         <script src="<?php echo base_url_ci;?>public/js/SmoothScroll.min.js"></script>
         <script src="<?php echo base_url_ci;?>public/js/move-top.js"></script>

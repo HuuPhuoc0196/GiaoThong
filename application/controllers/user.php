@@ -154,6 +154,32 @@ class User extends CI_Controller
 	    }
 	}
 	
+	public function changePasswork()
+	{
+	    if (isset($_POST ['username'])) {
+	        $username = $_POST ['username'];
+	        $dataError = $this->form_validation_changePassword();
+	        if (empty($dataError)) {
+	            // ad user
+	            $data = array (
+					'password' => md5($_POST['newPassword'])
+    			);
+    			$this->m_user->update($username, $data);
+	            $data = array(
+	                "status" => true,
+	                "message" => "Thay đổi mât khẩu thành công"
+	            );
+	            print_r(json_encode($data));die;
+	        } else {
+	            $data = array(
+	                "status" => false,
+	                "message" => $dataError
+	            );
+	            print_r(json_encode($data));die;
+	        }
+	    }
+	}
+	
 	public function forgotPasswork()
 	{
 	    if (isset($_POST ['email'])) {
@@ -234,9 +260,9 @@ class User extends CI_Controller
 	public function form_validation_forgot()
 	{
 		$dataError = array();
-		if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false){
+		if(empty($_POST['email'])){
 	        $dataError['email-reset'] = "Vui lòng nhập địa chỉ email hợp lệ!";
-	    }else if(empty($_POST['email'])){
+	    }else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false){
 	        $dataError['email-reset'] = "Địa chỉ email là không được trống";
 	    }else  if(!$this->m_user->checkEmailAdd($_POST['email'])){
             $dataError['email-reset'] = "Địa chỉ email không tồn tại!";
@@ -278,6 +304,33 @@ class User extends CI_Controller
 	        $dataError['name_profile'] = "Họ và tên là không được trống";
 	    }
 	    
+	    return $dataError;
+	}
+	
+	public function form_validation_changePassword()
+	{
+	    $dataError = array();
+	
+	    if(!$this->m_user->findUsername($_POST['username'])){
+	        $dataError['username_profile_change'] = "Tài khoản không tồn tại";
+	    }
+	
+	    if(empty($_POST['password'])){
+	        $dataError['password-old'] = "Mật khẩu là không được trống";
+	    }else if(!$this->m_user->login($_POST['username'],md5($_POST['password']))){
+	        $dataError['password-old'] = "Mật khẩu không đúng";
+	    }
+	    
+	    if(empty($_POST['newPassword'])){
+	        $dataError['password-new'] = "Mật khẩu mới là không được trống";
+	    }
+	    
+	    if(empty($_POST['rePasswordNew'])){
+	        $dataError['re-password-new'] = "Vui lòng nhập lại mật khẩu";
+	    }else if($_POST['rePasswordNew'] !== $_POST['newPassword']){
+	        $dataError['re-password-new'] = "Mật khẩu không khớp";
+	    }
+	     
 	    return $dataError;
 	}
 	
@@ -333,11 +386,11 @@ class User extends CI_Controller
 		}
 	}
 	
-	// khi có lỗi GUI: echo validation_error('<div class="alert alert-danger">,'</div>');
-	public function login_validation()
-	{
+// 	// khi có lỗi GUI: echo validation_error('<div class="alert alert-danger">,'</div>');
+// 	public function login_validation()
+// 	{
 	
-	}
+// 	}
 	
 	public function checklogin()
 	{
