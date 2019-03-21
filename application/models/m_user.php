@@ -27,8 +27,8 @@ class M_User extends CI_Model
 	public function searchUser($search, $limit, $start)
 	{
 	    $result = $this->db->select('*')
-	    ->like('name', $search)
-	    ->like('email', $search)
+	    ->like('name', $search, 'both', false)
+	    ->or_like('email', $search, 'both', false)
 	    ->limit($limit, $start)
 	    ->order_by('name')
 	    ->get($this->table)

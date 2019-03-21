@@ -26,6 +26,12 @@ class Camera extends CI_Controller {
                     $result['camera'] = $this->m_camera->searchCamera($search, $limit_per_page, $start_index);
                     $result['search'] = $search;
                     $total_records = $this->m_camera->get_total_search($search);
+                    
+                    if(empty($result['hotNews'])){
+                        $total_records = $this->m_camera->get_total();
+                        $result["camera"] = $this->m_camera->getCameraList($limit_per_page, $start_index);
+                        $result["searchNull"] = "Không tìm thấy!";
+                    }
                 } else {
                     $result["camera"] = $this->m_camera->getCameraList($limit_per_page, $start_index);
                 }

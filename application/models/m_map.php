@@ -104,7 +104,7 @@ class M_map extends CI_Model
     public function search($search)
     {
         $this->db->select('*');
-        $this->db->like('name', $search);
+        $this->db->like('name', $search, 'both', false);
         $this->db->order_by("id", "DESC");
         $result = $this->db->get($this->table)->result_array();
         return $result;
@@ -123,7 +123,7 @@ class M_map extends CI_Model
     public function searchMap($search, $limit, $start)
     {
         $result = $this->db->select('*')
-        ->like('name', $search)
+        ->like('name', $search, 'both', false)
         ->limit($limit, $start)
         ->order_by('name')
         ->get($this->table)

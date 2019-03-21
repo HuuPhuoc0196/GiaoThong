@@ -2347,19 +2347,3 @@ function($) {
     })
 
 }(jQuery);
-// Alert
-showAlertError = function() {
-    swal({
-        title: "Không tìm thấy!",
-        type: "error"
-
-    });
-};
-
-showAlertSucess = function() {
-    swal({
-        title: "Đăng ký thành công!",
-        type: "success"
-    });
-
-};

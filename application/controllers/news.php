@@ -35,9 +35,9 @@ class News extends CI_Controller {
                 $result['search'] = $search;
                 $total_records = $this->m_news->get_total_search($search);
                 if(empty($result['hotNews'])){
-                    $result['search'] = $search;
                     $total_records = $this->m_news->get_total();
                     $result["hotNews"] = $this->m_news->getnews($limit_per_page, $start_index);
+                    $result["searchNull"] = "Không tìm thấy!";
                 }
             } else {
                 $result["hotNews"] = $this->m_news->getnews($limit_per_page, $start_index);

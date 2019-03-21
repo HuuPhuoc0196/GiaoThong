@@ -28,15 +28,15 @@ class M_contact extends CI_Model
     
     public function get_total_search($search)
     {
-        $query = $this->db->like('des', $search)->get($this->table);
+        $query = $this->db->like('des', $search, 'both', false)->get($this->table);
         return $query->num_rows();
     }
     
     public function searchContact($search, $limit, $start)
     {
         $result = $this->db->select('*')
-        ->like('content', $search)
-        ->or_like('name', $search)
+        ->like('content', $search, 'both', false)
+        ->or_like('name', $search, 'both', false)
         ->limit($limit, $start)
         ->order_by('id desc')
         ->get($this->table)

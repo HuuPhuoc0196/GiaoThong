@@ -61,8 +61,8 @@ class Map extends CI_Controller
         ));
     }
 
-    public function add()
-    {}
+//     public function add()
+//     {}
 
     public function index_map($id = -1)
     {
@@ -91,7 +91,7 @@ class Map extends CI_Controller
         if ($data == null) {
             echo json_encode(array(
                 "status" => false,
-                "data" => "Điểm " . $search . " không tìm thấy"
+                "data" => "Không tìm thấy"
             ));
             exit();
         }

@@ -20,7 +20,28 @@
         <link href="<?php echo base_url_ci;?>public/css/mfb.min.css" rel="stylesheet" type="text/css"
             media="all" />
             <link rel='stylesheet' href='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css'>
-<script src='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js'></script>
+		<script src='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js'></script>
+     <!-- for bootstrap working -->
+        <script src="<?php echo base_url_ci;?>public/js/bootstrap.js"></script>
+        <!-- //for bootstrap working -->	
+    	<script type="text/javascript">
+            // Alert
+            function showAlertError(message) {
+                swal({
+                    title: message,
+                    type: "error"
+    
+                });
+            };
+    
+            function showAlertSuccess(message) {
+                swal({
+                    title: message,
+                    type: "success"
+                });
+    
+            };
+        </script>
     </head>
 
     <body>
