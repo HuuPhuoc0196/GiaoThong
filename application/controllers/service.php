@@ -65,8 +65,8 @@ class Service extends CI_Controller
                 $data = array(
                     'link_detail' => $urlDetail,
                     'image' => $image,
-                    'title' => trim((empty(trim($datalist[2][$key]))?$datalist[4][$key]:$datalist[2][$key])),
-                    'summary' => trim((empty(trim($datalist[4][$key]))?$datalist[2][$key]:$datalist[4][$key])),
+                    'title' => html_entity_decode(trim((empty(trim($datalist[2][$key]))?$datalist[4][$key]:$datalist[2][$key]))),
+                    'summary' => html_entity_decode(trim((empty(trim($datalist[4][$key]))?$datalist[2][$key]:$datalist[4][$key]))),
                     'source' => $val['source'],
                     'status' => 0
                 );

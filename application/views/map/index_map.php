@@ -84,8 +84,22 @@ function clearOverlays() {
 }
 
 function searhMap(){
-	clearOverlays();
-	loadmap();
+	geocoder = new google.maps.Geocoder();
+    var address = document.getElementById('search').value;
+
+    geocoder.geocode( { 'address' : address }, function( results, status ) {
+        if( status == google.maps.GeocoderStatus.OK ) {
+
+            //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
+            map.setCenter( results[0].geometry.location );
+            var marker = new google.maps.Marker( {
+                map     : map,
+                position: results[0].geometry.location
+            } );
+        } else {
+            loadmap();
+        }
+    } );
 }
 
 function loadMapItem() {
@@ -117,7 +131,7 @@ function getMap()
 	var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
     $.ajax({
-        url: "<?php echo base_url_ci;?>map/getMap",
+       url: "<?php echo base_url_ci;?>map/getMap",
         type: "post",
         data: {
             id : selectedValue
@@ -150,18 +164,20 @@ function geocodeLatLng(geocoder,latlng,type) {
 	       	        },
 	       			dataType: "json",
 	       	        success: function(response) {
-		       	         $("#result-map").html(response["sucess"]["data"]);
 	       	        	if(response['status'] == true){
 	       	        		$('#myModal').modal('hide');
+	       	        		showAlertSuccess(response["sucess"]["data"]);
 	       	        		loadmap();	
+	       	        	}else{
+		       	        	showAlertError(response["sucess"]["data"]);
 	       	        	}
 	       	        }
 	       		});
 	      } else {
-	        window.alert('Không tìm thấy');
+	    	  showAlertError('Không tìm thấy');
 	      }
 	    } else {
-	      window.alert('Lấy thông tin không thành công: ' + status);
+	    	showAlertError('Lấy thông tin không thành công');
 	    }
 	  });
 	}
@@ -180,7 +196,7 @@ function loadmap() {
 		navigator.geolocation.getCurrentPosition(showPosition, showError);
 	} 
 	else {
-		$('#result-map').innerHTML = "Trình duyệt không hỗ trợ Geolocation.";
+		showAlertError("Trình duyệt không hỗ trợ Geolocation.");
 	}
 }
 
@@ -189,13 +205,11 @@ function getLocation() {
 		navigator.geolocation.getCurrentPosition(showPosition, showError);
 	} 
 	else {
-		$('#result-map').innerHTML = "Trình duyệt không hỗ trợ Geolocation.";
+		showAlertError("Trình duyệt không hỗ trợ Geolocation.");
 	}
 }
 
 function showPosition(position) {
-	$('#mapItem').html('');
-	loadMapItem();
 	islat = position.coords.latitude;
 	islng = position.coords.longitude;
 	myCenter = new google.maps.LatLng(islat,islng);
@@ -223,6 +237,8 @@ function showPosition(position) {
                 appendDataToMap(response);
             }else
             {
+            	$("#search").val('');
+            	loadmap();
                 showAlertError(response['data']);
             }
         }
@@ -234,7 +250,7 @@ function showPosition(position) {
 
 	google.maps.event.addListener(marker,'click',function() {
 	    var infowindow = new google.maps.InfoWindow({
-	      content:"Điểm của bạn"
+	      content:"Vị trí của bạn"
 	    });
 	  infowindow.open(map,marker);
 	 });
@@ -243,16 +259,16 @@ function showPosition(position) {
 function showError(error) {
 	switch(error.code) {
 		case error.PERMISSION_DENIED:
-			$('#result-map').innerHTML = "Trình duyệt không cho phép định vị";
+			showAlertError("Trình duyệt không cho phép định vị");
 			break;
 		case error.POSITION_UNAVAILABLE:
-			$('#result-map').innerHTML = "Không có thông tin";
+			showAlertError("Không có thông tin");
 			break;	
 		case error.TIMEOUT:
-			$('#result-map').innerHTML = "Hết thời gian";
+			showAlertError("Hết thời gian");
 			break;
 		case error.UNKNOWN_ERROR:
-			$('#result-map').innerHTML = "Lỗi chưa xác định";
+			showAlertError("Lỗi chưa xác định");
 			break;
 	}
 }
