@@ -18,7 +18,7 @@
                                 </div>
                                 <div id="countMap-sucess"></div>
 							</div>
-                                  <input class="btn btn-success mb-20" type="button" value="Sửa đổi" name="countMap" onclick="CountMap.update()">
+                                  <input class="btn btn-success mb-20" type="button" value="Cập nhật" name="countMap" onclick="CountMap.update()">
 						</form>
 					</div>
 					</div>

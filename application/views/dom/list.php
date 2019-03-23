@@ -36,7 +36,7 @@
 						<thead>
 							<tr>
 								<th>Url</th>
-                                <th>Source</th>
+                                <th>Nguồn</th>
                                 <th>Pattern</th>
                                 <th>Pattern Detail</th>
 								<th style="width: 70px;">Chức năng</th>

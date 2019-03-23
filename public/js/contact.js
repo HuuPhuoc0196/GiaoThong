@@ -16,7 +16,7 @@ var Contact = {
 	   	        dataType: "json",
 	   	        success: function(response) {
 	   	        	if(response.status){
-	   	        		$("#sucess").html("<span class='sucess'>"+ response.message + "</span>");
+	   	        		showAlertSuccess(response.message);
 	   	        		Contact.deleteInput();
 	   	        	}else{
 	   	        		Contact.fieldError(response.message)

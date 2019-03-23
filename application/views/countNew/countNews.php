@@ -20,7 +20,7 @@
                                 </div>
                                 <div id="countNew-sucess"></div>
 							</div>
-                                  <input class="btn btn-success mb-20" type="button" value="Sửa đổi" name="countNews" onclick="CountNew.update()">
+                                  <input class="btn btn-success mb-20" type="button" value="Cập nhật" name="countNews" onclick="CountNew.update()">
 						</form>
 					</div>
 				</div>
