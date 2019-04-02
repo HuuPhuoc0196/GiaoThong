@@ -60,7 +60,7 @@
                         <span>Quản lý mã nguồn tin tức</span>
                     </a>
                     <ul class="sub">
-                    	<li><a href="<?php echo base_url_ci;?>admin/listDom"><i class="fa fa-caret-right"></i>Danh sách Dom</a></li>
+                    	<li><a href="<?php echo base_url_ci;?>admin/listDom"><i class="fa fa-caret-right"></i>Danh sách mã nguồn</a></li>
                     </ul>
                 </li>
                 

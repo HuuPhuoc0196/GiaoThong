@@ -132,7 +132,6 @@ var User = {
     },
     
     loadProfile : function(username){
-    	console.log(username);
          $.ajax({
              url: base_url_ci + "user/loadProfile",
              method: "POST",

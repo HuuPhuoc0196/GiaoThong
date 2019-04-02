@@ -3,7 +3,7 @@
 	<section class="wrapper">
 		<div class="table-agile-info">
 			<div class="panel panel-default">
-				<div class="panel-heading">Danh sách người dùng</div>
+				<div class="panel-heading">Danh sách tài khoản</div>
 				<div class="row w3-res-tb">
 					<div class="col-sm-3 ">
 						<form action="<?php echo base_url_ci;?>admin/listUser" method="post">
@@ -28,7 +28,7 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Username</th>
+								<th>Tên tài khoản</th>
                                 <th>Họ & Tên</th>
                                 <th>Email</th>
                                 <th>Số ĐT</th>

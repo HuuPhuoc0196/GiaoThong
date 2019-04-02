@@ -32,7 +32,7 @@
 							<tr>
 								<th>ID</th>
 								<th>Tên Camera</th>
-								<th>Source</th>
+								<th>Nguồn</th>
                                 <th>Mô tả</th>
                                 <th>Trạng thái camera</th>
 								<th style="width: 70px;">Chức năng</th>

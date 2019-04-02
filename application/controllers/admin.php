@@ -859,7 +859,7 @@ class Admin extends CI_Controller
                 $result = $this->m_home->updateCount($data);
                 $data = array(
                     "status" => true,
-                    "message" => "Cập nhật thành công số bản tin hot"
+                    "message" => "Cập nhật thành công"
                 );
                 print_r(json_encode($data));die;
             }else{
@@ -888,7 +888,7 @@ class Admin extends CI_Controller
                 $result = $this->m_home->updateCount($data);
                 $data = array(
                     "status" => true,
-                    "message" => "Cập nhật thành công số bản đồ hot"
+                    "message" => "Cập nhật thành công"
                 );
                 print_r(json_encode($data));die;
             }else{

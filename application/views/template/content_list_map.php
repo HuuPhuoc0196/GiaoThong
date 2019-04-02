@@ -33,10 +33,10 @@
 							<tr>
 								<th>ID</th>
 								<th>Tên</th>
-								<th>lat</th>
-								<th>long</th>
+								<th>Hoành độ</th>
+								<th>Tung độ</th>
 								<th>Loại thông báo</th>
-								<th>Thời gian Push</th>
+								<th>Thời gian báo</th>
 								<th style="width: 70px;">Chức năng</th>
 							</tr>
 						</thead>
