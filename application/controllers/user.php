@@ -189,7 +189,7 @@ class User extends CI_Controller
 	            $newPassword = (new DateTime)->getTimestamp();
 	            $username = $this->m_user->findUsernameByEmail($email);
 	            $data = array (
-	                'password' => $newPassword
+	                'password' => md5($newPassword)
 	            );
 	            $this->m_user->update($username, $data);
 	            $this->sendEmail($email,$newPassword);
