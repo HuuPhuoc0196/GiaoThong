@@ -173,6 +173,12 @@ class M_User extends CI_Model
 		return $result;
 	}
 	
+	public function findUsernameByEmail($email)
+	{
+	    $result = $this->db->select('username')->where('email', $email)->get($this->table)->result_array();
+	    return $result[0]['username'];
+	}
+	
 	public function findNameByUsername($username)
 	{
 		$result = $this->db->select('name')->where('username', $username)->get($this->table)->result_array();

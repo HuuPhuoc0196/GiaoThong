@@ -124,7 +124,7 @@ class User extends CI_Controller
 			$this->load->view('user/register');
 		}
 	}
-	
+
 	public function updateProfile()
 	{
 	    if (isset($_POST ['username'])) {
@@ -182,15 +182,17 @@ class User extends CI_Controller
 	
 	public function forgotPasswork()
 	{
-	    if (isset($_POST ['email'])) {
+	    $email = $_POST['email'];
+	    if (isset($email)) {
 	        $dataError = $this->form_validation_forgot();
 	        if (empty($dataError)) {
-	            // ad user
-	            $data = array(
-	                "status" => true,
-	                "message" => "Thông tin lấy lại tài khoản của bạn đã được gửi về email. <br/> Vui lòng check email của bạn"
+	            $newPassword = (new DateTime)->getTimestamp();
+	            $username = $this->m_user->findUsernameByEmail($email);
+	            $data = array (
+	                'password' => $newPassword
 	            );
-	            print_r(json_encode($data));die;
+	            $this->m_user->update($username, $data);
+	            $this->sendEmail($email,$newPassword);
 	        } else {
 	            $data = array(
 	                "status" => false,
@@ -256,6 +258,7 @@ class User extends CI_Controller
 	    
 	    return $dataError;
 	}
+	
 	
 	public function form_validation_forgot()
 	{
@@ -409,6 +412,36 @@ class User extends CI_Controller
 	public function loginUser()
 	{
 	    $this->load->view('user/loginUser');
+	}
+	
+	public function sendEmail($email,$newPassword){
+    	 $config = Array(
+          'protocol' => 'smtp',
+          'smtp_host' => 'ssl://smtp.googlemail.com',
+          'smtp_port' => 465,
+          'smtp_user' => 'lehuuphuoc0196@gmail.com', // change it to yours
+          'smtp_pass' => 'choancuc', // change it to yours
+          'mailtype' => 'html',
+          'charset' => 'utf-8',
+          'wordwrap' => TRUE
+        );
+
+          $message = "Mật khẩu mới của bạn là: " . $newPassword;
+          $this->load->library('email', $config);
+          $this->email->set_newline("\r\n");
+          $this->email->from('lehuuphuoc0196@gmail.com'); // change it to yours
+          $this->email->to($email);// change it to yours
+          $this->email->subject('Thông tin lấy lại mật khẩu');
+          $this->email->message($message);
+          if($this->email->send()){
+             $data = array(
+                 "status" => true,
+                 "message" => "Thông tin lấy lại tài khoản của bạn đã được gửi về email. <br/> Vui lòng check email của bạn"
+             );
+            print_r(json_encode($data));die;
+         }else {
+            show_error($this->email->print_debugger());
+         }
 	}
 	
 }
