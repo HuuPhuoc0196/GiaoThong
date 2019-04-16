@@ -34,10 +34,7 @@ class Contact extends CI_Controller {
                 'create_date' => date("y-m-d H:i:s")
             );
             $this->m_contact->insert($dataInsert);
-            $data = array(
-                "status" => true,
-                "message" => "Chúng tôi đã ghi nhận thông tin từ bạn"
-            );
+            $this->sendEmail($dataInsert['email']);
             print_r(json_encode($data));die;
             
         }else {
@@ -126,5 +123,37 @@ class Contact extends CI_Controller {
             }
         }
         $this->load->view('admin/listContact', $data);
+    }
+    
+    public function sendEmail($email){
+        $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'hotrocanhbaogiaothong@gmail.com', // change it to yours
+            'smtp_pass' => 'choancuc', // change it to yours
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'wordwrap' => TRUE
+            );
+    
+        $message = "Lời gớp ý của bạn đã được chúng tôi ghi nhận  
+            <br/> Lời gớp ý của bạn là gớp phần hoàn thiện cho hệ thống
+            <br/> Chúng tôi rất cảm ơn vì lời gớp ý của bạn";
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+        $this->email->from('hotrocanhbaogiaothong@gmail.com'); // change it to yours
+        $this->email->to($email);// change it to yours
+        $this->email->subject('Thông báo đã ghi nhận thông tin gớp ý');
+        $this->email->message($message);
+        if($this->email->send()){
+            $data = array(
+                "status" => true,
+                "message" => "Lời gớp ý của bạn đã được chúng tôi ghi nhận"
+            );
+            print_r(json_encode($data));die;
+        }else {
+            show_error($this->email->print_debugger());
+        }
     }
 }
