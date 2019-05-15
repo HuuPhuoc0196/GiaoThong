@@ -16,11 +16,13 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- js -->
         <script src="<?php echo base_url_ci;?>public/js/jquery-1.11.1.min.js"></script>
+        <link rel='stylesheet' href='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css'>
+		<script src='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js'></script>
+        <script src="<?php echo base_url_ci;?>public/js/bootstrap.js"></script>
         <!-- //js -->
         <link href="<?php echo base_url_ci;?>public/css/mfb.min.css" rel="stylesheet" type="text/css"
             media="all" />
     </head>
-
     <body>
         <!-- banner -->
         <div class="banner">
@@ -70,6 +72,11 @@
                                 <li <?php if(isset($news)) echo $news?>><a href="<?php echo base_url_ci;?>news">Tin Tức</a></li>
                                 <li <?php if(isset($aboutus)) echo $aboutus?>><a href="<?php echo base_url_ci;?>aboutus">Giới Thiệu</a></li>
                                 <li <?php if(isset($contact)) echo $contact?>><a href="<?php echo base_url_ci;?>contact">Liên Hệ</a></li>
+                                <li onClick="showMap()" title="Thông Báo Tuyến Đường Đặt Biệt" style="cursor: pointer;">
+                            		<a>
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <!-- /.navbar-collapse -->
@@ -96,4 +103,23 @@
                         });
 
                     });
+
+
+
+                    function showError(error) {
+                    	switch(error.code) {
+                    		case error.PERMISSION_DENIED:
+                    			showAlertError("Trình duyệt không cho phép định vị");
+                    			break;
+                    		case error.POSITION_UNAVAILABLE:
+                    			showAlertError("Không có thông tin");
+                    			break;	
+                    		case error.TIMEOUT:
+                    			showAlertError("Hết thời gian");
+                    			break;
+                    		case error.UNKNOWN_ERROR:
+                    			showAlertError("Lỗi chưa xác định");
+                    			break;
+                    	}
+                    }
                 </script>

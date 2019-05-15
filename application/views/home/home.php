@@ -161,6 +161,8 @@
 
 <script>
 var myVar = setInterval(Camera.showImageUrl, 5000);
+var map;
+var arrayMap = [];
 
 function loadmap() {
 	var geocoder = new google.maps.Geocoder;
@@ -196,7 +198,7 @@ function showPosition(position) {
 	    overviewMapControl: true,
 	    rotateControl: true   
 	};
-	var map = new google.maps.Map(mapCanvas, mapOptions);
+	map = new google.maps.Map(mapCanvas, mapOptions);
 	$.ajax({
         url: "<?php echo base_url_ci;?>map/search",
         type: "post",
@@ -206,7 +208,7 @@ function showPosition(position) {
 		dataType: "json",
         success: function(response) {
             if(response['status'] == true){
-                appendDataToMap(response,map);
+                appendDataToMap(response);
             }
         }
     });
@@ -224,33 +226,19 @@ function showPosition(position) {
 	 });
 }
 
-function showError(error) {
-	switch(error.code) {
-		case error.PERMISSION_DENIED:
-			$('#result-map').innerHTML = "Trình duyệt không cho phép định vị";
-			break;
-		case error.POSITION_UNAVAILABLE:
-			$('#result-map').innerHTML = "Không có thông tin";
-			break;	
-		case error.TIMEOUT:
-			$('#result-map').innerHTML = "Hết thời gian";
-			break;
-		case error.UNKNOWN_ERROR:
-			$('#result-map').innerHTML = "Lỗi chưa xác định";
-			break;
-	}
-}
 
-function appendDataToMap(response,map){
+function appendDataToMap(response){
 	response['data'].forEach(function(key) {
 	    CentralPark = new google.maps.LatLng(key['lat'], key['lng']);
 	    var type = key['type'];
-	    addMarker(CentralPark,map,type);
+	    var keyMap = key['id'];
+	    addMarker(CentralPark,type,keyMap);
 	});
 }
 
+
 //Function for adding a marker to the page.
-function addMarker(location,map,type) {
+function addMarker(location,type,keyMap) {
 	var icon = {
 	        url: "<?php echo base_url_ci;?>public/images/iconMap"+ type +".png", // url
 	        scaledSize: new google.maps.Size(48,48), // size
@@ -268,6 +256,8 @@ function addMarker(location,map,type) {
         map: map,
         content: contentMap
     });
+
+    arrayMap.push(marker);
 	
     var bounds = new google.maps.LatLngBounds();
     var infowindow = new google.maps.InfoWindow();
@@ -275,11 +265,15 @@ function addMarker(location,map,type) {
         return function () {
             infowindow.setContent(this.content);
             infowindow.open(map, this);
+            showInfoMap(keyMap);
         };
     })(marker, infowindow));
     bounds.extend(marker.position);
 }
 
+window.onload = function() {
+	  loadmap();
+	};
 </script>
 
 <script async defer

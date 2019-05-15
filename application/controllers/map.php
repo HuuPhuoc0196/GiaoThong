@@ -60,9 +60,29 @@ class Map extends CI_Controller
             )
         ));
     }
-
-//     public function add()
-//     {}
+    
+    public function deleteMap()
+    {
+        if (isset($_POST['id'])){
+            $id = $_POST['id'];
+            if (! is_numeric($id) || $id < 1 || ! $this->m_map->findID($id)) {
+                echo json_encode(array(
+                    "status" => false,
+                    "sucess" => array(
+                        "data" => "Dữ liệu Không hợp Lệ"
+                    )
+                ));
+                die;
+            }
+            $this->m_map->delete($id);
+            echo json_encode(array(
+                "status" => true,
+                "sucess" => array(
+                    "data" => "Hủy Tuyến Đường Thành Công"
+                )
+            ));
+        }
+    }
 
     public function index_map($id = -1)
     {
@@ -119,6 +139,8 @@ class Map extends CI_Controller
             ));
             exit();
         }
+        $date=date_create($data[0]['pushdate']);
+        $data[0]['pushdate'] = date_format($date,"d-m-Y H:i:s");
         echo json_encode(array(
             "status" => true,
             "data" => $data[0]

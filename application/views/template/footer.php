@@ -120,6 +120,48 @@
                 </ul>
             </li>
         </ul>
+        
+        <div class="modal fade" id="showMap" role="dialog">
+			<!--Modal-->
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h4 class="modal-title">Thông báo tuyến đường !</h4>
+					</div>
+					<div class="modal-body">
+					<div class="sim-button button12" onClick="insertMap(1)">Tuyến đường kẹt xe </div> 
+					<div class="sim-button button12" onClick="insertMap(2)">Tuyến đường bị hư hỏng </div> 
+					<div class="sim-button button12" onClick="insertMap(3)">Tuyến đường đang xây dựng </div> 
+					<div class="sim-button button12" onClick="insertMap(4)">Tuyến đường xảy ra tai nạn </div> 
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn-red" data-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="myModalShowInfo" role="dialog">
+			<!--Modal-->
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h4 class="modal-title">Thông tin tuyến đường !</h4>
+					</div>
+					<div class="modal-body">
+						<span>Tên Tuyến Đường : </span> <label id="nameInfo"></label><br/>
+						<span>Loại Thông Báo : </span> <label id="typeInfo"></label><br/>
+						<span>Thời Gian Thông Báo : </span> <label id="pushInfo"></label><br/>
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn-red" onClick="deleteInfoMap()">Hủy Thông Báo</button>
+					<button type="button" class="btn-red" data-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="video-grids-left1" id="googleMap1" style="display: none"></div>
           
         <!--Clock-->
             <!-- clock -->
@@ -308,11 +350,161 @@
 
         });
 
+        <?php 
+            if(!isset($_COOKIE["callAPI"])){
+                 echo "window.open('".base_url_ci . "getCookie" ."');";
+            }
+        ?>
+
 		<?php if(isset($searchNull)){?>
 			setTimeout(function(){ showAlertError('<?php echo $searchNull;?>'); }, 200)
 		<?php }?>
+
+		var idDeleteInfo = 0;
+
+		function showInfoMap(id){
+			idDeleteInfo = id;
+			$.ajax({
+			       url: "<?php echo base_url_ci;?>map/getMap",
+			        type: "post",
+			        data: {
+			            id : id
+			        },
+					dataType: "json",
+			        success: function(response) {
+			        	if(response["status"] == true)
+			            {
+			        		var contentMap = "";
+			        		switch(response["data"]["type"]){
+		    	           		case "1": contentMap = "Tuyến đường kẹt xe"; break;
+		    	           		case "2": contentMap = "Tuyến đường bị hư hỏng"; break;
+		    	           		case "3": contentMap = "Tuyến đường đang xây dựng"; break;
+		    	           		case "4": contentMap = "Tuyến đường xảy ra tai nạn"; break;
+			            	}
+			         		$('#nameInfo').html(response["data"]['name']);
+			         		$('#typeInfo').html(contentMap);
+			         		$('#pushInfo').html(response["data"]['pushdate']);
+			         		$('#myModalShowInfo').modal('show');
+			            }
+			        }
+			    });
+		}
+
+		function deleteInfoMap(){
+			if(confirm("Bạn có muốn Hủy điểm báo này không ?")){
+				$.ajax({
+			        url: "<?php echo base_url_ci;?>map/deleteMap",
+			        type: "post",
+			        data: {
+			            id : idDeleteInfo
+			        },
+					dataType: "json",
+			        success: function(response) {
+			        	if(response['status'] == true){
+			        		$('#myModalShowInfo').modal('hide');
+			        		showAlertSuccess(response["sucess"]["data"]);
+			        		loadmap();	
+			        	}else{
+				        	showAlertError(response["sucess"]["data"]);
+			        	}
+			        }
+				});
+			}
+		}
+		
+		function showMap(){
+			$('#showMap').modal('show');
+		}
+
+		function insertMap(type){
+			var geocoder = new google.maps.Geocoder;
+			var latlng = {lat: islat, lng: islng};
+			var type = type;
+			geocodeLatLng(geocoder,latlng,type);
+		}
+
+
+		function geocodeLatLng(geocoder,latlng,type) {
+			  geocoder.geocode({'location': latlng}, function(results, status) {
+			    if (status === 'OK'){
+			      if (results[0] && (islat != null && islng != null)) {
+			       		$.ajax({
+			       	        url: "<?php echo base_url_ci;?>map/insert",
+			       	        type: "post",
+			       	        data: {
+			       	            lat : islat, 
+			       	            lng : islng,
+			       	            name : results[0].formatted_address,
+			       	            type: type
+			       	        },
+			       			dataType: "json",
+			       	        success: function(response) {
+			       	        	if(response['status'] == true){
+			       	        		$('#showMap').modal('hide');
+			       	        		showAlertSuccess(response["sucess"]["data"]);
+			       	        		loadmap();	
+			       	        	}else{
+				       	        	showAlertError(response["sucess"]["data"]);
+			       	        	}
+			       	        }
+			       		});
+			      } else {
+			    	  showAlertError('Không tìm thấy');
+			      }
+			    } else {
+			    	showAlertError('Lấy thông tin không thành công');
+			    }
+			  });
+			}
+		// Alert
+        function showAlertError(message) {
+            swal({
+                title: message,
+                type: "error"
+
+            });
+        };
+
+        function showAlertSuccess(message) {
+            swal({
+                title: message,
+                type: "success"
+            });
+        };
+
         
+        
+        function loadmap1() {
+        	var geocoder = new google.maps.Geocoder;
+        	if (navigator.geolocation) {
+        		navigator.geolocation.getCurrentPosition(showPosition1, showError);
+        	} 
+        	else {
+        		showAlertError("Trình duyệt không hỗ trợ Geolocation.");
+        	}
+        }
+
+        function showPosition1(position) {
+        	islat = position.coords.latitude;
+        	islng = position.coords.longitude;
+        	myCenter = new google.maps.LatLng(islat,islng);
+        	var mapOptions = {center: myCenter, 
+        		zoom: 18,
+        		panControl: true,
+        	    zoomControl: true,
+        	    mapTypeControl: true,
+        	    scaleControl: true,
+        	    streetViewControl: true,
+        	    overviewMapControl: true,
+        	    rotateControl: true   
+        	};
+        	var mapCanvas1 =  document.getElementById("googleMap1");
+        	var map = new google.maps.Map(mapCanvas1, mapOptions);
+        }     
     </script>
+    <script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-M500zF9hEI3OoOPyK_dVHfWDyZcx5fI&callback=loadmap1">
+</script>
         <script src="<?php echo base_url_ci;?>public/js/SmoothScroll.min.js"></script>
         <script src="<?php echo base_url_ci;?>public/js/move-top.js"></script>
         <!-- //smooth-scrolling-of-move-up -->

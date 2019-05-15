@@ -79,6 +79,7 @@ var User = {
     	$('#myModal1').modal('hide');
     },
     updateProfile : function(){
+    	$('#update-profile').attr("disabled", true);
     	var preview = document.querySelector('#profile'); //selects the query named img
         var file    = document.querySelector('input[type=file]').files[0]; //sames as here
         var reader  = new FileReader();
@@ -114,10 +115,11 @@ var User = {
             },
             dataType: "json",
             success: function(response) {
-            	console.log(response);
             	if (!response.status) {
                     User.fieldError(response.message);
                 } else {
+                	$('#update-profile').attr("disabled", false);
+                	$('#password_profile').val('');
                 	showAlertSuccess("Cập nhật thành công!");
                 }
            }
