@@ -33,7 +33,9 @@ class Service extends CI_Controller
                     continue;
                 if (! isset($datalist[4][$key]))
                     continue;
-                
+                if($this->m_news->findTitle(html_entity_decode(trim((empty(trim($datalist[2][$key]))?$datalist[4][$key]:$datalist[2][$key]))))){
+                    continue;
+                }
                 $checkLink = strpos($datalist[1][$key], $source);
                 if ($checkLink !== false) {
                     $urlDetail = $datalist[1][$key];

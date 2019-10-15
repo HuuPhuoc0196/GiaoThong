@@ -15,8 +15,9 @@
 			 	<div id="sucess-update-profile"></div>
                 <div class="w3_form_body_grid">
 				    <i  style="width: 16px;margin-right:15%;">Hình đại diện : </i>
-                    <img src="<?php echo base_url_ci;?>public/images/hinh.jpg" style="width:120px; height:120px;">
-                    <a class="click"href="#">Click vào đây để thay đổi avata của bạn</a>
+                    <img id="profile"  style="width:120px; height:120px;">
+                    <a class="click" href="#"><input type="file" onchange="User.uploadFile()"></a>
+                    
 				</div>
 				<div id=""></div>
 			 	
@@ -68,6 +69,7 @@
 </div>
 	<script type="text/javascript">
 		var base_url_ci = "<?php echo base_url_ci;?>";
+		var profilename = "";
 		User.showProfile('<?php if(isset($_SESSION['user'])){echo $_SESSION['user']['username'];}?>');
 	</script>
 

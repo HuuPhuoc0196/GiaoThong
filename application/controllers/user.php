@@ -11,6 +11,7 @@ class User extends CI_Controller
 		$this->load->helper('form');
 		$this->load->library('session');
 		$this->load->helper('email');
+		$this->load->library('upload');
 	}
 	
 	public function index()
@@ -136,8 +137,13 @@ class User extends CI_Controller
 					'name' => $_POST ['name'],
 					'email' => $_POST ['email'],
 					'phone' => $_POST ['phone'],
-					'address' => $_POST ['address'] 
+					'address' => $_POST ['address']
     			);
+	            if($_POST ['filename'] !== ""){
+	                $urlImage = $_POST ['urlImage'];
+	                file_put_contents('public/images/' . $_POST ['filename'], file_get_contents($urlImage));
+	                $data["filename"] = $_POST ['filename'];
+	            }
     			$this->m_user->update($username, $data);
 	            $data = array(
 	                "status" => true,
@@ -419,7 +425,7 @@ class User extends CI_Controller
           'protocol' => 'smtp',
           'smtp_host' => 'ssl://smtp.googlemail.com',
           'smtp_port' => 465,
-          'smtp_user' => 'lehuuphuoc0196@gmail.com', // change it to yours
+          'smtp_user' => 'hotrocanhbaogiaothong@gmail.com', // change it to yours
           'smtp_pass' => 'choancuc', // change it to yours
           'mailtype' => 'html',
           'charset' => 'utf-8',
@@ -429,7 +435,7 @@ class User extends CI_Controller
           $message = "Mật khẩu mới của bạn là: " . $newPassword;
           $this->load->library('email', $config);
           $this->email->set_newline("\r\n");
-          $this->email->from('lehuuphuoc0196@gmail.com'); // change it to yours
+          $this->email->from('hotrocanhbaogiaothong@gmail.com'); // change it to yours
           $this->email->to($email);// change it to yours
           $this->email->subject('Thông tin lấy lại mật khẩu');
           $this->email->message($message);

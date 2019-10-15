@@ -79,6 +79,20 @@ var User = {
     	$('#myModal1').modal('hide');
     },
     updateProfile : function(){
+    	$('#update-profile').attr("disabled", true);
+    	var preview = document.querySelector('#profile'); //selects the query named img
+        var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+        var src = $(preview).attr('src');
+    	var filename = "";
+    	if(file){
+        	var indexSearch = file.name.lastIndexOf(".");
+        	filename = file.lastModified + file.name.substring(indexSearch);
+    	}
     	User.deleteMessage();
     	var name = $('#name_profile').val();
         var username = username_update;
@@ -95,13 +109,17 @@ var User = {
                 phone: phone,
                 email: email,
                 address: address,
-                password : password
+                password : password,
+                filename : filename,
+                urlImage : src
             },
             dataType: "json",
             success: function(response) {
             	if (!response.status) {
                     User.fieldError(response.message);
                 } else {
+                	$('#update-profile').attr("disabled", false);
+                	$('#password_profile').val('');
                 	showAlertSuccess("Cập nhật thành công!");
                 }
            }
@@ -160,6 +178,9 @@ var User = {
                  $('#email_profile').val(response.data.email);
                  $('#address_profile').val(response.data.address);
                  $('#username_profile_change').val(response.data.username);
+                 var image = response.data.filename === "" ? base_url_ci + "public/images/hinh.jpg" : base_url_ci + "public/images/" + response.data.filename;
+                 $('#profile').attr("src", image);
+                 profilename = image;
              }
          });
     },
@@ -196,5 +217,22 @@ var User = {
                 }
            }
         });
+    },
+    uploadFile : function(){
+    	var preview = document.querySelector('#profile'); //selects the query named img
+        var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+        if (file) {
+            reader.readAsDataURL(file); //reads the data as a URL
+        } else {
+            preview.src = profilename;
+        }
+
+        var src = $(preview).attr('src');
+        $("#profile").attr("src", src);
     }
 }

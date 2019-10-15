@@ -5,11 +5,9 @@
 <div class="banner-bottom">
     <div class="container container_bg">
 		
-        <div id="result-map" class="sucess sucess-custom-map"></div>
         <!-- video-grids -->
         <div class="video-grids">
             <div class="col-md-8 video-grids-left">
-			<div class="sim-button button12" data-toggle="modal" data-target="#myModal">Thông báo tuyến đường đặc biệt </div> 
                 <div class="video-grids-left1" id="googleMap">
                 </div>
             </div>
@@ -39,27 +37,6 @@
             </div>
             </div>
 			<div class="clearfix"> </div>
-		
-		<div class="modal fade" id="myModal" role="dialog">
-			<!--Modal-->
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-					<h4 class="modal-title">Thông báo tuyến đường !</h4>
-					</div>
-					<div class="modal-body">
-					<div class="sim-button button12" onClick="insertMap(1)">Tuyến đường kẹt xe </div> 
-					<div class="sim-button button12" onClick="insertMap(2)">Tuyến đường bị hư hỏng </div> 
-					<div class="sim-button button12" onClick="insertMap(3)">Tuyến đường đang xây dựng </div> 
-					<div class="sim-button button12" onClick="insertMap(4)">Tuyến đường xảy ra tai nạn </div> 
-					</div>
-					<div class="modal-footer">
-					<button type="button" class="btn-red" data-dismiss="modal">Đóng</button>
-					</div>
-				</div>
-			</div>
-		</div>
-			
 	</div>
 </div>
 <script>
@@ -143,52 +120,11 @@ function getMap()
         		lat = response["data"]["lat"];
         		lng = response["data"]["lng"];
          		map.setCenter(new google.maps.LatLng(lat, lng));
-        	    
             }
         }
     });
 }
 
-function geocodeLatLng(geocoder,latlng,type) {
-	  geocoder.geocode({'location': latlng}, function(results, status) {
-	    if (status === 'OK'){
-	      if (results[0] && (islat != null && islng != null)) {
-	       		$.ajax({
-	       	        url: "<?php echo base_url_ci;?>map/insert",
-	       	        type: "post",
-	       	        data: {
-	       	            lat : islat, 
-	       	            lng : islng,
-	       	            name : results[0].formatted_address,
-	       	            type: type
-	       	        },
-	       			dataType: "json",
-	       	        success: function(response) {
-	       	        	if(response['status'] == true){
-	       	        		$('#myModal').modal('hide');
-	       	        		showAlertSuccess(response["sucess"]["data"]);
-	       	        		loadmap();	
-	       	        	}else{
-		       	        	showAlertError(response["sucess"]["data"]);
-	       	        	}
-	       	        }
-	       		});
-	      } else {
-	    	  showAlertError('Không tìm thấy');
-	      }
-	    } else {
-	    	showAlertError('Lấy thông tin không thành công');
-	    }
-	  });
-	}
-
-function insertMap(type){
-	$("#result-map").html("");
-	var geocoder = new google.maps.Geocoder;
-	var latlng = {lat: islat, lng: islng};
-	var type = type;
-	geocodeLatLng(geocoder,latlng,type);
-}
 	
 function loadmap() {
 	var geocoder = new google.maps.Geocoder;
@@ -256,33 +192,18 @@ function showPosition(position) {
 	 });
 }
 
-function showError(error) {
-	switch(error.code) {
-		case error.PERMISSION_DENIED:
-			showAlertError("Trình duyệt không cho phép định vị");
-			break;
-		case error.POSITION_UNAVAILABLE:
-			showAlertError("Không có thông tin");
-			break;	
-		case error.TIMEOUT:
-			showAlertError("Hết thời gian");
-			break;
-		case error.UNKNOWN_ERROR:
-			showAlertError("Lỗi chưa xác định");
-			break;
-	}
-}
-
 function appendDataToMap(response){
 	response['data'].forEach(function(key) {
 	    CentralPark = new google.maps.LatLng(key['lat'], key['lng']);
 	    var type = key['type'];
-	    addMarker(CentralPark,type);
+	    var keyMap = key['id'];
+	    addMarker(CentralPark,type,keyMap);
 	});
 }
 
+
 //Function for adding a marker to the page.
-function addMarker(location,type) {
+function addMarker(location,type,keyMap) {
 	var icon = {
 	        url: "<?php echo base_url_ci;?>public/images/iconMap"+ type +".png", // url
 	        scaledSize: new google.maps.Size(48,48), // size
@@ -309,11 +230,16 @@ function addMarker(location,type) {
         return function () {
             infowindow.setContent(this.content);
             infowindow.open(map, this);
+            showInfoMap(keyMap);
         };
     })(marker, infowindow));
     bounds.extend(marker.position);
 }
 
+
+window.onload = function() {
+	  loadmap();
+	};
 </script>
 
 <script async defer

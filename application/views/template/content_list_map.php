@@ -55,7 +55,10 @@
 								    if($val['type']==3){echo 'Tuyến đường đang xây dựng';};
 								    if($val['type']==4){echo 'Tuyến đường xảy ra tai nạn';};
 								?></th>
-								<th><?php echo $val['pushdate'];?></th>
+								<th><?php 
+								$date=date_create($val['pushdate']);
+								echo date_format($date,"d-m-Y H:i:s");
+								?></th>
 								<td><a
 									href="<?php echo base_url_ci;?>admin/deleteMap/<?php echo $val['id'];?>"
 									onClick="return confirm('Bạn có muốn xóa không?')"><i
